@@ -1,0 +1,528 @@
+<title>Driveway Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEE; --surface:#FFFFFF; --surface-2:#F6F7F6;
+  --ink:#15201E; --ink-2:#55625F; --ink-3:#808C89;
+  --rule:#D6DBD8; --rule-2:#E6EAE8;
+  --accent:#0D5F53; --accent-soft:#E2EFEC;
+  --signal:#8F5400; --signal-soft:#FAEEDA;
+  --danger:#8F2D1D; --danger-soft:#F8E5E0;
+  --shadow:0 1px 2px rgba(21,32,30,.05), 0 8px 24px -16px rgba(21,32,30,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+    --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+    --rule:#2A3634; --rule-2:#212B29;
+    --accent:#4FC1AC; --accent-soft:#16302B;
+    --signal:#E0A952; --signal-soft:#33270F;
+    --danger:#E58873; --danger-soft:#351913;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+  --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+  --rule:#2A3634; --rule-2:#212B29;
+  --accent:#4FC1AC; --accent-soft:#16302B;
+  --signal:#E0A952; --signal-soft:#33270F;
+  --danger:#E58873; --danger-soft:#351913;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4,.mono,.eyebrow,.chip,th,.num{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
+.mono,.chip,.eyebrow,.money,td.n,th.n{font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace}
+h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0; text-wrap:balance}
+h2{font-size:1.42rem; font-weight:700; letter-spacing:-.012em; line-height:1.2; margin:0; text-wrap:balance}
+h3{font-size:1.04rem; font-weight:700; letter-spacing:-.005em; margin:0; text-wrap:balance}
+h4{font-size:.82rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0}
+p{margin:0}
+a{color:var(--accent); text-underline-offset:2px}
+strong{font-weight:600}
+.eyebrow{font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.lede{font-size:1.12rem; color:var(--ink-2)}
+.small{font-size:.92rem; color:var(--ink-2)}
+.tiny{font-size:.78rem; color:var(--ink-3); line-height:1.5}
+
+/* ---------- layout primitives ---------- */
+.stack{display:flex; flex-direction:column}
+.g8{gap:8px} .g12{gap:12px} .g16{gap:16px} .g20{gap:20px} .g28{gap:28px} .g40{gap:40px}
+section{display:flex; flex-direction:column; gap:20px; scroll-margin-top:20px}
+.sections{display:flex; flex-direction:column; gap:56px; margin-top:56px}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px; box-shadow:var(--shadow)}
+.hr{height:1px; background:var(--rule); border:0}
+
+/* section head: number is meaningful — this is a real ordered roadmap */
+.shead{display:flex; align-items:baseline; gap:14px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.shead .num{font-family:"IBM Plex Mono",monospace; font-size:.78rem; font-weight:600; color:var(--accent); letter-spacing:.06em; flex:none; padding-top:2px}
+
+/* ---------- header ---------- */
+header{padding:44px 0 0}
+.titleblock{display:flex; flex-direction:column; gap:14px}
+.rule-heavy{height:5px; background:var(--ink); width:64px; border-radius:1px}
+.statstrip{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; margin-top:8px;
+}
+.stat{background:var(--surface); padding:13px 15px; display:flex; flex-direction:column; gap:3px}
+.stat .k{font-family:"IBM Plex Mono",monospace; font-size:.63rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.stat .v{font-family:Archivo,sans-serif; font-size:1.16rem; font-weight:700; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.stat .v.pending{color:var(--signal)}
+
+/* ---------- chips ---------- */
+.chip{
+  display:inline-flex; align-items:center; gap:5px; font-size:.66rem; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:3px;
+  background:var(--surface-2); color:var(--ink-2); border:1px solid var(--rule); white-space:nowrap;
+}
+.chip.free{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+.chip.cost{background:var(--signal-soft); color:var(--signal); border-color:transparent}
+.chip.warn{background:var(--danger-soft); color:var(--danger); border-color:transparent}
+
+/* ---------- correction blocks ---------- */
+.fix{display:flex; flex-direction:column; gap:10px; padding:18px 20px; border-radius:4px; background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--danger)}
+.fix.amber{border-left-color:var(--signal)}
+.fix .hd{display:flex; flex-wrap:wrap; align-items:center; gap:10px}
+.was{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--ink-3); text-decoration:line-through; text-decoration-thickness:1px}
+
+/* ---------- checklist ---------- */
+.group{display:flex; flex-direction:column; gap:12px}
+.grouphd{display:flex; align-items:baseline; gap:10px}
+.item{
+  display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start;
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:15px 17px;
+  transition:opacity .18s ease, border-color .18s ease;
+}
+.item:has(input:checked){opacity:.48; border-color:var(--rule-2)}
+.item:has(input:checked) .itop h3{text-decoration:line-through; text-decoration-thickness:1px}
+.item input[type=checkbox]{
+  appearance:none; -webkit-appearance:none; width:20px; height:20px; margin:3px 0 0;
+  border:1.5px solid var(--ink-3); border-radius:3px; background:var(--surface);
+  cursor:pointer; flex:none; display:grid; place-content:center; transition:.15s ease;
+}
+.item input[type=checkbox]:checked{background:var(--accent); border-color:var(--accent)}
+.item input[type=checkbox]:checked::after{
+  content:""; width:10px; height:6px; border:2px solid var(--surface);
+  border-top:0; border-right:0; transform:rotate(-45deg) translateY(-1px);
+}
+.item input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.ibody{display:flex; flex-direction:column; gap:6px; min-width:0}
+.itop{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.where{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--accent); word-break:break-word}
+
+/* ---------- tables ---------- */
+.twrap{overflow-x:auto; border:1px solid var(--rule); border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:440px}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule-2); vertical-align:top}
+thead th{
+  font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+tr.total td{background:var(--surface-2); font-weight:600; border-top:1px solid var(--rule)}
+.dead{color:var(--ink-3)}
+.hot{color:var(--accent); font-weight:600}
+
+/* ---------- callout ---------- */
+.callout{background:var(--accent-soft); border-radius:4px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.callout h4{color:var(--accent)}
+.q{background:var(--surface); border:1px solid var(--rule); border-top:4px solid var(--signal); border-radius:4px; padding:22px; display:flex; flex-direction:column; gap:14px}
+
+ol.plain,ul.plain{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px}
+ol.plain li,ul.plain li{padding-left:2px}
+
+footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+footer a{color:var(--ink-2)}
+
+@media (max-width:560px){
+  body{font-size:16px; padding:0 15px 72px}
+  .card,.fix,.q{padding:16px}
+  .item{padding:13px 14px; gap:11px}
+  .sections{gap:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="titleblock">
+    <div class="rule-heavy"></div>
+    <p class="eyebrow">Mobile auto services &middot; Boca Raton, Florida</p>
+    <h1>Driveway Playbook</h1>
+    <p class="lede">Step&nbsp;2 of 12 &mdash; get legal, get verified, get paid. Everything below is either done, costs money, or is blocking you.</p>
+  </div>
+
+  <div class="statstrip">
+    <div class="stat"><span class="k">Capital</span><span class="v">$3,500</span></div>
+    <div class="stat"><span class="k">Real hours / wk</span><span class="v">~26</span></div>
+    <div class="stat"><span class="k">Target ticket</span><span class="v">$250</span></div>
+    <div class="stat"><span class="k">Base address</span><span class="v pending">Pending</span></div>
+  </div>
+</header>
+
+<div class="sections">
+
+<!-- ============ LOCKED ============ -->
+<section>
+  <div class="shead"><span class="num">01</span><h2>Locked. Stop re-deciding these.</h2></div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Decision</th><th>Final answer</th></tr></thead>
+      <tbody>
+        <tr><td>Service now</td><td>Mobile detailing &mdash; rinseless first, no tank, no generator</td></tr>
+        <tr><td>Service at day 60&ndash;90</td><td>Window tint, funded by detailing cash</td></tr>
+        <tr><td>The differentiator</td><td>Tint <em>and</em> detail in one driveway visit. Nobody in the corridor does both.</td></tr>
+        <tr><td>The wedge</td><td>Saturdays. Every mobile tint competitor is closed Sat&ndash;Sun.</td></tr>
+        <tr><td>Service radius</td><td class="n">20 minutes from base</td></tr>
+        <tr><td>Territory</td><td>West Boca, Delray, Coconut Creek, Parkland, Coral Springs</td></tr>
+        <tr><td>Not doing</td><td>Oil change. Regulated waste, low margin, certified competitors.</td></tr>
+        <tr><td>Not doing</td><td>Fort Lauderdale year one. 571-review competitor. Fight it later.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ CORRECTIONS ============ -->
+<section>
+  <div class="shead"><span class="num">02</span><h2>Three things from last time were wrong or missing</h2></div>
+
+  <div class="stack g16">
+
+    <div class="fix">
+      <div class="hd"><h3>The tint sticker is required &mdash; and the statute number was wrong</h3><span class="chip warn">Criminal, not a fine</span></div>
+      <p class="small">Last time you were pointed at <span class="was">316.2953</span>. The labeling rule is <strong>Fla. Stat. 316.2955</strong>; penalties are in <strong>316.2956</strong>. Half the tint blogs online say Florida needs no compliance sticker. They are wrong, and they are the reason installers get burned.</p>
+      <p class="small">The installer must affix a <strong>pressure-sensitive, self-destructive, non-removable vinyl label to the inside left door jamb</strong>, showing the film's trade name and your business name. Selling or installing film in violation is a <strong>second-degree misdemeanor</strong> &mdash; that lands on you, not the customer. Order labels the same day you order your first roll of film.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Nobody told you about sales tax. This is the one that eats people.</h3><span class="chip warn">Register before car #1</span></div>
+      <p class="small">Florida doesn't tax labor by itself. But you're not selling labor by itself &mdash; you apply chemicals, wax, coating, film. The moment materials transfer to the customer's car, <strong>the entire bill becomes taxable</strong>, not just the product. Tint is unambiguous: the film is tangible property you're installing.</p>
+      <p class="small">Palm Beach and Broward are both at <strong>7%</strong>. On a $250 detail that's <strong>$16.35</strong>. Ten cars a week is <strong>$8,500 a year</strong> you would owe out of your own pocket, plus penalty and interest, if you never collected it. Register on Form DR-1 &mdash; it's free &mdash; and price all-in so the customer never sees a surprise line.</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>Local Services Ads: eligible now, but the badge isn't</h3><span class="chip cost">Deprioritize</span></div>
+      <p class="small">Google expanded its auto categories, so car wash and detailing can run Local Services Ads. But the <strong>Google Verified badge is currently unavailable for the auto, beauty and dining verticals</strong> &mdash; and the badge is the entire reason LSA converts. Without it you're paying per lead for a plain listing.</p>
+      <p class="small">Revised ad order: <strong>1.</strong> Google Business Profile + reviews (free, biggest lever by far) &rarr; <strong>2.</strong> Google Search ads on buying-intent keywords &rarr; <strong>3.</strong> Instagram/Meta before-and-afters &rarr; <strong>4.</strong> LSA once the badge returns. Yelp is last; in this corridor it's where the tint shops live, not the detailers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CHECKLIST ============ -->
+<section>
+  <div class="shead"><span class="num">03</span><h2>Step 2 checklist</h2></div>
+  <p class="small">Tap a box when it's done &mdash; this page remembers on your phone. Do these in order; each one blocks the next.</p>
+
+  <!-- A -->
+  <div class="group">
+    <div class="grouphd"><h4>A &middot; Name and entity</h4><span class="chip">Blocks everything</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="name">
+      <span class="ibody">
+        <span class="itop"><h3>Pick the legal name</h3><span class="chip free">$0</span></span>
+        <p class="small">Four rules. <strong>No city in the legal name</strong> &mdash; "Boca" locks you out of Broward when you expand. <strong>No "Detailing" in the legal name</strong> &mdash; you're adding tint in 90 days. <strong>Spellable over the phone</strong> at 60&nbsp;mph. <strong>.com must be free.</strong> Something like "&#91;Word&#93; Auto Care LLC" survives all four. "Boca Mobile Detailing LLC" breaks two.</p>
+        <p class="tiny">Check the name is free on Sunbiz and the .com is free before you commit to either.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="llc">
+      <span class="ibody">
+        <span class="itop"><h3>File the LLC yourself on Sunbiz</h3><span class="chip cost">$125</span></span>
+        <p class="small">$100 Articles of Organization + $25 registered agent designation. It's a web form and takes about 20 minutes. Both of you go on it as members.</p>
+        <p class="where">sunbiz.org &rarr; E-Filing &rarr; Florida LLC</p>
+        <p class="tiny">Do not pay a filing service $300 for this. Diary the annual report: due between Jan&nbsp;1 and May&nbsp;1, $138.75 &mdash; miss it and Florida adds a flat $400 penalty.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="ein">
+      <span class="ibody">
+        <span class="itop"><h3>Get the EIN</h3><span class="chip free">$0 &middot; 10 min</span></span>
+        <p class="small">Free, instant, direct from the IRS the same day the LLC approves. You need it for the bank account and the tax registration.</p>
+        <p class="where">irs.gov &rarr; Apply for an EIN Online</p>
+        <p class="tiny">Anyone charging you for an EIN is running a scam. It is a free government form.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="bank">
+      <span class="ibody">
+        <span class="itop"><h3>Open a business bank account</h3><span class="chip free">$0</span></span>
+        <p class="small">Bring the LLC certificate and the EIN letter. Every dollar of the business goes through this account. Mixing it with your personal account is how you lose the liability protection you just paid $125 for.</p>
+      </span>
+    </label>
+  </div>
+
+  <!-- B -->
+  <div class="group">
+    <div class="grouphd"><h4>B &middot; Tax</h4><span class="chip warn">Before the first paid car</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="dr1">
+      <span class="ibody">
+        <span class="itop"><h3>Register for Florida sales tax (Form DR-1)</h3><span class="chip free">$0</span></span>
+        <p class="small">Free online. You get a certificate number and a filing schedule. Then you collect 7% and remit it &mdash; you are holding the state's money, not yours.</p>
+        <p class="where">floridarevenue.com &rarr; Register to Collect Tax</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="pricing">
+      <span class="ibody">
+        <span class="itop"><h3>Rebuild the price menu tax-inclusive</h3><span class="chip free">$0</span></span>
+        <p class="small">Advertise round all-in numbers. A $250 job is $233.64 to you and $16.36 to Florida. Decide this now, before you quote anyone, or you'll be eating 7% out of your own take on every car for months.</p>
+      </span>
+    </label>
+  </div>
+
+  <!-- C -->
+  <div class="group">
+    <div class="grouphd"><h4>C &middot; Local licenses</h4><span class="chip">Two, not one</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="btr-county">
+      <span class="ibody">
+        <span class="itop"><h3>Palm Beach County Local Business Tax Receipt</h3><span class="chip cost">Call for fee</span></span>
+        <p class="small">Required for anyone selling services in the county, home-based and one-person businesses included. Expires every Sept&nbsp;30, renewable from July&nbsp;1.</p>
+        <p class="where">pbctax.gov &middot; (561) 355-2264</p>
+        <p class="tiny">Ask them the exact fee for a mobile detailing / mobile auto service classification &mdash; it varies by category, so get the number from them rather than a blog.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="btr-city">
+      <span class="ibody">
+        <span class="itop"><h3>City of Boca Raton Business Tax Receipt</h3><span class="chip cost">Call for fee</span></span>
+        <p class="small">If your base address is inside city limits you need the city one <em>as well as</em> the county one. Boca requires the county application submitted alongside the city application, within 15 days of your Sunbiz start date.</p>
+        <p class="where">myboca.us &rarr; Business Tax Receipts &rarr; Boca eHub</p>
+      </span>
+    </label>
+  </div>
+
+  <!-- D -->
+  <div class="group">
+    <div class="grouphd"><h4>D &middot; Insurance</h4><span class="chip warn">Never touch a customer car without this</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="gl">
+      <span class="ibody">
+        <span class="itop"><h3>General liability, $1M / $2M</h3><span class="chip cost">$30&ndash;55/mo</span></span>
+        <p class="small">Auto detailers average about $54/month for general liability. This is also the certificate gated communities demand before they let a vendor through &mdash; and gated communities are exactly where your money lives.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="gk">
+      <span class="ibody">
+        <span class="itop"><h3>Add garage keepers legal liability</h3><span class="chip warn">Non-negotiable</span></span>
+        <p class="small">General liability does <strong>not</strong> cover damage to the customer's car while it's in your care. Garage keepers does. You will have your hands on $80,000 vehicles. The day you burn through clearcoat with a polisher, this is the only thing between you and paying for a respray.</p>
+        <p class="tiny">A business owner's policy bundling both runs around $89/month for this trade. Get three quotes.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="wc">
+      <span class="ibody">
+        <span class="itop"><h3>Workers' comp &mdash; skip for now</h3><span class="chip free">$0</span></span>
+        <p class="small">Florida requires it at four or more employees for non-construction work. You and Rasul as LLC members are under that. Revisit the day you hire your second helper.</p>
+      </span>
+    </label>
+  </div>
+
+  <!-- E -->
+  <div class="group">
+    <div class="grouphd"><h4>E &middot; Google</h4><span class="chip warn">One shot &mdash; read before you start</span></div>
+
+    <div class="callout">
+      <h4>Do not treat verification as trial and error</h4>
+      <p class="small">Video verification is now the default for new profiles, and repeated failures trigger a <strong>"No More Ways to Verify"</strong> lockout &mdash; you then need Google support and several business days before you can try again. Set the whole scene up first, film once.</p>
+    </div>
+
+    <label class="item">
+      <input type="checkbox" data-k="props">
+      <span class="ibody">
+        <span class="itop"><h3>Stage the props before you open the profile</h3><span class="chip cost">~$120</span></span>
+        <p class="small">Google wants to see a real operation: street signs and landmarks at the address, your tools and equipment, branded apparel or vehicle markings, and documents proving you run the business. Get two branded shirts and a pair of car door magnets printed, have the LLC certificate on paper, and lay the equipment out.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="gbp">
+      <span class="ibody">
+        <span class="itop"><h3>Create the profile as a service-area business</h3><span class="chip free">$0</span></span>
+        <p class="small">Give Google the real address privately, then hide it. No pin, no storefront &mdash; a shaded service region instead. Set service areas to your target cities; it costs nothing.</p>
+        <p class="tiny">Ranking distance is measured from the hidden physical address, not from the service areas you list. Adding a city to the list does not make you rank there.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="video">
+      <span class="ibody">
+        <span class="itop"><h3>Film the verification video in one unbroken take</h3><span class="chip free">$0</span></span>
+        <p class="small">Live, unedited, no cuts, at least 30 seconds. Start on the street sign, walk to the address, pan across the tools, show the shirt and magnets, finish on the LLC paperwork. Rehearse the walk twice before you hit record.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="cats">
+      <span class="ibody">
+        <span class="itop"><h3>Set categories and hours to match the wedge</h3><span class="chip free">$0</span></span>
+        <p class="small">Primary category "Car detailing service." Add the tint category the week you start tinting, not before. <strong>Publish Saturday and Sunday hours</strong> &mdash; that is the hole in this market and Google shows open-now businesses first.</p>
+      </span>
+    </label>
+  </div>
+</section>
+
+<!-- ============ MONEY ============ -->
+<section>
+  <div class="shead"><span class="num">04</span><h2>Where the $3,500 goes</h2></div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Line</th><th class="n">Cost</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>LLC &mdash; Sunbiz Articles of Organization</td><td class="n">$125</td><td>Week 1</td></tr>
+        <tr><td>EIN &mdash; IRS</td><td class="n">$0</td><td>Week 1</td></tr>
+        <tr><td>Sales tax registration &mdash; DR-1</td><td class="n">$0</td><td>Week 1</td></tr>
+        <tr><td>County + city business tax receipts</td><td class="n">confirm</td><td>Week 1&ndash;2</td></tr>
+        <tr><td>Insurance &mdash; first 3 months</td><td class="n">$165&ndash;270</td><td>Before car #1</td></tr>
+        <tr><td>Domain .com &mdash; 1 year</td><td class="n">$12</td><td>Week 1</td></tr>
+        <tr><td>Shirts + car magnets</td><td class="n">$120</td><td>Before the video</td></tr>
+        <tr><td>Detailing kit &mdash; rinseless, polisher, extractor, chemicals, lighting</td><td class="n">$1,800&ndash;2,400</td><td>Week 1&ndash;2</td></tr>
+        <tr class="total"><td>Committed</td><td class="n">~$2,220&ndash;2,930</td><td>&mdash;</td></tr>
+        <tr class="total"><td>Left as reserve</td><td class="n">~$570&ndash;1,280</td><td>Do not spend this</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="small">The reserve is not spare money. It is the buffer for the first thing you break, the first claim deductible, and the film for your first practice windows. Tint entry &mdash; plotter, pattern software subscription, film inventory, backup heat guns &mdash; realistically runs $3,000+ and gets funded out of detailing revenue, not out of this.</p>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section>
+  <div class="shead"><span class="num">05</span><h2>Your real week</h2></div>
+  <p class="small">Mapped against both your schedules and actual sunset. Late August it's dark around 7:50pm; by December it's 5:30pm. Anything starting at 7pm is not a work slot &mdash; stop pretending it is.</p>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Day</th><th>Who's free</th><th>Use it for</th><th class="n">Cars</th></tr></thead>
+      <tbody>
+        <tr><td class="hot">Monday</td><td>Both, all day</td><td class="hot">Paperwork day &mdash; then two-man exteriors</td><td class="n">2&ndash;3</td></tr>
+        <tr><td>Tuesday</td><td class="dead">Z 4pm &middot; R 7pm</td><td class="dead">Dead. Phone, quotes, review research.</td><td class="n dead">0</td></tr>
+        <tr><td>Wednesday</td><td>Both from 2pm</td><td>Half day. Call county offices before 5pm.</td><td class="n">1&ndash;2</td></tr>
+        <tr><td>Thursday</td><td class="dead">Z 4pm &middot; R 7pm</td><td class="dead">Dead. Website, photo editing, follow-ups.</td><td class="n dead">0</td></tr>
+        <tr><td>Friday</td><td>Both from 2pm</td><td>Half day. Two-man jobs.</td><td class="n">1&ndash;2</td></tr>
+        <tr><td class="hot">Saturday</td><td>You solo</td><td class="hot">Interiors &mdash; one person handles these fine. This is the day tint competitors are closed.</td><td class="n">2</td></tr>
+        <tr><td class="hot">Sunday</td><td>Both, all day</td><td class="hot">Biggest day. Stack jobs in one neighborhood.</td><td class="n">2&ndash;3</td></tr>
+        <tr class="total"><td>Ceiling</td><td>~26 hrs</td><td>At $250 average</td><td class="n">8&ndash;12</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="stack g8">
+      <h3>Two things to handle now, not in month three</h3>
+      <ul class="plain small">
+        <li><strong>Rasul's Saturday.</strong> Saturday is the exact hole you found in the market and he isn't available for it. Have that conversation this week.</li>
+        <li><strong>Book by geography, not by request order.</strong> Every job inside 20 minutes, and stack same-neighborhood jobs on the same day. Two cars in one gated community beats two cars 30 minutes apart &mdash; same hours, double the money.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TINT LAW ============ -->
+<section>
+  <div class="shead"><span class="num">06</span><h2>Florida tint numbers &mdash; memorize before day 60</h2></div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Window</th><th class="n">Cars</th><th class="n">SUV / van / truck</th></tr></thead>
+      <tbody>
+        <tr><td>Front side windows</td><td class="n">28% VLT min</td><td class="n">28% VLT min</td></tr>
+        <tr><td>Back side windows</td><td class="n">15% VLT min</td><td class="n">6% VLT min</td></tr>
+        <tr><td>Rear window</td><td class="n">15% VLT min</td><td class="n">6% VLT min</td></tr>
+        <tr><td>Windshield</td><td class="n" colspan="2">Non-reflective only, above the AS-1 line</td></tr>
+        <tr><td>Reflectivity</td><td class="n" colspan="2">Max 25% front and back sides</td></tr>
+        <tr><td>Banned colors</td><td class="n" colspan="2">Red, amber, blue &mdash; any window</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="small">VLT means visible light transmission &mdash; how much light gets through. Lower number, darker film. A customer asking for "limo tint" on their front windows is asking you to commit a misdemeanor. Quote them the legal number and move on; the ticket goes to them and the review goes to you.</p>
+
+  <div class="callout">
+    <h4>The physical problem nobody mentions</h4>
+    <p class="small">Tint hates the outdoors. Airborne dust, sun affecting adhesive cure time, afternoon rain. Cheap dyed film tolerates a driveway; ceramic really wants a controlled space. <strong>Ask "do you have a garage we can pull into?" before you book a tint job</strong> &mdash; not when you arrive.</p>
+  </div>
+</section>
+
+<!-- ============ OPEN ============ -->
+<section>
+  <div class="shead"><span class="num">07</span><h2>What's blocking Step 3</h2></div>
+
+  <div class="q">
+    <h3>One decision, and it's the same one from last time</h3>
+    <p class="small">Your base is whichever address you can physically stand at, with your tools laid out, and film an unbroken 30-second video. That is the whole test. Not where you'd like to work &mdash; where you can prove you operate.</p>
+    <ul class="plain small">
+      <li><strong>No real Fort Lauderdale address?</strong> Then it's Boca. Decided. Stop revisiting it.</li>
+      <li><strong>Yes, a real one</strong> &mdash; family, relative, somewhere you'd genuinely store equipment and could film? Say so and we re-plan the territory around it, because it changes which cities you can rank in for the next several years.</li>
+    </ul>
+    <hr class="hr">
+    <h3>Also owed from last time</h3>
+    <ul class="plain small">
+      <li>The 1-star and 3-star reviews on One Call Detailing (571 reviews) and GoFilms (351). Thirty of them, every complaint that repeats. That list becomes your website copy and your operating rules.</li>
+      <li>Three name candidates that survive all four naming rules above.</li>
+    </ul>
+  </div>
+</section>
+
+</div><!-- /sections -->
+
+<footer>
+  <p class="tiny">Sources: Fla. Stat. 316.2955 / 316.2956 &middot; Florida Dept. of Revenue GT-800015, GT-800067 &middot; Sunbiz Division of Corporations &middot; Palm Beach County Tax Collector &middot; City of Boca Raton &middot; Google Business Profile Help &middot; Google Local Services category expansion &middot; Insureon and TechInsurance trade rate data.</p>
+  <p class="tiny">Fees and rates verified August 2026. Confirm the county and city receipt amounts by phone &mdash; they vary by classification. Not legal or tax advice; a Florida CPA should see your first return.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = "driveway-playbook-v1";
+  var boxes = document.querySelectorAll(".item input[type=checkbox]");
+  var state = {};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) state = JSON.parse(raw) || {};
+  } catch (e) { state = {}; }
+
+  boxes.forEach(function(b){
+    var k = b.getAttribute("data-k");
+    if (state[k]) b.checked = true;
+    b.addEventListener("change", function(){
+      state[k] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    });
+  });
+})();
+</script>
