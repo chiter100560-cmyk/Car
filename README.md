@@ -98,8 +98,12 @@ a $20-off code. Remaining edges: weekend availability, response speed, showing u
 - [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
       suite or mailbox), and that equipment can be stored and filmed there.
 - [ ] Three business-name candidates that pass all four naming rules
-- [ ] Teardown of 30 one- and three-star reviews on One Call Detailing (~571) and
-      GoFilms (~351) — every complaint that repeats becomes website copy and ops rules
+- [ ] Teardown of the one-, two- and three-star reviews across the five corridor
+      competitors — every complaint that repeats becomes website copy and ops rules.
+      **Attempted 2026-08-29, blocked:** this environment's egress proxy is on a
+      GitHub-only allowlist, so Google Maps and Yelp are both unreachable and no
+      review text could be collected. Nothing was inferred in its place. Status,
+      evidence and the collection method: [`competitor-review-teardown.md`](competitor-review-teardown.md)
 
 ## Roadmap
 
