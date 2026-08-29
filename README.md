@@ -16,9 +16,9 @@ document, with a checklist that remembers what you've ticked off.
 | Service at day 60–90 | Window tint, funded out of detailing revenue |
 | Differentiator | Tint **and** detail in one driveway visit — nobody in the corridor does both |
 | Market wedge | Saturdays — every mobile tint competitor in the corridor is closed Sat–Sun |
-| Base | Boca Raton *(pending: confirm no verifiable Fort Lauderdale address exists)* |
+| Base | Wiles Rd, Coral Springs 33067 — **Broward County** (not Palm Beach) |
 | Radius | 20 minutes from base |
-| Territory | West Boca, Delray, Coconut Creek, Parkland, Coral Springs |
+| Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
 | Not doing | Oil change — regulated used-oil waste, thin margin, ASE-certified competition |
 | Not doing | Fort Lauderdale in year one — One Call Detailing sits at ~571 reviews |
 | Capital | $3,500 |
@@ -31,7 +31,7 @@ Full checklist with costs and links: [`playbook.html`](playbook.html)
 
 1. **Name and entity** — name rules, LLC ($125 Sunbiz), EIN (free, IRS), business bank account
 2. **Tax** — Florida sales tax registration (Form DR-1, free), rebuild the menu tax-inclusive
-3. **Local licenses** — Palm Beach County *and* City of Boca Raton business tax receipts
+3. **Local licenses** — Broward County *and* City of Coral Springs business tax receipts
 4. **Insurance** — general liability ($30–55/mo) **plus garage keepers legal liability**
 5. **Google** — service-area profile, staged props, one-take video verification
 
@@ -66,10 +66,37 @@ Instagram/Meta before-and-afters → LSA once the badge returns → Yelp last.
 | Reflectivity | Max 25% front and back sides | same |
 | Banned colors | Red, amber, blue — any window | same |
 
+## Base moved to Coral Springs — what it changed
+
+Answered: no Fort Lauderdale address; base is **6160 Wiles Rd, Coral Springs 33067**.
+
+**Better territory.** Parkland, Coconut Creek and Margate are 5–10 min out; Tamarac,
+west Boca and Deerfield inside 20. All single-family driveway homes — a stronger
+20-minute radius than Boca would have given.
+
+**Different county.** Palm Beach County and City of Boca Raton are off the list.
+It is now **Broward County** (browardtax.org — required under County Ordinances
+72-13 and 88-35 and Fla. Stat. Ch. 205) **plus City of Coral Springs**, whose
+home-based application additionally requires a utility bill/lease, a notarized
+affidavit, and review by Coral Springs Police. Sales tax unchanged at 7%
+(6% state + 1% Broward surtax).
+
+**Two risks at that address.** It carries unit numbers, so it is a multi-unit
+building — verification works only if he genuinely occupies it and can film there.
+A pool-cleaning business is already listed at the same address, which draws extra
+Google scrutiny for a second service-area business. No garage/driveway also means
+no van parking and no film-safe workspace.
+
+**The differentiator is weaker on this turf.** Mobile Detailers Inc (N University Dr,
+Coral Springs) already sells detailing + ceramic + paint correction + window tint —
+the exact concept. Platinum Auto Detailing sits between Coral Springs and Parkland
+with 70+ five-star reviews. One Call Detailing runs a Coral Springs landing page with
+a $20-off code. Remaining edges: weekend availability, response speed, showing up on time.
+
 ## Open items
 
-- [ ] **Blocking:** is there a real, verifiable Fort Lauderdale address — one where
-      equipment is stored and a verification video could be filmed? Yes or no.
+- [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
+      suite or mailbox), and that equipment can be stored and filmed there.
 - [ ] Three business-name candidates that pass all four naming rules
 - [ ] Teardown of 30 one- and three-star reviews on One Call Detailing (~571) and
       GoFilms (~351) — every complaint that repeats becomes website copy and ops rules
