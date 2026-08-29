@@ -3,8 +3,12 @@
 Working record for Ziyad and Rasul's mobile car-services business. Detailing now,
 window tint at day 60–90, both delivered at the customer's home.
 
-**Read the playbook:** [`playbook.html`](playbook.html) — that is the working
-document, with a checklist that remembers what you've ticked off.
+**Two working documents:**
+- [`playbook.html`](playbook.html) — Step 2: entity, tax, licences, insurance, Google.
+  Checklist remembers what you've ticked off.
+- [`complaints.html`](complaints.html) — the eight things customers complain about in
+  this trade, the rule that prevents each, a booking script, and website copy written
+  to sell against them.
 
 ---
 
@@ -104,7 +108,10 @@ connect through the session relay (fails on every host, including example.com);
 Google requires JavaScript for both Maps and Search so curl returns an empty shell;
 Yelp is blocked at the proxy; BBB returns Cloudflare 403; Birdeye exposes only the
 11 older Facebook reviews (all positive), with the 40 Google reviews behind a JS tab.
-Do this from a local session or manually — see HANDOFF.md.
+Do this from a local session or manually — see HANDOFF.md. In the meantime
+`complaints.html` covers the industry-wide patterns, which is most of the value
+the teardown was for: eight ranked complaints, the operating rule that prevents
+each, a five-question booking script, and website copy that sells against them.
 
 ## Open items
 

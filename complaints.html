@@ -1,0 +1,333 @@
+<title>Complaint Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEE; --surface:#FFFFFF; --surface-2:#F6F7F6;
+  --ink:#15201E; --ink-2:#55625F; --ink-3:#808C89;
+  --rule:#D6DBD8; --rule-2:#E6EAE8;
+  --accent:#0D5F53; --accent-soft:#E2EFEC;
+  --signal:#8F5400; --signal-soft:#FAEEDA;
+  --danger:#8F2D1D; --danger-soft:#F8E5E0;
+  --shadow:0 1px 2px rgba(21,32,30,.05), 0 8px 24px -16px rgba(21,32,30,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+    --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+    --rule:#2A3634; --rule-2:#212B29;
+    --accent:#4FC1AC; --accent-soft:#16302B;
+    --signal:#E0A952; --signal-soft:#33270F;
+    --danger:#E58873; --danger-soft:#351913;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+  --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+  --rule:#2A3634; --rule-2:#212B29;
+  --accent:#4FC1AC; --accent-soft:#16302B;
+  --signal:#E0A952; --signal-soft:#33270F;
+  --danger:#E58873; --danger-soft:#351913;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4", Georgia, serif; font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 96px; -webkit-font-smoothing:antialiased}
+.wrap{max-width:760px; margin:0 auto}
+h1,h2,h3,h4{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
+.mono,.chip,.eyebrow,.num{font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace}
+h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0; text-wrap:balance}
+h2{font-size:1.42rem; font-weight:700; letter-spacing:-.012em; line-height:1.2; margin:0; text-wrap:balance}
+h3{font-size:1.04rem; font-weight:700; margin:0; text-wrap:balance}
+h4{font-size:.82rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0}
+p{margin:0}
+a{color:var(--accent); text-underline-offset:2px}
+strong{font-weight:600}
+.eyebrow{font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.lede{font-size:1.12rem; color:var(--ink-2)}
+.small{font-size:.92rem; color:var(--ink-2)}
+.tiny{font-size:.78rem; color:var(--ink-3); line-height:1.5}
+section{display:flex; flex-direction:column; gap:20px}
+.sections{display:flex; flex-direction:column; gap:56px; margin-top:56px}
+.hr{height:1px; background:var(--rule); border:0; margin:0}
+.shead{display:flex; align-items:baseline; gap:14px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.shead .num{font-size:.78rem; font-weight:600; color:var(--accent); letter-spacing:.06em; flex:none}
+header{padding:44px 0 0; display:flex; flex-direction:column; gap:14px}
+.rule-heavy{height:5px; background:var(--ink); width:64px; border-radius:1px}
+.chip{display:inline-flex; align-items:center; font-size:.66rem; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2);
+  color:var(--ink-2); border:1px solid var(--rule); white-space:nowrap}
+.chip.hot{background:var(--danger-soft); color:var(--danger); border-color:transparent}
+.chip.fl{background:var(--signal-soft); color:var(--signal); border-color:transparent}
+.chip.win{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+
+/* complaint entry: rank is meaningful — ordered by how often it appears */
+.entry{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px; box-shadow:var(--shadow)}
+.rank{font-family:"IBM Plex Mono",monospace; font-size:1.5rem; font-weight:600; color:var(--rule);
+  line-height:1; padding-top:2px; font-variant-numeric:tabular-nums}
+.ebody{display:flex; flex-direction:column; gap:12px; min-width:0}
+.etop{display:flex; flex-wrap:wrap; align-items:center; gap:9px}
+.says{border-left:3px solid var(--danger); padding:2px 0 2px 14px; font-style:italic; color:var(--ink-2); font-size:.95rem}
+.rulebox{background:var(--accent-soft); border-radius:3px; padding:12px 14px; display:flex; flex-direction:column; gap:5px}
+.rulebox h4{color:var(--accent)}
+.why{font-size:.92rem; color:var(--ink-2)}
+.entries{display:flex; flex-direction:column; gap:14px}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px}
+.card.amber{border-left:4px solid var(--signal)}
+.card.win{border-left:4px solid var(--accent)}
+.copy{background:var(--surface-2); border:1px solid var(--rule); border-radius:4px; padding:16px 18px;
+  font-size:.95rem; display:flex; flex-direction:column; gap:11px}
+.copy p{padding-left:16px; position:relative}
+.copy p::before{content:"“"; position:absolute; left:0; top:-2px; color:var(--accent); font-size:1.3rem; font-weight:700}
+ul.plain,ol.plain{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px}
+.note{background:var(--signal-soft); border-radius:4px; padding:16px 18px; display:flex; flex-direction:column; gap:7px}
+.note h4{color:var(--signal)}
+footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+@media (max-width:560px){
+  body{font-size:16px; padding:0 15px 72px}
+  .entry{padding:16px; gap:12px} .card,.copy,.note{padding:15px}
+  .rank{font-size:1.2rem} .sections{gap:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="rule-heavy"></div>
+  <p class="eyebrow">Mobile auto services &middot; Coral Springs, Florida</p>
+  <h1>Complaint Map</h1>
+  <p class="lede">What customers actually complain about in this trade &mdash; and the rule that stops each one happening to you. Your operating manual, written backwards from other people's one-star reviews.</p>
+</header>
+
+<div class="sections">
+
+<section>
+  <div class="note">
+    <h4>Where this came from &mdash; read this first</h4>
+    <p class="small">These are <strong>industry-wide</strong> complaint patterns from detailing trade sources, installer guidance and film manufacturers. They are <strong>not</strong> the actual reviews of your five local competitors &mdash; I couldn't reach Google or Yelp from the cloud session.</p>
+    <p class="small">You still owe yourself that local pass, and it will take about twenty minutes: Google Maps &rarr; the business &rarr; tap the review count &rarr; <strong>Sort: Lowest rating</strong>. Anything you find that isn't on this list is a gap in your market, and that's the valuable part.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="shead"><span class="num">01</span><h2>The eight complaints, ranked</h2></div>
+  <p class="small">Ordered by how often they show up across sources. The first three are the ones that cost you money, because they're the ones customers write reviews about rather than just quietly not rebooking.</p>
+
+  <div class="entries">
+
+    <div class="entry">
+      <span class="rank">1</span>
+      <div class="ebody">
+        <div class="etop"><h3>Showed up late, or never said when</h3><span class="chip hot">#1 cause</span></div>
+        <p class="says">"Showed up super late, came unprepared, and didn't do a thorough job. No communication about arrival time."</p>
+        <p class="why">Late arrival paired with silence is the single most-cited complaint in this trade. Customers forgive a delay. They do not forgive not being told.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Text on the way, every time: <strong>"On my way, 25 minutes out."</strong> If you're running late, they hear it from you <em>before</em> the window closes, never after. Book in 3-hour windows, not exact times, so you're honest about traffic on I-95.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">2</span>
+      <div class="ebody">
+        <div class="etop"><h3>Missed spots</h3><span class="chip hot">Most common quality gripe</span></div>
+        <p class="says">"Streaks on the inside glass, didn't box the windows, air vents not dusted."</p>
+        <p class="why">Not skill &mdash; sequence. The same few places get missed by everyone because they're checked last, or in bad light, or after you've mentally finished.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">A fixed <strong>final walk-around</strong>, same order every car, with a light in your hand: inside glass (roll windows down two inches &mdash; "boxing" &mdash; and do the top edge), air vents, door jambs, fuel door, cupholders, seat rails, trunk lip, mirror backs. Never skip it because you're tired. Tired is exactly when spots get missed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">3</span>
+      <div class="ebody">
+        <div class="etop"><h3>The price changed</h3><span class="chip hot">Trust killer</span></div>
+        <p class="says">"Surprise charges. Upsold aggressively without explaining why."</p>
+        <p class="why">Customers accept a higher price for more work. What they won't accept is finding out about it standing in their own driveway with a half-finished car.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Quote in writing before you arrive, <strong>tax included</strong>. If the car needs more than quoted &mdash; heavy pet hair, biological stains, a full paint correction &mdash; you stop, photograph it, send the photo, and get a <strong>yes in text</strong> before touching it. Never a verbal upsell mid-job.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">4</span>
+      <div class="ebody">
+        <div class="etop"><h3>"It didn't come out"</h3><span class="chip">Expectation gap</span></div>
+        <p class="says">"Permanent stains, deep scratches, clear coat failure, dye transfer, pet odour &mdash; still there afterwards."</p>
+        <p class="why">Some damage cannot be fixed in one visit, or at all. The complaint isn't that you failed. It's that you took the money without saying so.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Inspect and call it out <strong>before</strong> you start. "This dye transfer on the seat is permanent. This scratch is through the clear coat &mdash; polishing won't remove it. Everything else I can get." Say it, then text it so it's on record. Under-promise in the driveway, over-deliver on the panel.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">5</span>
+      <div class="ebody">
+        <div class="etop"><h3>Streaks everywhere</h3><span class="chip fl">Florida-specific</span></div>
+        <p class="says">"Looked fine wet. Once it dried it was streaked all over."</p>
+        <p class="why">Direct sun dries product before you can level it. In Coral Springs in August a black hood sits well over 140&deg;F by midday. This is a South Florida problem far more than a northern one.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Never work a panel in direct sun. Chase shade around the car, work early or late, or ask them to pull into the garage. Work <strong>one panel at a time</strong> in heat &mdash; not half the car. And do the final inspection in shade, because sun hides everything you missed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">6</span>
+      <div class="ebody">
+        <div class="etop"><h3>"It only lasted two days"</h3><span class="chip">Expectation gap</span></div>
+        <p class="says">"Results lasted a day or two and then it looked the same as before."</p>
+        <p class="why">Customers don't know what a wax lasts versus a sealant versus a coating. They assume whatever you did is permanent.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Say the number out loud and put it on the invoice: <strong>spray wax ~2 weeks. Sealant ~4&ndash;6 months. Ceramic coating years, with maintenance.</strong> Naming the lifespan is also your rebooking pitch &mdash; it tells them when to call you again.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">7</span>
+      <div class="ebody">
+        <div class="etop"><h3>Damaged the car and didn't make it right</h3><span class="chip hot">Business-ending</span></div>
+        <p class="says">"They admitted they caused it and then wouldn't properly compensate."</p>
+        <p class="why">The damage isn't what ends you. The argument afterwards is. And on a mobile job it's your word against theirs about what was already there.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small"><strong>Photograph every car before you touch it</strong> &mdash; all four corners, wheels, existing scratches, interior. Thirty seconds, every single time, no exceptions. Then after. If you do cause damage: say so first, before they spot it, and let the garage keepers policy do its job. That policy exists for exactly this day.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <span class="rank">8</span>
+      <div class="ebody">
+        <div class="etop"><h3>Stopped answering the phone</h3><span class="chip hot">Reputation killer</span></div>
+        <p class="says">"Refund requests went into a queue nobody ever answered."</p>
+        <p class="why">This is the reputation the whole mobile category carries, and it is the cheapest one for you to beat. It costs nothing to pick up.</p>
+        <div class="rulebox">
+          <h4>Your rule</h4>
+          <p class="small">Answer every call and text, including the angry ones, <strong>especially</strong> the angry ones. A complaint handled well in public is worth more than a five-star review &mdash; every future customer reads how you respond. Reply to every review, good and bad, within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="shead"><span class="num">02</span><h2>The tint trap &mdash; and why it's your best opening</h2></div>
+
+  <div class="card amber">
+    <h3>What goes wrong with tint</h3>
+    <ul class="plain small">
+      <li><strong>Bubbles and peeling</strong> &mdash; adhesive failure, usually cheap film or a contaminated install. Peeling starts at the edges and spreads.</li>
+      <li><strong>Purple haze</strong> &mdash; cheap dyed film breaking down under UV. In Florida sun this arrives fast. Buy carbon or ceramic; never dyed.</li>
+      <li><strong>Dust contamination</strong> &mdash; the outdoor problem. Redoing a bad job costs more labour than doing it right, and doing it outside again produces the same dusty result.</li>
+      <li><strong>Void warranty</strong> &mdash; major film manufacturers won't honour a warranty unless the install meets their standards.</li>
+    </ul>
+  </div>
+
+  <div class="card win">
+    <h3>Here's the opening, and it's a big one</h3>
+    <p class="small">The documented industry pattern: mobile tint operators have no fixed address, so when bubbling or purpling appears months later, <strong>the calls stop getting answered right around the time the tint starts failing.</strong> Customers know this. It's the main reason people drive to a shop instead of booking mobile.</p>
+    <p class="small">So make the thing they're afraid of into the thing you sell:</p>
+    <div class="copy">
+      <p>Lifetime warranty on the film and the installation. We're local, we're not going anywhere, and if it bubbles we come back to you and redo it. Free.</p>
+    </div>
+    <p class="small">You can promise that honestly, because you're buying quality film with a manufacturer warranty behind it and you live ten minutes away. The competitor who can't say that is the one you're taking work from.</p>
+  </div>
+
+  <div class="note">
+    <h4>Two rules that keep the promise cheap</h4>
+    <p class="small"><strong>Ask about the garage before you book a tint job</strong> &mdash; not when you arrive. "Do you have a garage we can pull into?" If no garage, book the early morning, never a windy or rainy afternoon.</p>
+    <p class="small"><strong>Follow the film manufacturer's install spec exactly</strong>, and register the warranty. A warranty you voided yourself is one you pay for out of pocket.</p>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="shead"><span class="num">03</span><h2>The booking script</h2></div>
+  <p class="small">Most mobile jobs go wrong before you arrive. Ask these five things when they call, every time, and half this page never happens to you.</p>
+
+  <div class="card">
+    <ol class="plain small">
+      <li><strong>"Is there an outdoor water tap and a power outlet I can use?"</strong> — most homeowners say yes without a second thought. If it's a condo, an office lot or an HOA that restricts runoff, that's your rinseless job, and now you know before you drive there.</li>
+      <li><strong>"Will the car be in a driveway or a garage?"</strong> — decides shade, decides whether tint is even possible that day.</li>
+      <li><strong>"Will you be home?"</strong> — if not, where are the keys, and how do you get paid. Settle it now.</li>
+      <li><strong>"Anything specific you want dealt with?"</strong> — pet hair, a spill, smoke smell. This is where you find the job that needs more than the quoted package, while you can still say so.</li>
+      <li><strong>"Any damage I should know about before I start?"</strong> — invites them to tell you about the scratch, so it can't become your scratch later.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Then send one text, every time</h3>
+    <div class="copy">
+      <p>Confirmed: Saturday between 9am and 12pm. Full interior + exterior, $250 all in, tax included. I'll text when I'm 25 minutes out. If the car needs anything beyond that I'll photograph it and check with you first — no surprises.</p>
+    </div>
+    <p class="tiny">That one message pre-empts complaints 1, 3, and 4 on this page.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="shead"><span class="num">04</span><h2>Website copy you can use</h2></div>
+  <p class="small">Every line here sells directly against a numbered complaint above. That's the whole method &mdash; don't advertise that you're good, advertise that you're not the thing they got burned by last time.</p>
+
+  <div class="copy">
+    <p>We text you when we're 25 minutes out. If we're running late, you hear it from us first — not from an empty driveway.</p>
+    <p>The price we quote is the price you pay, tax included. If your car needs more than that, we photograph it and ask before we touch it.</p>
+    <p>We photograph every car before we start and after we finish. You get both sets.</p>
+    <p>If something can't be removed, we tell you before we start — not after you've paid.</p>
+    <p>Open Saturday and Sunday, because that's when your car is actually at home.</p>
+    <p>Fully insured, including coverage for your vehicle while it's in our care.</p>
+  </div>
+
+  <p class="small">That fifth line is the one to put at the top of the page and in your Google profile. It's the gap in this market that you can verify: <strong>Mobile Detailers Inc is closed Saturday and Sunday</strong>, and so is every mobile tint operator in the corridor.</p>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="shead"><span class="num">05</span><h2>The one-page standard</h2></div>
+  <p class="small">Print this. Both of you follow it on every car, or it isn't a business, it's two guys guessing.</p>
+
+  <div class="card">
+    <ul class="plain small">
+      <li><strong>Before:</strong> photos all round · confirm the quote out loud · point out what won't come out</li>
+      <li><strong>During:</strong> never a panel in direct sun · one panel at a time in heat · any change gets a photo and a text before you proceed</li>
+      <li><strong>Final walk-around:</strong> inside glass boxed · vents · door jambs · fuel door · cupholders · seat rails · trunk lip · mirror backs — with a light, in shade</li>
+      <li><strong>After:</strong> photos all round · say how long it lasts · ask for the review while you're standing there, phone in their hand</li>
+      <li><strong>Always:</strong> answer the phone. Reply to every review inside 24 hours.</li>
+    </ul>
+  </div>
+
+  <div class="note">
+    <h4>The one that makes you money</h4>
+    <p class="small">Ask for the review <strong>in the driveway, while they're looking at the car</strong> — not by text that evening. Review count is the biggest lever you have on Google ranking, and the moment they're happiest is the moment they're standing next to a clean car with you in front of them. Three a week beats anything you can buy.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p class="tiny">Sources: Car Wash Country and Caliper Auto (handling detailing complaints) · Auto Geek Online detailing forums (missed areas, mobile water and power access) · Detail Dawgs (detailing mistakes) · Madico, RC Window Films, Tint City and TAS Electronics (window film failure modes and mobile install risks) · Birdeye business listing (competitor hours, verified August 2026).</p>
+  <p class="tiny">Industry-wide patterns, not the verbatim reviews of the five named local competitors — that pass still needs doing on Google Maps.</p>
+</footer>
+
+</div>
