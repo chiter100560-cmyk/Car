@@ -93,6 +93,19 @@ the exact concept. Platinum Auto Detailing sits between Coral Springs and Parkla
 with 70+ five-star reviews. One Call Detailing runs a Coral Springs landing page with
 a $20-off code. Remaining edges: weekend availability, response speed, showing up on time.
 
+**Verified competitor intel (Birdeye listing, Aug 2026):** Mobile Detailers Inc —
+4.9 stars, 51 reviews, 4613 N University Dr #327, Coral Springs 33067,
+(954) 997-0301. Hours **Mon–Fri 8:00am–6:00pm, Saturday CLOSED, Sunday CLOSED.**
+The single closest competitor selling the same tint-plus-detail combination does
+not work the two days Ziyad and Rasul are both free. This is the wedge.
+
+**Review teardown could not be completed from the cloud session.** Chromium cannot
+connect through the session relay (fails on every host, including example.com);
+Google requires JavaScript for both Maps and Search so curl returns an empty shell;
+Yelp is blocked at the proxy; BBB returns Cloudflare 403; Birdeye exposes only the
+11 older Facebook reviews (all positive), with the 40 Google reviews behind a JS tab.
+Do this from a local session or manually — see HANDOFF.md.
+
 ## Open items
 
 - [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
