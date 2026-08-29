@@ -1,10 +1,20 @@
-# Mobile Auto Services — Boca Raton, FL
+# Mobile Auto Services — Coral Springs, FL
 
 Working record for Ziyad and Rasul's mobile car-services business. Detailing now,
 window tint at day 60–90, both delivered at the customer's home.
 
-**Read the playbook:** [`playbook.html`](playbook.html) — that is the working
-document, with a checklist that remembers what you've ticked off.
+**The four files:**
+- [`playbook.html`](playbook.html) — the working document. Step 2 checklist (entity,
+  tax, licences, insurance, Google), plus sections 07–09: the ranked complaint themes,
+  paste-ready website copy, and 18 operating rules. Remembers what you've ticked off.
+- [`teardown.md`](teardown.md) — every 1-, 2- and 3-star review that exists for the
+  five competitors, verbatim, with source links. The evidence behind 07–09.
+- [`llc-filing.md`](llc-filing.md) — field-by-field Sunbiz walkthrough, real fees.
+- [`complaints.html`](complaints.html) — industry-wide complaint patterns, a booking
+  script and website copy. Written before the teardown; `teardown.md` and playbook 07–09
+  supersede it wherever the two disagree.
+- [`HANDOFF.md`](HANDOFF.md) — paste-into-a-new-session brief. Update it when a
+  decision changes, or the next session re-derives what you already settled.
 
 ---
 
@@ -14,8 +24,8 @@ document, with a checklist that remembers what you've ticked off.
 |---|---|
 | Service now | Mobile detailing, rinseless-first (no water tank, no generator — fits a 4-series) |
 | Service at day 60–90 | Window tint, funded out of detailing revenue |
-| Differentiator | Tint **and** detail in one driveway visit — nobody in the corridor does both |
-| Market wedge | Saturdays — every mobile tint competitor in the corridor is closed Sat–Sun |
+| Differentiator | On-time arrival, response speed, weekend slots — *not* "we do both" |
+| Market wedge | Sat/Sun against **detailers** (Mobile Detailers Inc is closed Sat–Sun). Not against tint — see correction below |
 | Base | Wiles Rd, Coral Springs 33067 — **Broward County** (not Palm Beach) |
 | Radius | 20 minutes from base |
 | Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
@@ -48,6 +58,13 @@ the film's trade name and the installer's business name. Installing in violation
 but detailing transfers chemicals/wax/coating and tint transfers film, which makes the
 **entire bill** taxable. Palm Beach and Broward are both 7% — $16.35 on a $250 job,
 roughly $8,500/year at ten cars a week. Register on DR-1 before the first paid car.
+
+**The weekend claim was wrong for tint.** Both tint competitors are open seven days
+on their own Google profiles: **GoFilms** Sun–Sat 8 AM–6 PM, **Family Mobile Window
+Tint** 7 AM–8 PM Mon–Sat and 9 AM–8 PM Sunday — one of Family Mobile's own reviews
+reads *"I called him 8am on a Sunday and he came few hours later."* What is true:
+**Mobile Detailers Inc, the closest concept competitor, is closed Saturday and
+Sunday** (Mon–Fri 8 AM–6 PM). Sell the weekend against detailers, not against tint.
 
 **Local Services Ads should be deprioritized.** Google expanded its auto categories so
 car wash and detailing are now eligible, but the **Google Verified badge is unavailable
@@ -93,17 +110,23 @@ the exact concept. Platinum Auto Detailing sits between Coral Springs and Parkla
 with 70+ five-star reviews. One Call Detailing runs a Coral Springs landing page with
 a $20-off code. Remaining edges: weekend availability, response speed, showing up on time.
 
+**Verified competitor intel (Birdeye listing, Aug 2026):** Mobile Detailers Inc —
+4.9 stars, 51 reviews, 4613 N University Dr #327, Coral Springs 33067,
+(954) 997-0301. Hours **Mon–Fri 8:00am–6:00pm, Saturday CLOSED, Sunday CLOSED.**
+The single closest competitor selling the same tint-plus-detail combination does
+not work the two days Ziyad and Rasul are both free. This is the wedge.
+
 ## Open items
 
-- [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
-      suite or mailbox), and that equipment can be stored and filmed there.
+- [x] ~~Confirm 6160 Wiles Rd is a residence he occupies~~ — **answered 29 Aug 2026:
+      yes, he lives there.** Clears the filing and the Google video. Principal address
+      and registered agent address are both this address, unit number included.
+- [ ] **New blocker:** read the lease / condo declaration before filing. It is a
+      multi-unit building, and many South Florida leases and HOA declarations ban
+      running a business from the unit, storing commercial supplies, or parking a
+      lettered vehicle overnight. The registered agent address is public record on
+      Sunbiz — if the building forbids it, a different address is needed first.
 - [ ] Three business-name candidates that pass all four naming rules
-- [ ] Teardown of the one-, two- and three-star reviews across the five corridor
-      competitors — every complaint that repeats becomes website copy and ops rules.
-      **Attempted 2026-08-29, blocked:** this environment's egress proxy is on a
-      GitHub-only allowlist, so Google Maps and Yelp are both unreachable and no
-      review text could be collected. Nothing was inferred in its place. Status,
-      evidence and the collection method: [`competitor-review-teardown.md`](competitor-review-teardown.md)
 
 ## Roadmap
 
@@ -111,7 +134,7 @@ a $20-off code. Remaining edges: weekend availability, response speed, showing u
 2. **LLC + EIN + sales tax + local receipts + insurance** ← current
 3. Equipment and practice cars
 4. Google Business Profile
-5. Competitor teardown
+5. ~~Competitor teardown~~ (done — `teardown.md`, playbook 07–09)
 6. Pricing menu
 7. Website that converts
 8. Reviews

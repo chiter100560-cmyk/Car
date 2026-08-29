@@ -65,8 +65,13 @@ keystoneautocare, openroadautocare, ridgelineautocare.
 **You still have to check the name on Sunbiz yourself.** Sunbiz sits behind a bot
 wall that blocks automated lookups, so I could not do this part for you. Go to
 `search.sunbiz.org` → Search Records → Entity Name, and type the name without the
-"LLC". You are looking for an *exact or near-identical* active entity. Something
-merely similar is usually fine; identical is refused and you lose the $125.
+"LLC". Florida rejects names that are **deceptively similar**, not only identical — so
+search the distinctive word on its own (`Truepoint`), never the whole string. A
+search for the full name returning nothing proves nothing.
+
+If the name is refused after you have paid, you resubmit with a different name,
+and the state does not generally refund filing fees. That is why you check
+first, and why you go in with three.
 
 Check your top three, in order, so you have a fallback ready while you are
 sitting in the form.
