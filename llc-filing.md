@@ -39,8 +39,9 @@ Must end in `LLC`, `L.L.C.` or `Limited Liability Company`. Your four rules from
 the playbook still hold: no city in it, no "Detailing" in it, spellable over the
 phone at 60mph, .com free.
 
-**I checked the .com on every candidate below** (Verisign registry, 2026-08-29).
-Available right now:
+**The shortlist is Stonepoint, then Truepoint, then Clearpoint** — the check and the
+reasoning are two sections down. The wider spare pool below was domain-checked on
+2026-08-29 (Verisign registry) in case you reject all three:
 
 | Candidate | .com |
 |---|---|
@@ -62,19 +63,50 @@ Already gone: drivewayautocare, doorstepautocare, curbsideautocare,
 clearlineautocare, silverlineautocare, frontlineautocare, steadfastautocare,
 keystoneautocare, openroadautocare, ridgelineautocare.
 
-**You still have to check the name on Sunbiz yourself.** Sunbiz sits behind a bot
-wall that blocks automated lookups, so I could not do this part for you. Go to
-`search.sunbiz.org` → Search Records → Entity Name, and type the name without the
-"LLC". Florida rejects names that are **deceptively similar**, not only identical — so
-search the distinctive word on its own (`Truepoint`), never the whole string. A
-search for the full name returning nothing proves nothing.
+**The legal test is narrower than you were told.** The 29 Aug version of this file
+said Florida rejects names that are "deceptively similar." That is wrong.
+**Fla. Stat. 605.0112** says the name must be *distinguishable in the records of the
+department*. Adding a real word — "Auto Care" — makes a name distinguishable. Florida
+ignores only cosmetic differences: the suffix (LLC vs Inc), "the"/"a", punctuation,
+singular vs plural. So an existing "Clearpoint Window Cleaning LLC" does **not** block
+"Clearpoint Auto Care LLC" at the counter.
 
-If the name is refused after you have paid, you resubmit with a different name,
-and the state does not generally refund filing fees. That is why you check
-first, and why you go in with three.
+That is a filing question. The one that actually costs you money is a marketing
+question, and it points a different way.
 
-Check your top three, in order, so you have a fallback ready while you are
-sitting in the form.
+### The check, redone 2026-09-02
+
+Sunbiz is behind a Cloudflare bot wall — no automated tool can reach the search box.
+What follows is from **indexed Sunbiz entity records** plus a **live Verisign .com
+registry query**. It is good enough to rank the three. It is not a substitute for
+typing the name into search.sunbiz.org yourself before you pay.
+
+| Candidate | Florida entities on the same word | .com | Verdict |
+|---|---|---|---|
+| **Stonepoint Auto Care LLC** | STONEPOINT FL, LLC (active, foreign, Georgia holding co); STONEPOINT CAPITAL GROUP; STONEPOINT SYSTEMS (inactive) | `stonepointautocare.com` free · `stonepointauto.com` free | **File this one** |
+| Truepoint Auto Care LLC | TRUEPOINT CARE CORP (active) — shares *two* words with you | `truepointautocare.com` free · `truepointauto.com` free | Fallback |
+| Clearpoint Auto Care LLC | CLEARPOINT WINDOW CLEANING LLC (active, Tampa); CLEAR POINT COMMERCIAL CLEANING, LLC (active) | `clearpointautocare.com` free · `clearpointauto.com` **taken** | Last |
+
+**Why Clearpoint dropped from first to last.** Not the statute — the word "window."
+Your headline service is window tint. There is an active Florida company whose name is
+literally Clearpoint + Window. Every time a customer half-remembers your name and
+searches "clearpoint window," they land on a cleaning company in Tampa. On top of that,
+*ClearPoint Credit Counseling* is a large national consumer brand on the same word, and
+the short domain is gone. Nothing here stops the filing. All of it makes the name work
+harder for you than it should.
+
+**Why Truepoint is second, not first.** TRUEPOINT CARE CORP is active and shares two of
+your three words. It will still file — "Auto" distinguishes it. But if you ever want the
+trademark, or if that company ever objects, Truepoint is the one with an argument
+against it. Stonepoint has nobody.
+
+**Stonepoint has no collision on either axis.** No Florida entity sharing two words, no
+national brand squatting the search results, no auto-services company anywhere using it,
+both domains free. It is also two clean syllables on the phone: *stone. point.*
+
+**Buy `stonepointautocare.com` the same hour you file.** A free domain stops being free
+the moment a name appears in a public Sunbiz filing — domain squatters watch new
+registrations. $12 now, or $2,000 later.
 
 Say the name out loud on a phone call before you commit. If the other person has
 to ask "how do you spell that?", pick a different one.
@@ -101,16 +133,38 @@ Google strategy. It just means the address is not truly private.
 
 ### 4. Who is on it, and how
 
-You and Rasul both go on as members. In the e-file form, the title to use for a
-member who can act for the company is **AMBR** (Authorized Member) — use that for
-both of you, not MGR, since you are running it yourselves rather than hiring an
-outside manager.
+**You alone. One member. This was settled 29 August 2026 and the earlier version of
+this file contradicted it — that has been corrected.**
 
-Each of you needs full legal name and address.
+Ziyad is the sole owner. Single-member LLC. In the e-file form you add **one**
+Manager/Authorized Member entry, with the title **AMBR** (Authorized Member), your full
+legal name and address. Not MGR — MGR is for an outside manager you hire to run a
+company you own but do not operate.
 
-Separately, agree the ownership split in writing — 50/50 or otherwise. It does not
-go on the Articles, but the bank will ask, and it is far easier to agree now than
-after the first good month.
+**Rasul is not on the filing. The installer is not on the filing.** Both are staff.
+Putting a helper on the Articles gives away a share of a company, and taking it back
+later needs their signature.
+
+**The 50/50 split with the installer is a separate problem, and you need to name it.**
+A 50/50 *profit* split with somebody who is legally an *employee* is not a normal
+arrangement, and it is the kind of thing that gets argued about in month eight. Decide
+which of these it actually is, and write it down before the first paid car:
+
+- **Employee, paid per job or per hour.** Clean. Minimum wage floor applies
+  ($15.00/hr from 30 Sept 2026), payroll and I-9 apply, and no share of the company.
+  A per-job commission that works out to half the ticket is fine — it is still wages.
+- **Independent contractor.** Only if he genuinely controls his own hours, tools and
+  method, and works for others. Misclassifying an employee as a contractor is what
+  the Department of Labor actually goes after.
+- **Partner with equity.** Then he goes on the filing and the LLC stops being
+  single-member — which reverses a decision you already made. Do not drift into this
+  by accident.
+
+The default, and the one that matches "he is staff, not a member": **employee, paid a
+per-job rate.** Write the rate on paper, both of you sign it, keep a copy.
+
+Ownership split does not go on the Articles either way, but the bank will ask, and it
+is far easier to agree now than after the first good month.
 
 ---
 
@@ -127,8 +181,8 @@ after the first good month.
 4. **Mailing address** — tick "same as principal" unless you have a reason.
 5. **Registered agent name and Florida street address** — you.
 6. **Registered agent signature** — type your name. That is the legal signature.
-7. **Manager/Authorized Member** — add two entries, both **AMBR**, with names and
-   addresses.
+7. **Manager/Authorized Member** — **one entry only**, title **AMBR**, your name and
+   address. Not two. Rasul and the installer do not go on the Articles.
 8. **FEI/EIN** — you do not have one yet. Select **"Applied For."** Do not delay
    the filing to get an EIN first; the EIN needs the LLC to exist.
 9. **Correspondence email** — the address you actually read. Every state notice,
@@ -178,5 +232,7 @@ nothing and you file nothing. Ignore those emails and letters.
 ---
 
 Sources: dos.fl.gov New Florida Limited Liability Company Fees; dos.fl.gov annual
-report ($138.75, May 1, $400 late fee); fincen.gov/boi. Verified 2026-08-29.
+report ($138.75, May 1, $400 late fee); fincen.gov/boi; Fla. Stat. 605.0112 (name —
+distinguishable standard); Verisign .com RDAP registry. Fees re-verified 2026-09-02;
+name and domain check redone 2026-09-02.
 Not legal advice — a Florida CPA should see your first return.

@@ -1,14 +1,35 @@
-# Mobile Auto Services — Boca Raton, FL
+# Mobile Auto Services — Coral Springs, FL
 
-Working record for Ziyad and Rasul's mobile car-services business. Detailing now,
-window tint at day 60–90, both delivered at the customer's home.
+Working record for Ziyad's mobile car-services business. **Window tint first, detailing
+alongside**, both delivered at the customer's driveway. Ziyad owns 100%; a skilled
+installer works with him on a 50/50 split; Rasul is training.
 
-**Two working documents:**
-- [`playbook.html`](playbook.html) — Step 2: entity, tax, licences, insurance, Google.
-  Checklist remembers what you've ticked off.
-- [`complaints.html`](complaints.html) — the eight things customers complain about in
-  this trade, the rule that prevents each, a booking script, and website copy written
-  to sell against them.
+**The files:**
+
+*The plan*
+- [`playbook.html`](playbook.html) — the working document. Step 2 checklist (entity, tax,
+  licences, insurance, Google), the ranked complaint themes, paste-ready website copy,
+  and 24 operating rules. Remembers what you've ticked off.
+- [`HANDOFF.md`](HANDOFF.md) — paste-into-a-new-session brief. Update it when a decision
+  changes, or the next session re-derives what you already settled.
+
+*The research*
+- [`teardown.md`](teardown.md) — every 1-, 2- and 3-star review that exists for the five
+  competitors, verbatim, with links. 48 reviews, 10 ranked complaint themes.
+
+*The offer*
+- [`llc-filing.md`](llc-filing.md) — field-by-field Sunbiz walkthrough, real fees, and the
+  business-name check. **Read section 1 and 4 before you open the form.**
+- [`complaints.html`](complaints.html) — industry-wide complaint patterns and a booking
+  script. Written before the teardown; `teardown.md` supersedes it where they disagree.
+
+*Written but never committed — these files do not exist in the repo*
+
+`pricing.md` · `tint-startup.md` · `detailing-kit.md` · `oil-change.md` · `menu.md` ·
+`google-verification.md`. The playbook cites all six and the links are dead. The numbers
+they carried survive inside `playbook.html` sections 04 and 06, so nothing is lost that
+blocks Step 2 — but the files themselves have to be rewritten before Step 3 (equipment)
+and Step 6 (pricing). Do not assume they are somewhere and just missing.
 
 ---
 
@@ -16,16 +37,17 @@ window tint at day 60–90, both delivered at the customer's home.
 
 | | |
 |---|---|
-| Service now | Mobile detailing, rinseless-first (no water tank, no generator — fits a 4-series) |
-| Service at day 60–90 | Window tint, funded out of detailing revenue |
-| Differentiator | Tint **and** detail in one driveway visit — nobody in the corridor does both |
-| Market wedge | Saturdays — every mobile tint competitor in the corridor is closed Sat–Sun |
+| Services | Window tint **and** mobile detailing. Detailing is rinseless-first — no tank, no generator |
+| Service order | **Tint first**, changed 30 Aug 2026 — a skilled installer joined and capital stopped being the constraint |
+| Differentiator | On-time arrival, response speed, weekend slots — *not* "we do both" |
+| Market wedge | Sat/Sun against **detailers** (Mobile Detailers Inc is closed Sat–Sun). Not against tint — see correction below |
 | Base | Wiles Rd, Coral Springs 33067 — **Broward County** (not Palm Beach) |
 | Radius | 20 minutes from base |
 | Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
-| Not doing | Oil change — regulated used-oil waste, thin margin, ASE-certified competition |
+| Not doing | Oil change — no lawful place to store the drum at an apartment, pollution excluded from insurance, and the dealer 7 min away charges $35.55. See `oil-change.md` |
 | Not doing | Fort Lauderdale in year one — One Call Detailing sits at ~571 reviews |
-| Capital | $3,500 |
+| Ownership | **Ziyad sole owner — single-member LLC.** Rasul is staff, not a member |
+| Capital | Investor-funded. Rule: **cheap but reliable** |
 | Capacity | 8–12 cars/week at full tilt, ~26 working hours |
 | Target ticket | $250 |
 
@@ -52,6 +74,13 @@ the film's trade name and the installer's business name. Installing in violation
 but detailing transfers chemicals/wax/coating and tint transfers film, which makes the
 **entire bill** taxable. Palm Beach and Broward are both 7% — $16.35 on a $250 job,
 roughly $8,500/year at ten cars a week. Register on DR-1 before the first paid car.
+
+**The weekend claim was wrong for tint.** Both tint competitors are open seven days
+on their own Google profiles: **GoFilms** Sun–Sat 8 AM–6 PM, **Family Mobile Window
+Tint** 7 AM–8 PM Mon–Sat and 9 AM–8 PM Sunday — one of Family Mobile's own reviews
+reads *"I called him 8am on a Sunday and he came few hours later."* What is true:
+**Mobile Detailers Inc, the closest concept competitor, is closed Saturday and
+Sunday** (Mon–Fri 8 AM–6 PM). Sell the weekend against detailers, not against tint.
 
 **Local Services Ads should be deprioritized.** Google expanded its auto categories so
 car wash and detailing are now eligible, but the **Google Verified badge is unavailable
@@ -103,23 +132,32 @@ a $20-off code. Remaining edges: weekend availability, response speed, showing u
 The single closest competitor selling the same tint-plus-detail combination does
 not work the two days Ziyad and Rasul are both free. This is the wedge.
 
-**Review teardown could not be completed from the cloud session.** Chromium cannot
-connect through the session relay (fails on every host, including example.com);
-Google requires JavaScript for both Maps and Search so curl returns an empty shell;
-Yelp is blocked at the proxy; BBB returns Cloudflare 403; Birdeye exposes only the
-11 older Facebook reviews (all positive), with the 40 Google reviews behind a JS tab.
-Do this from a local session or manually — see HANDOFF.md. In the meantime
-`complaints.html` covers the industry-wide patterns, which is most of the value
-the teardown was for: eight ranked complaints, the operating rule that prevents
-each, a five-question booking script, and website copy that sells against them.
-
 ## Open items
 
-- [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
-      suite or mailbox), and that equipment can be stored and filmed there.
-- [ ] Three business-name candidates that pass all four naming rules
-- [ ] Teardown of 30 one- and three-star reviews on One Call Detailing (~571) and
-      GoFilms (~351) — every complaint that repeats becomes website copy and ops rules
+- [x] ~~Confirm 6160 Wiles Rd is a residence he occupies~~ — **answered 29 Aug 2026:
+      yes, he lives there.** Clears the filing and the Google video. Principal address
+      and registered agent address are both this address, unit number included.
+- [x] ~~Lease / occupancy paperwork~~ — **he holds the lease and knows the unit
+      number.** Occupancy is provable to Coral Springs. The unit number is
+      deliberately not recorded in this repo: the repo is publicly readable and the
+      street address is already in it.
+- [x] ~~Three business-name candidates that pass all four naming rules~~ — **done, and
+      the 29 Aug ranking was reversed on 2 Sept.** File as **Stonepoint Auto Care LLC**;
+      fallbacks Truepoint, then Clearpoint. Clearpoint dropped to last: Florida has an
+      active *Clearpoint Window Cleaning LLC* and you sell **window** tint, and
+      `clearpointauto.com` is gone. Reasoning and the full check in `llc-filing.md`.
+- [ ] **Only remaining blocker on the $125:** type `Stonepoint` into search.sunbiz.org
+      yourself. Sunbiz is behind a Cloudflare wall that no automated tool can pass, so
+      the check above came from indexed records and the .com registry, not the search
+      box. Two minutes. The state does not refund a rejected filing.
+- [ ] **Is Rasul paid, and is the installer an employee or a partner?** The repo says
+      "staff, not a member" but also "50/50 split." Those two do not fit together.
+      Settle it before the first paid car — `llc-filing.md` §4 lays out the three
+      options and which one to take.
+- [ ] Skim two lease clauses — chemical/flammable storage, and commercial-vehicle
+      parking. Not a filing blocker. It is a *van* blocker: apartment lots ban
+      lettered vehicles more often than they ban home businesses. Door magnets that
+      come off nightly are the usual way around it — decide before paying for a wrap.
 
 ## Roadmap
 
@@ -127,7 +165,7 @@ each, a five-question booking script, and website copy that sells against them.
 2. **LLC + EIN + sales tax + local receipts + insurance** ← current
 3. Equipment and practice cars
 4. Google Business Profile
-5. Competitor teardown
+5. ~~Competitor teardown~~ (done — `teardown.md`, playbook 07–09)
 6. Pricing menu
 7. Website that converts
 8. Reviews

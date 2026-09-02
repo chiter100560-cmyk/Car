@@ -139,6 +139,12 @@ tr.total td{background:var(--surface-2); font-weight:600; border-top:1px solid v
 .dead{color:var(--ink-3)}
 .hot{color:var(--accent); font-weight:600}
 
+/* ---------- paste-ready copy blocks ---------- */
+.paste{background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--accent); border-radius:4px; padding:18px 20px; display:flex; flex-direction:column; gap:9px}
+.paste h4{color:var(--accent)}
+.paste .ph{font-family:Archivo,sans-serif; font-size:1.02rem; font-weight:600; letter-spacing:-.005em; line-height:1.34; color:var(--ink)}
+.paste .ph + .small{margin-top:-3px}
+
 /* ---------- callout ---------- */
 .callout{background:var(--accent-soft); border-radius:4px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
 .callout h4{color:var(--accent)}
@@ -170,7 +176,7 @@ footer a{color:var(--ink-2)}
   </div>
 
   <div class="statstrip">
-    <div class="stat"><span class="k">Capital</span><span class="v">$3,500</span></div>
+    <div class="stat"><span class="k">Capital</span><span class="v">$25,000</span></div>
     <div class="stat"><span class="k">Real hours / wk</span><span class="v">~26</span></div>
     <div class="stat"><span class="k">Target ticket</span><span class="v">$250</span></div>
     <div class="stat"><span class="k">Base</span><span class="v">Coral&nbsp;Springs</span></div>
@@ -187,12 +193,13 @@ footer a{color:var(--ink-2)}
     <table>
       <thead><tr><th>Decision</th><th>Final answer</th></tr></thead>
       <tbody>
-        <tr><td>Service now</td><td>Mobile detailing &mdash; rinseless first, no tank, no generator</td></tr>
-        <tr><td>Service at day 60&ndash;90</td><td>Window tint, funded by detailing cash</td></tr>
-        <tr><td>The differentiator</td><td>Tint <em>and</em> detail in one driveway visit. Nobody in the corridor does both.</td></tr>
-        <tr><td>The wedge</td><td>Saturdays. Every mobile tint competitor is closed Sat&ndash;Sun.</td></tr>
+        <tr><td>Services</td><td>Window tint and mobile detailing. Detailing is rinseless-first &mdash; no tank, no generator.</td></tr>
+        <tr><td>Service order</td><td><strong>Window tint first</strong>, detailing alongside. Changed 30&nbsp;Aug&nbsp;2026 &mdash; a skilled installer joined and capital stopped being the constraint.</td></tr>
+        <tr><td>The differentiator</td><td>On time, fast to answer, weekend slots. <strong>Not</strong> "we do both" &mdash; Mobile Detailers Inc already does.</td></tr>
+        <tr><td>The wedge</td><td>Sat&ndash;Sun against <strong>detailers</strong>. Mobile Detailers Inc is closed both days. <span class="was">every tint competitor is closed Sat&ndash;Sun</span> &mdash; both tint rivals open 7 days, see&nbsp;07.</td></tr>
         <tr><td>Service radius</td><td class="n">20 minutes from base</td></tr>
         <tr><td>Base</td><td>Wiles Rd, Coral Springs 33067 &mdash; <strong>Broward County</strong>, not Palm Beach</td></tr>
+        <tr><td>Ownership</td><td><strong>Ziyad 100% &mdash; single-member LLC.</strong> The skilled partner is an <em>employee</em>, not a member. Rasul trains first. Settled 30&nbsp;Aug&nbsp;2026.</td></tr>
         <tr><td>Territory (20 min)</td><td>Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield</td></tr>
         <tr><td>Not doing</td><td>Oil change. Regulated waste, low margin, certified competitors.</td></tr>
         <tr><td>Not doing</td><td>Fort Lauderdale year one. 571-review competitor, and now 30+ min away. Fight it later.</td></tr>
@@ -208,16 +215,32 @@ footer a{color:var(--ink-2)}
   <div class="stack g16">
 
     <div class="fix amber">
+      <div class="hd"><h3>Capital is now $25,000, not $3,500 &mdash; two decisions flip</h3><span class="chip cost">30 Aug 2026</span></div>
+      <p class="small"><strong>Tint-first is now defensible.</strong> The two arguments against it were money and skill. A computer-cut setup costs about <strong>$6,848</strong> &mdash; that was 200% of the old budget and is 27% of this one. And the skill objection died when a experienced installer joined. Both objections are answered. See <a href="tint-startup.md">tint-startup.md</a>.</p>
+      <p class="small"><strong>A van is now a day-one option, not a year-two reward.</strong> That is the single biggest unlock here, and it is not about capacity. It fixes the film-flat storage problem, the water and power problem, and the <em>"he has no location to do business"</em> attack that section&nbsp;07 found waiting for you.</p>
+      <p class="small"><strong>What does NOT change: oil change is still no.</strong> The blocker was never the money. Broward's landfill refuses used oil, the public centres are household-only, so the oil has to sit in a 55-gallon drum at your premises &mdash; and you live in an apartment. $25,000 could rent commercial space, but renting premises to enable your <em>lowest</em>-margin service is a bad trade. See <a href="oil-change.md">oil-change.md</a>.</p>
+      <p class="small"><strong>And the thing money cannot buy:</strong> every complaint theme in section&nbsp;07 &mdash; unfinished work, bad complaint handling, moving prices, lateness &mdash; is free to fix and free to get wrong. A bigger budget does not put you ahead of GoFilms' 351 clean reviews. Showing up on time does.</p>
+    </div>
+
+    <div class="fix amber">
       <div class="hd"><h3>Coral Springs is a better base than Boca &mdash; but it moves you to Broward</h3><span class="chip cost">Paperwork changed</span></div>
       <p class="small">Wiles Rd sits in the middle of exactly the customer you want. Parkland, Coconut Creek and Margate are 5&ndash;10 minutes out; Tamarac, west Boca and Deerfield are inside 20. All single-family, all driveways, hoses and outdoor outlets. From here your 20-minute rule covers more driveway homes than it would have from Boca.</p>
       <p class="small">The cost: Coral Springs is <strong>Broward County</strong>. Palm Beach County and the City of Boca Raton are off your list entirely &mdash; it's now <strong>Broward County + City of Coral Springs</strong>. Sales tax is unchanged at 7% (6% state + 1% county surtax). Section 03&nbsp;C below is already corrected.</p>
     </div>
 
-    <div class="fix">
-      <div class="hd"><h3>Two problems with 6160 Wiles Rd &mdash; check both before you touch Google</h3><span class="chip warn">Verify first</span></div>
-      <p class="small"><strong>It has unit numbers on it.</strong> That means a multi-unit building, not a house. Fine for verification <em>if you actually live there</em> and can film with your equipment on site. Not fine if it's an office suite or a mailbox &mdash; a video walkthrough will fail, and failed attempts are what trigger the lockout.</p>
+    <div class="fix amber">
+      <div class="hd"><h3>6160 Wiles Rd is confirmed as your residence &mdash; two things still apply</h3><span class="chip cost">Answered 29 Aug</span></div>
+      <p class="small"><strong>Answered: you live there, you hold the lease, and you have the unit number.</strong> That clears the hard blocker. You can film the verification video on site and you can produce the lease Coral Springs demands for the home-based receipt. Principal address and registered agent address on the LLC are both this address, unit included.</p>
+      <p class="tiny"><strong>The unit number is deliberately not written in this repo.</strong> The repo is publicly readable, the street address is already in it, and adding the unit turns "a building" into "his door" for anyone who finds it. Type it straight into Sunbiz from memory.</p>
       <p class="small"><strong>Another service business is already listed at that address</strong> &mdash; a pool cleaning company. Sharing an address isn't fatal, but Google applies extra scrutiny when a second service-area business appears at one it already knows. Expect a harder verification, and have your LLC certificate, your lease or utility bill, and your equipment all in the shot.</p>
-      <p class="small">Also: no garage and no driveway at a condo means nowhere to store a pressure washer, nowhere to keep film flat and clean, and nowhere to park a marked van later. Your rinseless-first plan already handles the first two. The van question you ask the city about.</p>
+      <p class="small"><strong>Still true: it is a multi-unit building.</strong> No garage and no driveway means nowhere to store a pressure washer, nowhere to keep film flat and clean, and nowhere to park a marked van later. Your rinseless-first plan already handles the first two. The van question you ask the city about.</p>
+      <p class="small"><strong>Two lease clauses to read &mdash; and only two.</strong> Holding the lease proves residence. It does not tell you what the lease permits. But do not over-worry this: your model has <em>no customer traffic, no signage and no work done on site</em>, which is exactly what a "residential purposes only" clause is written to stop. That clause is rarely a problem for a business like yours.</p>
+      <p class="small">What can actually bite:</p>
+      <ol class="plain small">
+        <li><strong>Storage of chemicals or flammables.</strong> Many leases cap or ban them. A few bottles of rinseless and a polisher in a closet is normally fine; a case of solvent is not. Check the wording.</li>
+        <li><strong>Commercial or lettered vehicle parking.</strong> This is the one that bites <em>later</em>, when you buy the van. Apartment lots ban lettered vehicles far more often than they ban home businesses. Find out now, while it is free to find out.</li>
+      </ol>
+      <p class="small">Magnets that come off the doors each night are the standard way around a lettered-vehicle rule. Decide that before you pay for a wrap.</p>
     </div>
 
     <div class="fix">
@@ -270,7 +293,7 @@ footer a{color:var(--ink-2)}
       <input type="checkbox" data-k="llc">
       <span class="ibody">
         <span class="itop"><h3>File the LLC yourself on Sunbiz</h3><span class="chip cost">$125</span></span>
-        <p class="small">$100 Articles of Organization + $25 registered agent designation. It's a web form and takes about 20 minutes. Both of you go on it as members.</p>
+        <p class="small">$100 Articles of Organization + $25 registered agent designation. It's a web form and takes about 20 minutes. <strong>You go on it alone &mdash; one member, AMBR.</strong> Rasul and the installer are staff, not members; they do not appear on the filing.</p>
         <p class="where">sunbiz.org &rarr; E-Filing &rarr; Florida LLC</p>
         <p class="tiny">Do not pay a filing service $300 for this. Diary the annual report: due between Jan&nbsp;1 and May&nbsp;1, $138.75 &mdash; miss it and Florida adds a flat $400 penalty.</p>
       </span>
@@ -367,7 +390,7 @@ footer a{color:var(--ink-2)}
       <input type="checkbox" data-k="wc">
       <span class="ibody">
         <span class="itop"><h3>Workers' comp &mdash; skip for now</h3><span class="chip free">$0</span></span>
-        <p class="small">Florida requires it at four or more employees for non-construction work. You and Rasul as LLC members are under that. Revisit the day you hire your second helper.</p>
+        <p class="small">Florida requires it at four or more employees for non-construction work. You are the only member; Rasul and the installer are employees, so you are at one or two &mdash; under the threshold. <strong>Exempt is not covered.</strong> If the installer cuts his hand on a customer's driveway there is nothing to pay for it and he can sue you personally. Get a quote before you decide to skip it &mdash; see 09&nbsp;G.</p>
       </span>
     </label>
   </div>
@@ -410,7 +433,7 @@ footer a{color:var(--ink-2)}
       <input type="checkbox" data-k="cats">
       <span class="ibody">
         <span class="itop"><h3>Set categories and hours to match the wedge</h3><span class="chip free">$0</span></span>
-        <p class="small">Primary category "Car detailing service." Add the tint category the week you start tinting, not before. <strong>Publish Saturday and Sunday hours</strong> &mdash; that is the hole in this market and Google shows open-now businesses first.</p>
+        <p class="small">Primary category "Car detailing service." Add the tint category the week you start tinting, not before. <strong>Publish Saturday and Sunday hours</strong> &mdash; that is the hole on the detailing side (see&nbsp;07) and Google shows open-now businesses first.</p>
       </span>
     </label>
   </div>
@@ -418,7 +441,9 @@ footer a{color:var(--ink-2)}
 
 <!-- ============ MONEY ============ -->
 <section>
-  <div class="shead"><span class="num">04</span><h2>Where the $3,500 goes</h2></div>
+  <div class="shead"><span class="num">04</span><h2>What it costs to open</h2></div>
+
+  <p class="small">Capital is no longer the constraint &mdash; there is an investor. The rule is <strong>cheap but reliable</strong>. That is not the same as cheap: on some lines the budget pick is genuinely as good, and on six lines saving money is what costs you the car.</p>
 
   <div class="twrap">
     <table>
@@ -427,18 +452,37 @@ footer a{color:var(--ink-2)}
         <tr><td>LLC &mdash; Sunbiz Articles of Organization</td><td class="n">$125</td><td>Week 1</td></tr>
         <tr><td>EIN &mdash; IRS</td><td class="n">$0</td><td>Week 1</td></tr>
         <tr><td>Sales tax registration &mdash; DR-1</td><td class="n">$0</td><td>Week 1</td></tr>
-        <tr><td>Broward County + Coral Springs receipts</td><td class="n">confirm</td><td>Week 1&ndash;2</td></tr>
-        <tr><td>Insurance &mdash; first 3 months</td><td class="n">$165&ndash;270</td><td>Before car #1</td></tr>
+        <tr><td>Broward County + Coral Springs receipts</td><td class="n">confirm by phone</td><td>Week 1&ndash;2</td></tr>
+        <tr><td>FDACS motor vehicle repair registration</td><td class="n">$50</td><td>Only if doing repair work</td></tr>
+        <tr><td>General liability + garage keepers</td><td class="n">$450&ndash;1,000/yr</td><td>Before car #1</td></tr>
+        <tr><td class="hot">Commercial auto &mdash; nobody has quoted this yet</td><td class="n">get a quote</td><td class="hot">Before car #1</td></tr>
         <tr><td>Domain .com &mdash; 1 year</td><td class="n">$12</td><td>Week 1</td></tr>
-        <tr><td>Shirts + car magnets</td><td class="n">$120</td><td>Before the video</td></tr>
-        <tr><td>Detailing kit &mdash; rinseless, polisher, extractor, chemicals, lighting</td><td class="n">$1,800&ndash;2,400</td><td>Week 1&ndash;2</td></tr>
-        <tr class="total"><td>Committed</td><td class="n">~$2,220&ndash;2,930</td><td>&mdash;</td></tr>
-        <tr class="total"><td>Left as reserve</td><td class="n">~$570&ndash;1,280</td><td>Do not spend this</td></tr>
+        <tr><td>Shirts + car magnets</td><td class="n">$120</td><td>Before the Google video</td></tr>
+        <tr><td>Tint compliance labels &mdash; 500</td><td class="n">$150&ndash;250</td><td>With the first film order</td></tr>
+        <tr><td><strong>Tint setup</strong> &mdash; computer-cut, done properly</td><td class="n">~$6,848</td><td>See tint-startup.md</td></tr>
+        <tr><td><strong>Tint setup</strong> &mdash; hand-cut minimum</td><td class="n">~$1,900&ndash;2,010</td><td>Alternative</td></tr>
+        <tr><td><strong>Detailing kit</strong> &mdash; budget / better</td><td class="n">$1,650 / $2,687</td><td>See detailing-kit.md</td></tr>
       </tbody>
     </table>
   </div>
 
-  <p class="small">The reserve is not spare money. It is the buffer for the first thing you break, the first claim deductible, and the film for your first practice windows. Tint entry &mdash; plotter, pattern software subscription, film inventory, backup heat guns &mdash; realistically runs $3,000+ and gets funded out of detailing revenue, not out of this.</p>
+  <div class="fix">
+    <div class="hd"><h3>Six lines where cheap is the expensive choice</h3><span class="chip warn">Do not save here</span></div>
+    <ol class="plain small">
+      <li><strong>Wheel brushes.</strong> The popular EZ Detail brush is built on a twisted-wire core with a plastic cap. When the cap wears off, bare wire touches the wheel. Wheel Woolies at $68.10 are 100% polypropylene &mdash; no wire, no staples. This is the $2,500 scratch in section&nbsp;07.</li>
+      <li><strong>Towels.</strong> Cheap microfibre <em>is</em> the scratch. Twenty wash towels minimum. Running out mid-job is when people reuse a dirty face.</li>
+      <li><strong>The vacuum.</strong> A 12V car socket gives 120&ndash;180W. Plug-in car vacs cannot lift Florida sand out of carpet.</li>
+      <li><strong>The power station.</strong> Must be 1800W continuous or it will not start a polisher. EcoFlow DELTA 2 lists at $999 and sells at $349&ndash;499 &mdash; never pay list.</li>
+      <li><strong>Tint film.</strong> No dyed film at any price. A competitor has a 1-star review reading <em>"cheapest tint didn't last even a year it already peeling off and bubbling."</em> Carbon is $27&ndash;37 a car.</li>
+      <li><strong>Garage keepers insurance.</strong> General liability does not cover damage to the customer's car. This is the policy that pays when you burn through clearcoat.</li>
+    </ol>
+  </div>
+
+  <div class="callout">
+    <h4>Two free moves before spending anything on tint</h4>
+    <p class="small"><strong>DigiCut gives a 30-day full trial &mdash; no card, no setup fee.</strong> Try the pattern software before buying a $1,700 plotter. Avoid Tint Tek: $295 just to switch it on.</p>
+    <p class="small"><strong>Get pre-cut kit quotes.</strong> Buying film cut to shape per car means no plotter, no monthly subscription, and nothing to break or calibrate. Neither Tint Depot nor Northern Tint publishes the price &mdash; two phone calls answers it. Under about $40 a car it is cheaper <em>and</em> more reliable than owning the machine.</p>
+  </div>
 </section>
 
 <!-- ============ SCHEDULE ============ -->
@@ -455,7 +499,7 @@ footer a{color:var(--ink-2)}
         <tr><td>Wednesday</td><td>Both from 2pm</td><td>Half day. Call county offices before 5pm.</td><td class="n">1&ndash;2</td></tr>
         <tr><td>Thursday</td><td class="dead">Z 4pm &middot; R 7pm</td><td class="dead">Dead. Website, photo editing, follow-ups.</td><td class="n dead">0</td></tr>
         <tr><td>Friday</td><td>Both from 2pm</td><td>Half day. Two-man jobs.</td><td class="n">1&ndash;2</td></tr>
-        <tr><td class="hot">Saturday</td><td>You solo</td><td class="hot">Interiors &mdash; one person handles these fine. This is the day tint competitors are closed.</td><td class="n">2</td></tr>
+        <tr><td class="hot">Saturday</td><td>You solo</td><td class="hot">Interiors &mdash; one person handles these fine. Mobile Detailers Inc is closed today.</td><td class="n">2</td></tr>
         <tr><td class="hot">Sunday</td><td>Both, all day</td><td class="hot">Biggest day. Stack jobs in one neighborhood.</td><td class="n">2&ndash;3</td></tr>
         <tr class="total"><td>Ceiling</td><td>~26 hrs</td><td>At $250 average</td><td class="n">8&ndash;12</td></tr>
       </tbody>
@@ -475,7 +519,7 @@ footer a{color:var(--ink-2)}
 
 <!-- ============ TINT LAW ============ -->
 <section>
-  <div class="shead"><span class="num">06</span><h2>Florida tint numbers &mdash; memorize before day 60</h2></div>
+  <div class="shead"><span class="num">06</span><h2>Florida tint numbers &mdash; memorize before the first car</h2></div>
 
   <div class="twrap">
     <table>
@@ -499,22 +543,379 @@ footer a{color:var(--ink-2)}
   </div>
 </section>
 
-<!-- ============ OPEN ============ -->
+<!-- ============ TEARDOWN ============ -->
 <section>
-  <div class="shead"><span class="num">07</span><h2>What's blocking Step 3</h2></div>
+  <div class="shead"><span class="num">07</span><h2>The bad-review teardown</h2></div>
+
+  <p class="small">Every 1-, 2- and 3-star review that exists for the five competitors, pulled 29&nbsp;August&nbsp;2026 from Google's review panel sorted <em>Lowest rating</em> and from Yelp filtered by star. Full quotes and links: <a href="teardown.md">teardown.md</a>.</p>
+
+  <div class="fix amber">
+    <div class="hd"><h3>First finding: four of the five have nothing to attack</h3><span class="chip cost">Changes the plan</span></div>
+    <p class="small"><strong>GoFilms has 351 reviews and not one is below 4 stars.</strong> Platinum's only 1-star has no text in it. Mobile Detailers Inc has exactly one negative review in eleven years. B&nbsp;&amp;&nbsp;B Mobile Detailing sits at 414 reviews with a single 1-star that says "Extremely rude bad customer service" and nothing more.</p>
+    <p class="small">That is not luck. High-volume mobile operators here run hard review solicitation and the negatives get buried under fresh 5-stars. <strong>Google reviews are not where you find these competitors' weak spots</strong> &mdash; and it also tells you what your own profile has to look like to compete: relentless, systematic asking, from day one.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>#</th><th>Complaint theme</th><th class="n">Reviews</th><th>Where it hurts</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td><strong>Work left unfinished &mdash; customer finds it, or does it themselves</strong></td><td class="n hot">14</td><td>Nobody checked the car before leaving</td></tr>
+        <tr><td class="n">2</td><td><strong>The complaint is handled worse than the mistake</strong></td><td class="n hot">11</td><td>Defensive replies, ghosting, "free upgrade next time"</td></tr>
+        <tr><td class="n">3</td><td><strong>Price moved, or scope was never agreed in writing</strong></td><td class="n hot">10</td><td>Phone quote &ne; final bill</td></tr>
+        <tr><td class="n">4</td><td>Late, no-show, or cancelled without a phone call</td><td class="n">8</td><td>The whole day gets wrecked</td></tr>
+        <tr><td class="n">5</td><td>Tint bubbles, creases, peels, or is cut wrong</td><td class="n">7</td><td>Day 60 problem &mdash; read before first film</td></tr>
+        <tr><td class="n">6</td><td>Damage to the car</td><td class="n">6</td><td>Wheels, trim, screens, door panels</td></tr>
+        <tr><td class="n">7</td><td>Rushed the job</td><td class="n">5</td><td>Worse when a crew works than solo</td></tr>
+        <tr><td class="n">8</td><td>Phone manner and reachability</td><td class="n">5</td><td>Lost before the job even starts</td></tr>
+        <tr><td class="n">9</td><td>The result didn't last</td><td class="n">3</td><td>Mold back in 3 days, interior in 3 weeks</td></tr>
+        <tr><td class="n">10</td><td>Technician presentation, mess left behind</td><td class="n">2</td><td>Trash in the grass, phone in hand</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tiny">Counts are distinct reviews raising the theme, across the five named competitors plus three high-volume operators added because the five were too clean to build rules from: JP's Mobile Car Wash (Yelp 4.5/197 &mdash; 24 low reviews), Superior Tint of Boca (Yelp 4.8/368 &mdash; 13 one-stars), B&nbsp;&amp;&nbsp;B Mobile Detailing (Google 5.0/414).</p>
+
+  <div class="fix">
+    <div class="hd"><h3>Your weekend edge is real against detailers and false against tint</h3><span class="chip warn">Correction</span></div>
+    <p class="small">You wrote that every mobile tint competitor in this corridor is closed Saturday and Sunday. <strong>That is wrong.</strong> Their own Google profiles say otherwise:</p>
+    <ul class="plain small">
+      <li><strong>GoFilms</strong> &mdash; Sun&ndash;Sat, 8&nbsp;AM&ndash;6&nbsp;PM. Open seven days.</li>
+      <li><strong>Family Mobile Window Tint</strong> &mdash; 7&nbsp;AM&ndash;8&nbsp;PM Mon&ndash;Sat, 9&nbsp;AM&ndash;8&nbsp;PM Sunday. One of their own reviews reads <em>"I called him 8am on a Sunday and he came few hours later."</em></li>
+      <li><strong>Superior Tint of Boca</strong> &mdash; a shop, but the point stands: tint in this market is not a weekday-only trade.</li>
+    </ul>
+    <p class="small">What <em>is</em> true: <strong>Mobile Detailers Inc &mdash; your closest concept competitor &mdash; is closed Saturday and Sunday.</strong> Mon&ndash;Fri 8&nbsp;AM&ndash;6&nbsp;PM, confirmed on their listing. Platinum opens 10&nbsp;AM Sunday. So sell the weekend against <strong>detailers</strong>, and sell speed and finish quality against <strong>tint</strong>. Don't put "open weekends, unlike the tint shops" on your website &mdash; a customer checks in ten seconds and you look like a liar.</p>
+  </div>
 
   <div class="q">
-    <h3>One decision, and it's the same one from last time</h3>
-    <p class="small">Your base is whichever address you can physically stand at, with your tools laid out, and film an unbroken 30-second video. That is the whole test. Not where you'd like to work &mdash; where you can prove you operate.</p>
-    <ul class="plain small">
-      <li><strong>No real Fort Lauderdale address?</strong> Then it's Boca. Decided. Stop revisiting it.</li>
-      <li><strong>Yes, a real one</strong> &mdash; family, relative, somewhere you'd genuinely store equipment and could film? Say so and we re-plan the territory around it, because it changes which cities you can rank in for the next several years.</li>
-    </ul>
+    <h3>The one review that is about you specifically</h3>
+    <p class="small">A 1-star on Family Mobile Window Tint, edited ten months ago:</p>
+    <p class="small"><em>"This is a guy who works out of a Kia Sportage and you Meet him in a random parking lot and has a little generator <strong>he has no location to do business</strong>, his materiels are cheapest tint didn't last even a year it already peeling off and bubbling!!! STAW AWAY!"</em></p>
+    <p class="small">You will run out of a BMW 430i with no shop. That is the review a bad day writes about you. Everything in section&nbsp;09 about branding, insurance proof and written warranty exists to make that review impossible to write.</p>
+  </div>
+</section>
+
+<!-- ============ COPY ============ -->
+<section>
+  <div class="shead"><span class="num">08</span><h2>Website copy, straight from their complaints</h2></div>
+  <p class="small">Every line below answers a fear a real customer already wrote down. Paste it, don't improve it.</p>
+
+  <div class="stack g16">
+
+    <div class="paste">
+      <h4>Hero</h4>
+      <p class="ph">We come to your driveway. We don't leave until you've walked around the car with us.</p>
+      <p class="small">Mobile detailing in Coral&nbsp;Springs, Parkland, Coconut&nbsp;Creek, Margate, Tamarac, Deerfield and west Boca. Open Saturday and Sunday &mdash; when your car is actually home.</p>
+    </div>
+
+    <div class="paste">
+      <h4>Three promises &mdash; put these above the fold</h4>
+      <p class="ph">1 &middot; The price we text you is the price you pay.</p>
+      <p class="small">You get the full list of what's included in writing before we book. No "that's extra" at the end. Tax included in the number &mdash; nothing gets added.</p>
+      <p class="ph">2 &middot; We walk the car with you before we take payment.</p>
+      <p class="small">Door jambs, wheels, roof, door sills, under the seats, console. If you find something, we fix it right there. You should not have to inspect our work after we've gone.</p>
+      <p class="ph">3 &middot; If we're going to be late, you get a call &mdash; not a text, not silence.</p>
+      <p class="small">More than 15 minutes late and the job is $25 off, automatically. We don't wait for you to ask.</p>
+    </div>
+
+    <div class="paste">
+      <h4>"What's included" &mdash; kill the scope argument before it starts</h4>
+      <p class="small">List these explicitly on every package page. These are the exact items customers said were skipped:</p>
+      <p class="ph">Included in every exterior service, at no extra charge: door jambs &middot; wheel faces and barrels &middot; exhaust tips &middot; roof &middot; bugs on bumper and grille &middot; window borders and the top edge of the glass &middot; fuel door.</p>
+      <p class="ph">Included in every interior service: under and behind the seats &middot; door sills &middot; centre console &middot; cup holders &middot; steering wheel &middot; screen (cleaned, never treated with dressing) &middot; floor mats refitted the way we found them.</p>
+    </div>
+
+    <div class="paste">
+      <h4>The guarantee &mdash; write it in plain words</h4>
+      <p class="ph">Find something we missed? Text us a photo within 48 hours and we come back and fix it. Free. No argument, no upgrade voucher, no "it's not worth sending someone out."</p>
+      <p class="small">Say the word <strong>free</strong> and the words <strong>we come back</strong>. Half the 1-stars in the teardown are people who were offered a discount on a <em>future</em> job instead of a fix to the one they paid for.</p>
+    </div>
+
+    <div class="paste">
+      <h4>FAQ answers that pre-empt the doubts</h4>
+      <p class="ph">Do you have a shop?</p>
+      <p class="small">No &mdash; we come to you, which is the point. We're a licensed Florida LLC, we carry general liability and garage keepers insurance, and we'll send you the certificate before we touch your car.</p>
+      <p class="ph">Do you need my water or power?</p>
+      <p class="small">No. We work rinseless, so there's no hose, no runoff onto your driveway, and no generator noise. Nothing to plug in.</p>
+      <p class="ph">How long will it take?</p>
+      <p class="small">We book one job per slot and we tell you the real number. We would rather give you a longer window than rush your car to reach the next one.</p>
+      <p class="ph">Is the tax extra?</p>
+      <p class="small">No. Florida sales tax is already inside every price you see. What we quote is what you pay.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ RULES ============ -->
+<section>
+  <div class="shead"><span class="num">09</span><h2>Operating rules &mdash; the ones that came out of the reviews</h2></div>
+  <p class="small">Do not treat these as advice. They are the specific failures that cost five competitors their only bad reviews. Tick them once they're habit.</p>
+
+  <div class="group">
+    <div class="grouphd"><h4>A &middot; Before the car is paid for</h4><span class="chip warn">Theme #1, 14 reviews</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="walkaround">
+      <span class="ibody">
+        <span class="itop"><h3>The 12-point walkaround, out loud, with the customer</h3><span class="chip free">Non-negotiable</span></span>
+        <p class="small">Door jambs &middot; wheel faces &middot; wheel barrels &middot; exhaust tips &middot; roof &middot; bumper and grille bugs &middot; door sills &middot; under and behind seats &middot; centre console &middot; cup holders &middot; window top edges &middot; floor mats refitted. Say each one as you point at it.</p>
+        <p class="tiny">"I should've gotten the service I paid for without having to check someone's work." &mdash; Lynette F., 3&#9733;. The walkaround is you doing the checking, in front of them, so they never have to.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="nobodyhome">
+      <span class="ibody">
+        <span class="itop"><h3>Nobody home? Photograph all 12 points and text the album before you drive off</h3><span class="chip free">$0</span></span>
+        <p class="small">One Call's worst review came from a customer who couldn't be there. Their policy required someone present; the customer wasn't; the work was sloppy and there was no record. Photos are the walkaround for absent customers.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="nowheelbrush">
+      <span class="ibody">
+        <span class="itop"><h3>No wire or bristle wheel brush. Ever.</h3><span class="chip warn">$2,500 lesson</span></span>
+        <p class="small">A competitor scratched a customer's painted aluminium wheels with a metal-bristle brush on a month-old car and lost $2,500 of goodwill plus a permanent 1-star. Soft wheel woolies only. Same rule for gloss-black trim &mdash; that's the other thing they scratched.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="noscreen">
+      <span class="ibody">
+        <span class="itop"><h3>Never put dressing or protectant on a screen, and never on anything that doesn't need it</h3><span class="chip free">$0</span></span>
+        <p class="small">Two separate reviews: permanent residue on an infotainment screen that "won't come off no matter what I do," and "extra protection on all the parts that didn't need it. it looks like they did a rushed job." Screens get a clean damp microfibre and nothing else.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>B &middot; Quoting and booking</h4><span class="chip warn">Theme #3, 10 reviews</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="writtenquote">
+      <span class="ibody">
+        <span class="itop"><h3>Every quote goes out as a text, with the inclusion list and the final tax-inclusive number</h3><span class="chip free">$0</span></span>
+        <p class="small">Never quote a price only on the phone. "I was told on the phone the service was $155 but was later told it was $175... make sure you get it in writing what your service consists of and how much before your service."</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="noupsell">
+      <span class="ibody">
+        <span class="itop"><h3>No upsell after work has started &mdash; ever, for any reason</h3><span class="chip warn">Kills trust instantly</span></span>
+        <p class="small">If the car needs more than the booked service, you finish what was booked, you show them the issue, and you quote the extra <em>for a future visit</em>. Four of the ten scope complaints are mid-job or post-job upsells. One customer was billed for a full detail the operator did "by accident."</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="nominimum">
+      <span class="ibody">
+        <span class="itop"><h3>If you have a minimum, it is the first sentence out of your mouth</h3><span class="chip free">$0</span></span>
+        <p class="small">"He said '$50 for sedans and $55 for SUVs' ok my address is..and before I can finish he says 'our minimum is 2 cars'... then our minimum is $100." Quote the minimum before the address, not after.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>C &middot; Time</h4><span class="chip warn">Theme #4, 8 reviews</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="latecall">
+      <span class="ibody">
+        <span class="itop"><h3>Running late = a phone call the moment you know, plus $25 off past 15 minutes</h3><span class="chip cost">Costs money, saves reviews</span></span>
+        <p class="small">A competitor arrived 90 minutes late with 30 minutes' notice and then argued about the tip in the review reply. The discount is cheaper than the review. Apply it yourself before they ask.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="confirmnight">
+      <span class="ibody">
+        <span class="itop"><h3>Confirm every job the night before by text &mdash; and go anyway if they don't reply</h3><span class="chip warn">The $75 trap</span></span>
+        <p class="small">One Call charged a $75 no-show fee to a customer who was home, because their office couldn't reach her by phone and their policy is not to "blindly drive to appointments." She wrote the review. Text confirmation costs nothing and leaves a timestamped record. Never charge a no-show fee on a first job.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="nocancel">
+      <span class="ibody">
+        <span class="itop"><h3>If you must cancel, you call, and you rebook on the same call</h3><span class="chip free">$0</span></span>
+        <p class="small">Mobile Detailers Inc has exactly one bad review in eleven years and this is it: <em>"they canceled at the last minute never called me back to reschedule."</em> One phone call would have erased it.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="onejob">
+      <span class="ibody">
+        <span class="itop"><h3>Never book the next job so tight that you rush this one</h3><span class="chip free">$0</span></span>
+        <p class="small">"They should slow down a little bit." "He was done in 30 Min &amp; said he went over entire vehicle." And the one that matters for you and Rasul: <em>"when john comes alone he does much better work then when he brings his helper, because they just rush the job."</em> Two people should mean more thorough, not faster.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>D &middot; When you get it wrong</h4><span class="chip warn">Theme #2, 11 reviews</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="gobackfree">
+      <span class="ibody">
+        <span class="itop"><h3>Complaint = you go back and fix it, free, within 48 hours</h3><span class="chip warn">The whole game</span></span>
+        <p class="small">Not a voucher. Not an upgrade next time. Not "it's not worth sending a technician back out." You drive back. Every single one of the eleven recovery complaints would have died here.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="neverdefend">
+      <span class="ibody">
+        <span class="itop"><h3>Never argue in a public review reply. Apologise, state the fix, stop typing.</h3><span class="chip warn">Reads worse than the review</span></span>
+        <p class="small">A competitor called a customer a "keyboard warrior." Another called a 3-star "clearly an effort to slander our company." A third spent his reply on the gratuity. Every one of those replies is still up, still doing damage. Your reply template: <em>"You're right, we missed that. We should have come back and fixed it. Call me on [number] and I'll make it right."</em></p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="neverblame">
+      <span class="ibody">
+        <span class="itop"><h3>Never blame the customer for a defect in your work</h3><span class="chip warn">Second-worst move</span></span>
+        <p class="small">Family Mobile's tint peeled and the customer was told it was his fault for touching it &mdash; after being told not to touch it for two days. Then they refused to come back. That single sequence is their worst review.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>E &middot; Tint rules &mdash; read before your first roll</h4><span class="chip warn">Theme #5, 7 reviews</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="nopiecing">
+      <span class="ibody">
+        <span class="itop"><h3>One piece per window. Never seam a rear glass.</h3><span class="chip warn">Visible in daylight</span></span>
+        <p class="small">"They cut the back window in half and tie together both pieces where you can clearly see the cut in daylight." If you can't do a rear window in one piece, you don't take that car yet. Practise on your own glass first.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="noshortcuts">
+      <span class="ibody">
+        <span class="itop"><h3>Never say "give it time to settle" as a way to end the conversation</h3><span class="chip warn">Creases don't settle</span></span>
+        <p class="small">Haze and small water pockets clear in a few days. <strong>Creases and bad cuts never do.</strong> A shop told a customer to wait, then ignored his texts and calls when the creases stayed. If it's creased, you say so on the spot and rebook the panel.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="filmspec">
+      <span class="ibody">
+        <span class="itop"><h3>Name the film brand and the warranty length in writing, and hand over the box label</h3><span class="chip free">$0</span></span>
+        <p class="small">Two separate complaints about film that peeled years before the promised life, and one about being charged for ceramic coating and given something else. Write the exact product name on the invoice. This also pairs with the Fla.&nbsp;Stat.&nbsp;316.2955 door-jamb label you're legally required to affix anyway.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="panelprotect">
+      <span class="ibody">
+        <span class="itop"><h3>Mask and towel the door panels and sills before any slip solution comes out</h3><span class="chip warn">Permanent stains</span></span>
+        <p class="small">"whatever solution they use to tint the windows has permanently stained my door panels (a year later, it's still there)." Slip solution runs straight down into the door card. Towels down, every time.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>G &middot; Before the first employee works a paid car</h4><span class="chip warn">Wage law</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="i9w4">
+      <span class="ibody">
+        <span class="itop"><h3>I-9 within 3 days of the first shift, and a W-4</h3><span class="chip free">$0</span></span>
+        <p class="small">The I-9 proves he is allowed to work in the US &mdash; federal, every employer, no exceptions, due within three business days of starting. The W-4 sets his tax withholding. Keep both on file.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="newhire">
+      <span class="ibody">
+        <span class="itop"><h3>Report the new hire to Florida within 20 days</h3><span class="chip free">$0</span></span>
+        <p class="small">Florida runs a new-hire directory and reporting is mandatory. Free, online, takes minutes.</p>
+        <p class="where">floridanewhire.com</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="reemp">
+      <span class="ibody">
+        <span class="itop"><h3>Register for Florida reemployment tax</h3><span class="chip free">$0</span></span>
+        <p class="small">Triggered once you pay $1,500 in wages in any calendar quarter. At any real wage that is your first quarter. Register on the same Department of Revenue site as the DR-1 sales tax registration &mdash; do both in one sitting.</p>
+        <p class="where">floridarevenue.com</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="minwage">
+      <span class="ibody">
+        <span class="itop"><h3>Florida minimum wage is $15.00/hr from 30 September 2026</h3><span class="chip warn">Rises the month you start</span></span>
+        <p class="small">It steps up on 30 September every year under the 2020 amendment. You are starting in exactly that month. Anyone who works on a paying car gets at least this, and unreimbursed work costs cannot drag their real pay below it.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="rasulpaid">
+      <span class="ibody">
+        <span class="itop"><h3>Pay Rasul from the first paid car he touches</h3><span class="chip warn">The likely mistake</span></span>
+        <p class="small">"He is learning, so he is not on the payroll yet" is the most common way a small business walks into a wage claim. Unpaid training is only lawful when the trainee is the main beneficiary &mdash; classroom-style, no productive work. The moment he is wiping a customer's car that you are billing for, he is working.</p>
+        <p class="small">The parent-and-child family exemption does not cover <strong>brothers</strong>. Either he genuinely only watches, or he goes on the payroll at minimum wage. Minimum wage for a few hours a week is cheap. A back-pay claim is not.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="wcgap">
+      <span class="ibody">
+        <span class="itop"><h3>Know your workers' comp gap &mdash; you are exempt, not covered</h3><span class="chip cost">Quote it anyway</span></span>
+        <p class="small">Florida requires workers' comp for non-construction businesses at <strong>four</strong> employees. With one or two you are exempt, so you will not be fined. But exempt means <em>uninsured</em> &mdash; if your installer cuts his hand badly on a customer's driveway, there is nothing to pay his medical bills or lost wages, and he can sue you personally. Get a quote before you decide to skip it.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>F &middot; Looking like a business, not a guy with a car</h4><span class="chip warn">Theme #11</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="lookpro">
+      <span class="ibody">
+        <span class="itop"><h3>Shirt with the business name. Clean kit. Every bag of trash leaves with you.</h3><span class="chip cost">~$60</span></span>
+        <p class="small">"The person that came to provide me services was not clean." "They left trash in the grass, I had to pick it up." "Distracted on his phone for the majority of the time." Two branded polos each and a bin bag in the boot answers all three.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="proofpack">
+      <span class="ibody">
+        <span class="itop"><h3>Keep a one-page proof pack on your phone: LLC certificate, EIN letter, COI</h3><span class="chip free">$0</span></span>
+        <p class="small">Send it unprompted to anyone booking over $200 or any tint job. This is the direct answer to <em>"he has no location to do business."</em> You don't need a shop. You need paperwork you can produce in ten seconds.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="answerphone">
+      <span class="ibody">
+        <span class="itop"><h3>Answer the phone, or call back inside 30 minutes &mdash; and never text "who is this"</h3><span class="chip free">$0</span></span>
+        <p class="small">Three separate 1-stars are people who never got past the phone call. One is literally <em>"the 'owner' doesn't even respond to the number he provides."</em> Response speed is one of your three real edges. Treat a missed call as a lost $250.</p>
+      </span>
+    </label>
+  </div>
+</section>
+
+<!-- ============ OPEN ============ -->
+<section>
+  <div class="shead"><span class="num">10</span><h2>Next five actions</h2></div>
+
+  <div class="q">
+    <h3>Take the name. Two calls, then file.</h3>
+    <ol class="plain small">
+      <li><strong>File as <em>Stonepoint Auto Care LLC</em>.</strong> The 29&nbsp;Aug note said Clearpoint first and zero conflicts &mdash; <strong>that was wrong and the order is now reversed.</strong> Florida has an active <em>CLEARPOINT WINDOW CLEANING LLC</em> and an active <em>CLEAR POINT COMMERCIAL CLEANING, LLC</em>. The state would still accept your filing (the test is <em>distinguishable</em>, not <em>similar</em> &mdash; Fla.&nbsp;Stat.&nbsp;605.0112), but you are selling <strong>window</strong> tint, and a Florida company already owns the word pair "Clearpoint&nbsp;+&nbsp;window." <em>clearpointauto.com</em> is also gone. Stonepoint has no Florida entity sharing two words with it, no national consumer brand on the word, and both <em>stonepointautocare.com</em> and <em>stonepointauto.com</em> are free. Fallback order: <strong>Stonepoint &rarr; Truepoint &rarr; Clearpoint</strong>. Full check and reasoning in <a href="llc-filing.md">llc-filing.md</a>.</li>
+      <li><strong>Confirm it yourself on search.sunbiz.org before you pay.</strong> Sunbiz sits behind a Cloudflare wall that blocks every automated lookup &mdash; the check above is from indexed Sunbiz records and a live .com registry query, not from the search box. Two minutes in your browser: Search Records &rarr; Entity Name &rarr; type <code>Stonepoint</code> alone, no suffix. The state does not refund a rejected filing.</li>
+      <li><strong>Call Coral Springs Business Tax, (954) 344-5964.</strong> Ask three things: the home-based receipt fee for mobile auto services, whether a multi-unit residence changes the application, and the rule on parking a marked vehicle overnight. Get the van answer before you ever buy a van.</li>
+      <li><strong>Call Broward County, browardtax.org.</strong> Fee under a mobile detailing classification. It varies &mdash; get the number from them.</li>
+      <li><strong>Skim two clauses in your lease</strong> &mdash; chemical/flammable storage, and commercial vehicle parking. Five minutes. Not a blocker for filing; a blocker for buying a wrapped van later.</li>
+    </ol>
     <hr class="hr">
-    <h3>Also owed from last time</h3>
+    <h3>Answered</h3>
     <ul class="plain small">
-      <li>The 1-star and 3-star reviews on One Call Detailing (571 reviews) and GoFilms (351). Thirty of them, every complaint that repeats. That list becomes your website copy and your operating rules.</li>
-      <li>Three name candidates that survive all four naming rules above.</li>
+      <li><strong>6160 Wiles Rd is his residence and he holds the lease.</strong> Confirmed 29&nbsp;Aug&nbsp;2026, unit number known. He can film on site and can prove occupancy to Coral Springs. Address questions are closed.</li>
+      <li><strong>The competitor bad-review teardown</strong> &mdash; sections&nbsp;07, 08 and 09 above, every quote and link in <a href="teardown.md">teardown.md</a>.</li>
     </ul>
   </div>
 </section>
@@ -522,7 +923,7 @@ footer a{color:var(--ink-2)}
 </div><!-- /sections -->
 
 <footer>
-  <p class="tiny">Sources: Fla. Stat. 316.2955 / 316.2956 &middot; Florida Dept. of Revenue GT-800015, GT-800067 &middot; Sunbiz Division of Corporations &middot; Palm Beach County Tax Collector &middot; City of Boca Raton &middot; Google Business Profile Help &middot; Google Local Services category expansion &middot; Insureon and TechInsurance trade rate data.</p>
+  <p class="tiny">Sources: Fla. Stat. 316.2955 / 316.2956 &middot; Florida Dept. of Revenue GT-800015, GT-800067 &middot; Sunbiz Division of Corporations &middot; Broward County Tax Collector &middot; City of Coral Springs &middot; Google Business Profile Help &middot; Google Local Services category expansion &middot; Insureon and TechInsurance trade rate data &middot; competitor reviews pulled 29&nbsp;August&nbsp;2026 from Google review panels and Yelp (see teardown.md for per-quote links).</p>
   <p class="tiny">Fees and rates verified August 2026. Confirm the county and city receipt amounts by phone &mdash; they vary by classification. Not legal or tax advice; a Florida CPA should see your first return.</p>
 </footer>
 
