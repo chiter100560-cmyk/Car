@@ -18,6 +18,9 @@ installer works with him on a 50/50 split; Rasul is training.
   competitors, verbatim, with links. 48 reviews, 10 ranked complaint themes.
 
 *The offer*
+- [`step2-pack.md`](step2-pack.md) — **start here.** Every field of every form and every
+  phone script, in the order you do them: Sunbiz, EIN, bank, DR-1, county, city, the
+  repair-shop question, insurance. Plus the before-the-first-paid-car checklist.
 - [`llc-filing.md`](llc-filing.md) — field-by-field Sunbiz walkthrough, real fees, and the
   business-name check. **Read section 1 and 4 before you open the form.**
 - [`complaints.html`](complaints.html) — industry-wide complaint patterns and a booking
@@ -150,6 +153,16 @@ not work the two days Ziyad and Rasul are both free. This is the wedge.
       yourself. Sunbiz is behind a Cloudflare wall that no automated tool can pass, so
       the check above came from indexed records and the .com registry, not the search
       box. Two minutes. The state does not refund a rejected filing.
+- [ ] **Motor vehicle repair registration — new, and unresolved.** Fla. Stat. 559.903
+      defines a repair shop to include *"mobile motor vehicle repair shops"* and
+      *"shops doing glass work"*, and repair to include *"all maintenance of and
+      modifications"* — tint is a modification to glass. Broward's own ordinance is
+      narrower (*altering the operating condition*), which reads the other way. The
+      state fee is waived in Broward under 559.904(5), so the money is not the
+      problem; the **county** licence is, because it requires a **certified
+      technician**. Two calls close it: Broward Consumer Protection (954) 765-1700
+      and FDACS 1-800-435-7352. Scripts in `step2-pack.md` §8. **Before the first
+      tint car, not after.**
 - [ ] **Is Rasul paid, and is the installer an employee or a partner?** The repo says
       "staff, not a member" but also "50/50 split." Those two do not fit together.
       Settle it before the first paid car — `llc-filing.md` §4 lays out the three

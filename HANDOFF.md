@@ -7,7 +7,7 @@ Last updated 2 September 2026.
 
 I'm Ziyad. I'm starting a mobile car-services business in South Florida — we go to
 the customer's driveway. You're picking up an in-progress project, so read
-`README.md`, `playbook.html` and `llc-filing.md` in this repo first
+`README.md`, `step2-pack.md` and `playbook.html` in this repo first
 (chiter100560-cmyk/Car, branch `claude/car-services-setup-08xp9h`) and don't
 re-derive decisions that are already made.
 
@@ -65,7 +65,10 @@ ALREADY RESEARCHED — carry these, don't contradict them:
 6. Florida LLC name test is "distinguishable in the records" — Fla. Stat. 605.0112 —
    NOT "deceptively similar". Adding a real word distinguishes a name. An earlier
    version of this repo got that wrong.
-7. BOI / FinCEN reporting is NOT required for US-formed entities (rule of 26 Mar
+7. NAICS codes: automotive window tinting is **811122** (Automotive Glass Replacement
+   Shops), detailing is **811192** (Car Washes). Use 811122 as primary since tint is
+   first. Needed for the EIN, the DR-1 and every insurance quote.
+8. BOI / FinCEN reporting is NOT required for US-formed entities (rule of 26 Mar
    2025). Sunbiz still shows an out-of-date notice saying otherwise. Anyone charging
    to file your BOI is running a scam. Same for anyone charging for an EIN.
 
@@ -74,6 +77,15 @@ OPEN ITEMS:
       a Cloudflare wall no automated tool can pass — the check in the repo came from
       indexed records and the .com registry, not the live search box.
 - [ ] File the LLC. $125. Then EIN → bank account → DR-1 → county → city → insurance.
+      Every field and every phone script is written out in `step2-pack.md` — work
+      from that, not from memory.
+- [ ] MOTOR VEHICLE REPAIR REGISTRATION — unresolved. Fla. Stat. 559.903 defines a
+      repair shop to include "mobile motor vehicle repair shops" and "shops doing
+      glass work"; Broward's ordinance is narrower ("altering the operating
+      condition"). State fee is waived in Broward under 559.904(5), so the money is
+      not the issue — the county licence is, because it needs a CERTIFIED
+      TECHNICIAN. Call Broward Consumer Protection (954) 765-1700 and FDACS
+      1-800-435-7352 before the first tint car. Scripts in `step2-pack.md` §8.
 - [ ] IS RASUL PAID, and is the installer an employee or a partner? The repo says
       "staff, not a member" but also "50/50 split". Those don't fit together. If he
       is paid he is an employee and payroll rules start: I-9 in 3 days, W-4, Florida
