@@ -3,6 +3,31 @@
 The one job that keeps getting blocked. Nothing here needs skill, only your phone
 and twenty minutes. Do it once and it becomes website copy and operating rules.
 
+## Status
+
+| Business | State |
+|---|---|
+| One Call Detailing, Pompano Beach | **Done** — 5.0 / 585, five negatives total, four with text. In `complaints.html` §00 |
+| Mobile Detailers Inc, Coral Springs | **Counted, not read** — 4.9 / 34 on Google, one 1-star. Highest-value gap |
+| Platinum | **Wrong name** — no exact match. Closest: *PLATINUM – Mobile Auto Detailing*, 8383 NW 57th Dr, 4.9 / 77. Confirm the listing |
+| GoFilms Window Tinting, Plantation | Not reached |
+| Family Mobile Window Tint, Margate | Not reached |
+
+**What works:** the Claude desktop app on the Mac, with a connected browser. Not a
+cloud session — see below.
+
+**What broke:** Google Maps stopped responding after the first listing — the sort menu
+would not apply and more reviews would not load. **Fix: one business per fresh tab, and
+close the tab before starting the next.**
+
+**Do the two tint businesses first** from here. You have never tinted a car, so their
+complaints are worth more to you than another detailer's: they will be about bubbles,
+creases, peeling, purple film, cure-time confusion and damaged defroster lines — the
+exact things you are about to be bad at.
+
+**No verbatim quotes.** Reviewers own their words. Paraphrase point by point, keep the
+star count and date, and note which keywords appear in the original.
+
 ## Why a cloud session can't do it
 
 Tested 22 Sep 2026 from the Claude cloud session, with a real headless browser

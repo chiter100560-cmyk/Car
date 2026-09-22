@@ -27,7 +27,7 @@ window tint at day 60–90, both delivered at the customer's home.
 | Radius | 20 minutes from base |
 | Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
 | Not doing | Oil change — regulated used-oil waste, thin margin, ASE-certified competition |
-| Not doing | Fort Lauderdale in year one — One Call Detailing sits at ~571 reviews |
+| Not doing | Fort Lauderdale in year one — One Call Detailing sits at 5.0 / 585 reviews |
 | Capital | $3,500 |
 | Capacity | 8–12 cars/week at full tilt, ~26 working hours |
 | Target ticket | $250 |
@@ -117,14 +117,40 @@ a $20-off code. Remaining edges: weekend availability, response speed, showing u
 The single closest competitor selling the same tint-plus-detail combination does
 not work the two days Ziyad and Rasul are both free. This is the wedge.
 
-**Review teardown still cannot be done from a cloud session — retested 22 Sep 2026.**
-The headless browser works now (it did not in August), but the sources refuse
-automated traffic from a datacenter IP: Google Maps loads its shell then returns 403
-on its own JS bundle; Google Search shows the "unusual traffic from your computer
-network" CAPTCHA; Yelp returns 403; DuckDuckGo shows a CAPTCHA; Bing returns an empty
-shell; Birdeye keeps the Google reviews behind a JS tab. A logged-in human browser on
-a home connection passes all of these. Procedure and paste-back format:
-[`review-collection.md`](review-collection.md). In the meantime
+**Review teardown — one of five done, 22 Sep 2026.** A cloud session still cannot do
+it: the headless browser works now (it did not in August), but the sources refuse
+automated traffic from a datacenter IP — Maps 403s its own JS bundle, Search shows the
+"unusual traffic" CAPTCHA, Yelp 403s, DuckDuckGo CAPTCHAs, Bing returns an empty shell.
+The Claude desktop app with a connected browser **does** get through. It completed One
+Call Detailing, counted Mobile Detailers Inc, then Google Maps stopped responding —
+sort would not apply and more reviews would not load. Findings are in
+[`complaints.html`](complaints.html) section 00; what is still owed and the working
+method are in [`review-collection.md`](review-collection.md).
+
+**Reviews are paraphrased, never quoted** — reviewers own their words. Read originals
+on each listing with *Sort: Lowest rating*.
+
+**What the benchmark's real complaints show.** One Call Detailing: 5.0 stars, 585
+reviews, and only **five** negatives in total (four 1-star, one 2-star, no 3-star; one
+of those has no text). Of the four that carry text, **not one is about attitude** — the
+technician is described as friendly, the crew as professional and on time. Every
+complaint is about **work declared finished when it wasn't**: a paid-for shampoo never
+performed, seats not folded so the gaps were skipped, wheel shine not applied because
+the applicator was broken, makeup left on the steering wheel and driver's door, bugs
+left on the front, spots in the glass corners. Two add a $250 upsell pitched at the car
+and a reply that argued about the tip. The oldest (8 years) is the worst: a metal-bristle
+brush scratched ~$2,500 of painted aluminium wheels and the owner offered a free cleaning
+instead of paying for the repair. **Being nice is not the edge in this corridor —
+finishing is, and proving it in front of the customer before taking payment.**
+
+**Mobile Detailers Inc on Google: 4.9, 34 reviews** — 33 five-star and one 1-star,
+nothing in between. That differs from the Birdeye listing's 51, which pools old Facebook
+reviews. The 1-star text was not reached and is the single highest-value thing still
+missing, because they are the closest competitor.
+
+**"Platinum Auto Detailing" has no exact Maps match.** Closest: *PLATINUM – Mobile Auto
+Detailing*, 8383 NW 57th Dr, 4.9, 77 reviews. Confirm the listing before treating it as
+a competitor. In the meantime
 `complaints.html` covers the industry-wide patterns, which is most of the value
 the teardown was for: eight ranked complaints, the operating rule that prevents
 each, a five-question booking script, and website copy that sells against them.
@@ -134,8 +160,9 @@ each, a five-question booking script, and website copy that sells against them.
 - [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
       suite or mailbox), and that equipment can be stored and filmed there.
 - [ ] Three business-name candidates that pass all four naming rules
-- [ ] Teardown of 30 one- and three-star reviews on One Call Detailing (~571) and
-      GoFilms (~351) — every complaint that repeats becomes website copy and ops rules
+- [ ] Finish the teardown: the single 1-star on Mobile Detailers Inc, then GoFilms
+      Window Tinting (Plantation, ~351) and Family Mobile Window Tint (Margate). The
+      tint ones matter most — their complaints will be about installation, not service
 
 ## Roadmap
 
