@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Tint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEE; --surface:#FFFFFF; --surface-2:#F6F7F6;
+  --ink:#15201E; --ink-2:#55625F; --ink-3:#808C89;
+  --rule:#D6DBD8; --rule-2:#E6EAE8;
+  --accent:#0D5F53; --accent-soft:#E2EFEC;
+  --signal:#8F5400; --signal-soft:#FAEEDA;
+  --danger:#8F2D1D; --danger-soft:#F8E5E0;
+  --shadow:0 1px 2px rgba(21,32,30,.05), 0 8px 24px -16px rgba(21,32,30,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+    --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+    --rule:#2A3634; --rule-2:#212B29;
+    --accent:#4FC1AC; --accent-soft:#16302B;
+    --signal:#E0A952; --signal-soft:#33270F;
+    --danger:#E58873; --danger-soft:#351913;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+  --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+  --rule:#2A3634; --rule-2:#212B29;
+  --accent:#4FC1AC; --accent-soft:#16302B;
+  --signal:#E0A952; --signal-soft:#33270F;
+  --danger:#E58873; --danger-soft:#351913;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4", Georgia, serif; font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 96px; -webkit-font-smoothing:antialiased}
+.wrap{max-width:760px; margin:0 auto}
+h1,h2,h3,h4{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
+.mono,.chip,.eyebrow,.num{font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace}
+h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0; text-wrap:balance}
+h2{font-size:1.42rem; font-weight:700; letter-spacing:-.012em; line-height:1.2; margin:0; text-wrap:balance}
+h3{font-size:1.04rem; font-weight:700; margin:0; text-wrap:balance}
+h4{font-size:.82rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0}
+p{margin:0}
+a{color:var(--accent); text-underline-offset:2px}
+strong{font-weight:600}
+.eyebrow{font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.lede{font-size:1.12rem; color:var(--ink-2)}
+.small{font-size:.92rem; color:var(--ink-2)}
+.tiny{font-size:.78rem; color:var(--ink-3); line-height:1.5}
+section{display:flex; flex-direction:column; gap:20px}
+.sections{display:flex; flex-direction:column; gap:56px; margin-top:56px}
+.shead{display:flex; align-items:baseline; gap:14px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.shead .num{font-size:.78rem; font-weight:600; color:var(--accent); letter-spacing:.06em; flex:none}
+header{padding:44px 0 0; display:flex; flex-direction:column; gap:14px}
+.rule-heavy{height:5px; background:var(--ink); width:64px; border-radius:1px}
+.chip{display:inline-flex; align-items:center; font-size:.66rem; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2);
+  color:var(--ink-2); border:1px solid var(--rule); white-space:nowrap}
+.chip.hot{background:var(--danger-soft); color:var(--danger); border-color:transparent}
+.chip.fl{background:var(--signal-soft); color:var(--signal); border-color:transparent}
+.chip.win{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px}
+.card.amber{border-left:4px solid var(--signal)}
+.card.win{border-left:4px solid var(--accent)}
+.card.red{border-left:4px solid var(--danger)}
+.cards{display:flex; flex-direction:column; gap:14px}
+.rulebox{background:var(--accent-soft); border-radius:3px; padding:12px 14px; display:flex; flex-direction:column; gap:5px}
+.rulebox h4{color:var(--accent)}
+.note{background:var(--signal-soft); border-radius:4px; padding:16px 18px; display:flex; flex-direction:column; gap:7px}
+.note h4{color:var(--signal)}
+.stop{background:var(--danger-soft); border-radius:4px; padding:16px 18px; display:flex; flex-direction:column; gap:7px}
+.stop h4{color:var(--danger)}
+.etop{display:flex; flex-wrap:wrap; align-items:center; gap:9px}
+ul.plain,ol.plain{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px}
+.tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:4px; background:var(--surface); box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule-2); vertical-align:top}
+th{font-family:Archivo,sans-serif; font-size:.72rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:700; background:var(--surface-2); white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+.step{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px; box-shadow:var(--shadow)}
+.wk{font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--accent);
+  line-height:1.2; padding-top:3px; white-space:nowrap}
+.sbody{display:flex; flex-direction:column; gap:11px; min-width:0}
+.gate{border-left:3px solid var(--accent); padding:2px 0 2px 14px; font-size:.92rem; color:var(--ink-2)}
+footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+@media (max-width:560px){
+  body{font-size:16px; padding:0 15px 72px}
+  .card,.note,.stop,.step{padding:15px} .step{gap:12px} .sections{gap:44px}
+  th,td{padding:9px 11px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="rule-heavy"></div>
+  <p class="eyebrow">Mobile auto services &middot; Coral Springs, Florida</p>
+  <h1>Tint: Film, Law, Skill</h1>
+  <p class="lede">Every type of film on the market and which one to sell &mdash; the exact legal percentage for every window on a car and on an SUV &mdash; what customers ask for that is illegal, and the words you use to say no without losing the job.</p>
+</header>
+
+<div class="sections">
+
+<section>
+  <div class="note">
+    <h4>The three answers first</h4>
+    <p class="small"><strong>Best film to sell, affordable:</strong> carbon as your value line, budget nano-ceramic as your premium line. Two lines, two shades each. Skip dyed (fades purple, kills your reviews in year three) and skip metalised (mirror look breaks Florida's reflectivity limit and blocks GPS and keyless entry).</p>
+    <p class="small"><strong>Legal, measured on the finished window:</strong> front sides 28% minimum on everything. Behind the driver: 15% minimum on a car, 6% minimum on an SUV, van or truck. Windshield: nothing below the AS-1 line, ever.</p>
+    <p class="small"><strong>Your 10% roll:</strong> legal only on the back side windows and rear window of an SUV, van or truck &mdash; and only if that glass is not already factory-tinted. Illegal on any front side window and illegal anywhere on a sedan. Details in section 04.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="shead"><span class="num">01</span><h2>Every type of film, and what it really does</h2></div>
+  <p class="small">Five technologies. Price tracks heat rejection, not darkness. <strong>TSER</strong> is total solar energy rejected &mdash; the honest number. <strong>IR</strong> rejection is the number film sellers quote because it sounds bigger; treat TSER as the truth and IR as marketing.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Type</th><th>How it works</th><th>Heat (TSER)</th><th>Life</th><th>Retail / car</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Dyed</strong><br><span class="chip hot">avoid</span></td>
+        <td>Pigment in polyester. Makes the glass dark, does almost nothing about heat. Fades purple and bubbles as UV destroys the dye.</td>
+        <td class="n">15&ndash;30%</td><td class="n">3&ndash;5 yr</td><td class="n">$100&ndash;$250</td>
+      </tr>
+      <tr>
+        <td><strong>Metalised</strong><br><span class="chip hot">avoid</span></td>
+        <td>Sputtered metal reflects heat well and lasts. But it reflects visible light &mdash; the mirror look &mdash; and it interferes with GPS, radio, keyless entry and tyre sensors.</td>
+        <td class="n">40&ndash;55%</td><td class="n">10&ndash;15 yr</td><td class="n">$200&ndash;$400</td>
+      </tr>
+      <tr>
+        <td><strong>Hybrid</strong><br><span class="chip">skip</span></td>
+        <td>Dye plus a little metal. Cheaper than ceramic, less signal trouble than full metal. It exists because carbon does the same job better for similar money.</td>
+        <td class="n">30&ndash;45%</td><td class="n">5&ndash;10 yr</td><td class="n">$150&ndash;$300</td>
+      </tr>
+      <tr>
+        <td><strong>Carbon</strong><br><span class="chip win">your value line</span></td>
+        <td>Carbon particles in the layer. No metal, so no signal problems. Matte black look that does not fade or turn purple. Real but moderate heat rejection.</td>
+        <td class="n">35&ndash;50%</td><td class="n">7&ndash;10 yr</td><td class="n">$200&ndash;$400</td>
+      </tr>
+      <tr>
+        <td><strong>Nano-ceramic</strong><br><span class="chip win">your premium line</span></td>
+        <td>Ceramic particles absorb infrared and let visible light through. That is the whole trick: <em>heat rejection without darkness</em>. No signal interference, no fade.</td>
+        <td class="n">45&ndash;65%</td><td class="n">10&ndash;15 yr</td><td class="n">$250&ndash;$450</td>
+      </tr>
+      <tr>
+        <td><strong>Multilayer optical</strong><br><span class="tiny">sold as crystalline / XR / IRX</span><br><span class="chip">later</span></td>
+        <td>Hundreds of optical layers. The top of the market &mdash; 90%+ IR rejection even at a light, legal 50% or 70% shade. Needs a dealer account and sells on comfort, not looks.</td>
+        <td class="n">55&ndash;70%</td><td class="n">15&ndash;20 yr</td><td class="n">$500&ndash;$900</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="rulebox">
+    <h4>The sentence that wins arguments about darkness</h4>
+    <p class="small"><strong>Dark is not cool. Ceramic is cool.</strong> A cheap 5% dyed film is nearly black and rejects maybe a quarter of the sun's energy. A legal 35% ceramic rejects around half to two-thirds. If a customer wants the car cooler, the answer is better film, not darker film &mdash; and the better film is also the one you make more money on.</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="shead"><span class="num">02</span><h2>What to stock &mdash; the affordable answer</h2></div>
+  <div class="cards">
+    <div class="card win">
+      <div class="etop"><span class="chip win">Line 1</span><h3>Carbon &mdash; the $199&ndash;$249 job</h3></div>
+      <p class="small">Stock <strong>two shades: 35% and 20%</strong>. 35% is your front-window shade on most cars. 20% covers back sides and rear on sedans. Known value brands in this class: SunTek Carbon / CarbonXP, LLumar ATR, and cheaper trade lines like Global and Johnson. Buy a 40&Prime;&times;100&prime; roll, roughly <strong>$150&ndash;$300</strong>, which covers about 8&ndash;12 cars &mdash; so around $25&ndash;$35 of film in a $220 job.</p>
+    </div>
+    <div class="card win">
+      <div class="etop"><span class="chip win">Line 2</span><h3>Nano-ceramic &mdash; the $349&ndash;$449 job</h3></div>
+      <p class="small">Stock <strong>35% and 20%</strong> again, same logic. Budget nano-ceramic rolls run roughly <strong>$250&ndash;$700</strong> for 40&Prime;&times;100&prime;. Name brands in reach without a big dealer commitment: SunTek CarbonXP, LLumar CTX. XPEL XR / 3M Crystalline are the tier above &mdash; dealer accounts, deposits, and worth revisiting once you are selling ten cars a month.</p>
+      <p class="small">In Florida this is the line that should sell most of the time. Sell it on the steering wheel and the dashboard being touchable at 2pm, not on looks.</p>
+    </div>
+    <div class="card amber">
+      <h3>Stock discipline</h3>
+      <p class="small">Four rolls maximum: carbon 35 and 20, ceramic 35 and 20. Every extra shade is money asleep in a cupboard. If a customer wants 50% for a legal-and-light front window, order that one roll when you have sold three of them, not before.</p>
+      <p class="small">Call a South Florida film distributor and ask what an installer account costs and what the minimum order is. Retail roll prices are not your prices &mdash; paying retail is how the margin disappears.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="shead"><span class="num">03</span><h2>The legal percentage, window by window</h2></div>
+  <p class="small">Straight from the statutes, not from a tint blog. Two separate laws: one for the windows beside the driver, one for everything behind the driver.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Window</th><th>Car / sedan / coupe</th><th>SUV, van, truck<br><span class="tiny">"multipurpose passenger vehicle"</span></th><th>Statute</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Windshield</strong></td><td colspan="2">Transparent strip above the AS-1 line only. Nothing in the driver's forward view. No percentage exists because film below that line is simply not allowed.</td><td class="n">316.2952</td></tr>
+      <tr><td><strong>Front sides</strong><br><span class="tiny">beside the driver</span></td><td class="n">28% min VLT<br>max 25% reflectance</td><td class="n">28% min VLT<br>max 25% reflectance</td><td class="n">316.2953</td></tr>
+      <tr><td><strong>Back sides</strong></td><td class="n">15% min VLT<br>max 35% reflectance</td><td class="n">6% min VLT<br>max 35% reflectance</td><td class="n">316.2954</td></tr>
+      <tr><td><strong>Rear window</strong></td><td class="n">15% min VLT</td><td class="n">6% min VLT</td><td class="n">316.2954</td></tr>
+      <tr><td><strong>Colours</strong></td><td colspan="2">No red, amber or blue on any window.</td><td class="n">316.2951+</td></tr>
+      <tr><td><strong>Mirrors</strong></td><td colspan="2">If the rear window is made non-transparent, the car must have working side mirrors on both sides.</td><td class="n">316.2954</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="card red">
+    <div class="etop"><span class="chip hot">The part that catches beginners</span><h3>The meter reads glass + film together, not the film</h3></div>
+    <p class="small">Nobody measures your roll. An officer puts a photometer on the finished window and reads what comes through <strong>glass and film combined</strong>. Roughly: <span class="mono">film VLT &times; glass VLT</span>. Clear car glass is about 75&ndash;80%, so your film always reads darker on the car than on the label.</p>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Film on the roll</th><th>On clear glass (~78%)</th><th>Front sides (28%)</th><th>Sedan rear (15%)</th><th>SUV rear (6%)</th></tr></thead>
+      <tbody>
+        <tr><td class="n">50%</td><td class="n">~39%</td><td>legal</td><td>legal</td><td>legal</td></tr>
+        <tr><td class="n">40%</td><td class="n">~31%</td><td>legal</td><td>legal</td><td>legal</td></tr>
+        <tr><td class="n">35%</td><td class="n">~27%</td><td><strong>borderline</strong> &mdash; misses by a point, may survive the &plusmn;3% tolerance. Measure it.</td><td>legal</td><td>legal</td></tr>
+        <tr><td class="n">20%</td><td class="n">~16%</td><td>ILLEGAL</td><td>legal, barely</td><td>legal</td></tr>
+        <tr><td class="n">15%</td><td class="n">~12%</td><td>ILLEGAL</td><td>ILLEGAL</td><td>legal</td></tr>
+        <tr><td class="n">10%</td><td class="n">~8%</td><td>ILLEGAL</td><td>ILLEGAL</td><td>legal</td></tr>
+        <tr><td class="n">5%</td><td class="n">~4%</td><td>ILLEGAL</td><td>ILLEGAL</td><td>ILLEGAL</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small">Glass varies by make and year, so these are close but not gospel. <strong>The meter on that car is the only truth.</strong> Measure the bare glass before you quote, and measure the finished window before you hand the keys back.</p>
+    <p class="small"><strong>Factory privacy glass changes everything.</strong> Most SUVs come with the back half already dyed at the factory, often 15&ndash;26% on its own. Put your 20% film over 25% factory glass and the meter reads about 5% &mdash; under the 6% SUV floor, illegal, and you installed it. On privacy glass the correct answer is usually <em>no film at all on the back, ceramic on the front two</em>.</p>
+  </div>
+
+  <div class="note">
+    <h4>Two things the law puts on you, not the driver</h4>
+    <p class="small"><strong>The label &mdash; 316.2955.</strong> You give the purchaser a pressure-sensitive, self-destructive, non-removable vinyl label and affix it to the <strong>inside left door jamb</strong>. It must state compliance with 316.2951&ndash;316.2954, the film's trade name, and your business name. The same statute sets a <strong>&plusmn;3% measurement tolerance</strong>.</p>
+    <p class="small"><strong>The penalty &mdash; 316.2956.</strong> Any person who <em>sells or installs</em> non-compliant sunscreening material is guilty of a <strong>misdemeanor of the second degree</strong>. The driver gets a non-criminal traffic infraction. You get the criminal charge. And your business name is on a label inside the door jamb pointing at you.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="shead"><span class="num">04</span><h2>Your 10% roll &mdash; where it can legally go</h2></div>
+  <div class="cards">
+    <div class="card win">
+      <h3>Legal</h3>
+      <ul class="plain small">
+        <li><strong>Back side windows and rear window of an SUV, van or pickup</strong> &mdash; the 6% floor. On clear glass 10% film reads about 8%. Measure it: if that vehicle's glass is darker than average you can still land under 6%.</li>
+        <li>Practice glass. Junkyard windows do not care.</li>
+      </ul>
+    </div>
+    <div class="card red">
+      <h3>Illegal</h3>
+      <ul class="plain small">
+        <li><strong>Any front side window, any vehicle.</strong> 28% floor. 10% is not close.</li>
+        <li><strong>Any window on a sedan or coupe.</strong> The back is 15% and 10% film reads about 8%.</li>
+        <li><strong>Over factory privacy glass</strong> on an SUV. Combined it lands at 2&ndash;3%, under the 6% floor.</li>
+        <li><strong>Windshield.</strong> Never.</li>
+      </ul>
+    </div>
+    <div class="card amber">
+      <h3>So what do you do with it</h3>
+      <p class="small">Keep it as your practice roll and as legitimate stock for SUV back halves on clear glass. Do not build a price list around it. When you buy your first selling rolls, buy <strong>35% and 20%</strong> &mdash; those two shades cover almost every legal job in Florida, and the 10% only ever comes off the shelf after the meter says yes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="shead"><span class="num">05</span><h2>What customers ask for that is illegal</h2></div>
+  <p class="small">You will hear all of these. Ranked by how often, and each with the answer that keeps the job.</p>
+  <div class="cards">
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">1</span><h3>"5% limo all around"</h3></div>
+      <p class="small">Illegal on the front sides of every vehicle, and illegal everywhere on a sedan. Second-degree misdemeanor on you.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"I can do 5% behind the driver on your SUV. The two front windows have to be 28% or the charge lands on me, not you &mdash; installing it is a criminal offence in Florida. What most people do is 5% in the back and ceramic 35% in the front, and honestly the ceramic front keeps you cooler than dark film would."</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">2</span><h3>"Match my fronts to the factory back"</h3></div>
+      <p class="small">The single most common request, because SUV privacy glass looks like 15&ndash;20%. Matching it on the front sides is illegal every time.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"The factory glass in the back is allowed to be that dark, the front by law is not. I'll put the darkest legal shade up front &mdash; it won't match exactly, and any tint shop that says it will match is installing something that gets you pulled over."</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">3</span><h3>"Tint the whole windshield"</h3></div>
+      <p class="small">Full-windshield film below the AS-1 line is flatly not allowed. A transparent strip at the top is.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"Only the strip at the top. But there's a real option &mdash; a clear ceramic windshield film. Nearly invisible, legal, and it cuts more heat than the side windows do because the windshield is your biggest piece of glass."</p><p class="tiny">Check the specific product's VLT and that it is transparent and non-reflective before you offer this. It is a genuine upsell and a genuine liability if you get it wrong.</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">4</span><h3>"Chrome / mirror / limo-reflective"</h3></div>
+      <p class="small">Reflectance is capped at 25% on the front sides and 35% behind the driver. Most mirror-look metalised film breaks it, and it kills GPS and keyless entry &mdash; which becomes your callback, not the film's.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"Mirror film is over the reflection limit here, and it blocks your key fob and GPS. Ceramic gives you the heat rejection without either problem."</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">5</span><h3>"Coloured &mdash; blue, red, smoked-amber"</h3></div>
+      <p class="small">Red, amber and blue are banned on every window.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"Those three colours are banned on cars in Florida. Neutral black or charcoal only."</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">6</span><h3>"My friend has a medical exemption, just do mine like his"</h3></div>
+      <p class="small">The exemption is a real thing under Fla. Stat. 316.29545 &mdash; issued by FLHSMV on a physician-signed application, for conditions like lupus and other light-sensitive disorders. It belongs to a specific person and a specific vehicle.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"If you have the FLHSMV certificate, bring it and I'll install to what it allows. No certificate, I install to the legal limit."</p><p class="small">Photograph the certificate into the job file before you cut film. Never take somebody's word for it.</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">7</span><h3>"Skip the sticker, I don't want it on my door"</h3></div>
+      <p class="small">Not optional, and it is on you. Fit it every car, every time, before the customer pays.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"It's required by law and it's what shows the officer the tint is legal. It goes in the door jamb where nobody sees it."</p></div>
+    </div>
+
+    <div class="card red">
+      <div class="etop"><span class="chip hot">8</span><h3>"Cash, no invoice, just do it dark"</h3></div>
+      <p class="small">Cash does not change the statute, and the door-jamb label carries your business name. A tint shop with a criminal citation cannot sell detailing either.</p>
+      <div class="rulebox"><h4>Say</h4><p class="small">"I'd be doing a criminal misdemeanor for a $200 job with my name on the label inside the door. Not doing it &mdash; but here's the darkest legal setup and it'll cost you the same."</p></div>
+    </div>
+
+  </div>
+  <div class="note">
+    <h4>Do not turn this into a lecture</h4>
+    <p class="small">One sentence about the law, then immediately the thing you <em>can</em> do, then the price. Customers who get told no and nothing else go to the next guy. Customers who get told "no, but here is the version that works and keeps you cooler" mostly buy, and often buy the ceramic.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section>
+  <div class="shead"><span class="num">06</span><h2>The skill &mdash; what you still have to learn</h2></div>
+  <p class="small">You have tools and film, so the shopping is done. What remains is reps. Four skills, unequal:</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Skill</th><th>What it is</th><th>Reps to competent</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Glass prep</strong></td><td>Scrape, soap, squeegee, drop the glass and clean the hidden top strip. Every speck you leave is a permanent bubble.</td><td class="n">1&ndash;2 days</td></tr>
+      <tr><td><strong>Cutting</strong></td><td>Film on the outside of the glass, cut the shape, blade control near rubber and paint.</td><td class="n">3&ndash;5 cars</td></tr>
+      <tr><td><strong>Squeegee</strong></td><td>Every drop of slip solution out, without creasing the film. Pattern and pressure, not force.</td><td class="n">5&ndash;10 cars</td></tr>
+      <tr><td><strong>Heat shrink, rear glass</strong><span class="chip hot" style="margin-left:8px">the wall</span></td><td>Rear windows curve two ways. Flat film is shrunk with the heat gun on the <em>outside</em> until it matches the curve &mdash; no fingers, no creases &mdash; then installed inside in one piece.</td><td class="n">20&ndash;30 cars</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="rulebox">
+    <h4>Practise the wall, not the easy part</h4>
+    <p class="small">Do not practise by doing whole cars. <strong>Practise rear glass on its own, off the car.</strong> Ten rear windows in one Tuesday teaches more than four full cars in a week, and loose glass costs a few dollars from a salvage yard &mdash; often nothing from an auto glass shop that is throwing it out.</p>
+  </div>
+  <div class="cards">
+    <div class="step"><div class="wk">WK 1&ndash;2</div><div class="sbody">
+      <h3>Flat glass, no shrinking</h3>
+      <p class="small">Loose door glass on a table. The whole sequence with zero curve: clean, wet, lay, cut, squeegee, edge. Same pane ten times &mdash; peel, clean, repeat.</p>
+      <p class="gate"><strong>Gate:</strong> three in a row with no bubbles, no creases, no specks, edges straight.</p>
+    </div></div>
+    <div class="step"><div class="wk">WK 3&ndash;4</div><div class="sbody">
+      <h3>Door glass, in the door</h3>
+      <p class="small">Your BMW, Rasul's car, a junkyard door. Now you work upside down, drop the glass to clean the top strip, and tuck film past the rubber. This is where blades meet door seals and paint.</p>
+      <p class="gate"><strong>Gate:</strong> four doors of one car under 60 minutes, no light gap, no cut rubber.</p>
+    </div></div>
+    <div class="step"><div class="wk">WK 5&ndash;8</div><div class="sbody">
+      <h3>Rear glass &mdash; the wall</h3>
+      <p class="small">Four weeks on one window because it is 80% of the difficulty. Shrink on the outside of the glass with heat and a hard card until it is dead flat to the curve, working fingers out from the middle. Only then flip it inside. One piece &mdash; a seamed rear window is a complaint waiting to be written.</p>
+      <p class="gate"><strong>Gate:</strong> five consecutive rear windows, one piece, no creases, under 45 minutes each.</p>
+    </div></div>
+    <div class="step"><div class="wk">WK 9&ndash;10</div><div class="sbody">
+      <h3>Five whole cars, free, family only</h3>
+      <p class="small">People who will forgive you. Tell each one you are learning and you will strip and redo it free. Time every car. Photograph every car in direct sun at three days &mdash; that is when contamination shows.</p>
+      <p class="gate"><strong>Gate:</strong> full sedan inside 3 hours and the day-3 photos are clean.</p>
+    </div></div>
+    <div class="step"><div class="wk">WK 11&ndash;12</div><div class="sbody">
+      <h3>Five cars at a learning price</h3>
+      <p class="small">$99&ndash;$129, sold honestly as a starter rate, written on the invoice: <em>"Learning-rate price. If any window is not right within 30 days I strip and reinstall free."</em> Ask for a review only on a car you are proud of &mdash; a review is permanent.</p>
+      <p class="gate"><strong>Gate:</strong> five paid cars, zero redos. Then full price.</p>
+    </div></div>
+  </div>
+  <p class="tiny">If after week 8 the rear glass still comes out with fingers and creases, buy a 3-day hands-on course out of detailing cash &mdash; $1,200&ndash;$2,500, with the nearest Florida school in Jacksonville. Worth it <em>after</em> you have struggled, not before: going in cold you spend half the course learning what a squeegee does.</p>
+</section>
+
+<!-- 07 -->
+<section>
+  <div class="shead"><span class="num">07</span><h2>Where practice glass comes from</h2></div>
+  <div class="cards">
+    <div class="card"><h3>Auto glass shops &mdash; best source for rear glass</h3><p class="small">Replacement shops bin good used glass daily. Walk in, say you are a new installer, ask for their old rear windows. Usually free or $10&ndash;$20. Build the relationship anyway: they send you tint referrals, you send them cracked windshields.</p></div>
+    <div class="card"><h3>U-pull-it salvage yards</h3><p class="small">Cheap door glass, pulled by you. Call first: what does door glass cost, and will they let you pull a rear window (many will not, it usually shatters). Take a socket set, gloves and a blanket. Pick sedans and small SUVs &mdash; what your customers drive.</p></div>
+    <div class="card"><h3>Body shops and used-car lots</h3><p class="small">Same pitch, plus a second one: ask whether they want tint on their used inventory at a trade price once you are good. That is how installers get volume without spending on ads.</p></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section>
+  <div class="shead"><span class="num">08</span><h2>The driveway problem</h2></div>
+  <div class="stop">
+    <h4>Tint and open air do not mix</h4>
+    <p class="small">Detailing in a driveway is fine. <strong>Tint in a driveway is not.</strong> The film is wet adhesive facing the sky for minutes at a time, and wind carries dust, grass, pollen and lovebugs straight into it. One speck is a permanent bubble the customer sees at every red light. You cannot buff it out &mdash; you strip the window and redo it unpaid.</p>
+  </div>
+  <div class="rulebox">
+    <h4>Operating rule</h4>
+    <p class="small"><strong>No garage, no tint.</strong> Ask on the phone before booking: <em>"Do you have a garage I can pull the car into? Tint has to be done indoors or dust gets under the film."</em> Customers accept it instantly because it sounds like a standard &mdash; it is one. What you must never do is turn up, see no garage, and do it anyway to save the trip.</p>
+  </div>
+  <div class="card">
+    <h3>What it costs you, honestly</h3>
+    <p class="small">It limits tint to garage homes. In Coral Springs, Parkland and Coconut Creek that is most single-family houses, so the hit is small here &mdash; but it is real. It also means <strong>detailing stays the volume service and tint is the high-margin add-on</strong>. For a no-garage customer: quote the detail anyway, offer tint when they can borrow a garage. Do not lose the detail over it.</p>
+    <p class="small">Second best if there is truly no garage: early morning, no wind, shade, dry car, a canopy with side walls. That is damage control, not a plan. Your redo rate goes up.</p>
+  </div>
+</section>
+
+<!-- 09 -->
+<section>
+  <div class="shead"><span class="num">09</span><h2>When you are allowed to charge</h2></div>
+  <div class="card win">
+    <ul class="plain small">
+      <li><strong>Time:</strong> full sedan, five windows, under 3 hours, alone.</li>
+      <li><strong>Rear glass in one piece.</strong> No seam, no crease, no finger.</li>
+      <li><strong>Clean at arm's length in direct sun, three days after install</strong> &mdash; not clean in the garage on day one.</li>
+      <li><strong>Edges:</strong> no visible light gap from two metres, film tucked, no lifted corners.</li>
+      <li><strong>No damage:</strong> no cut rubber, no scratched paint, no broken defroster line.</li>
+      <li><strong>Measured:</strong> the finished VLT clears the Florida limit for that window and that vehicle type &mdash; and you wrote the reading on the invoice.</li>
+      <li><strong>Label fitted</strong> to the inside left door jamb.</li>
+    </ul>
+  </div>
+  <div class="note">
+    <h4>The aftercare card is part of the job</h4>
+    <p class="small">New film looks hazy and shows small water pockets for 3&ndash;5 days, longer in humidity. Customers who are not warned think you did bad work and review it before it has cured. Say it out loud <em>and</em> hand a card: <strong>windows stay up 3 days; haze and small pockets are normal and clear as it dries; no ammonia cleaners; call me before you leave a review if anything still looks wrong at day seven.</strong></p>
+  </div>
+</section>
+
+<!-- 10 -->
+<section>
+  <div class="shead"><span class="num">10</span><h2>The three ways a beginner loses money</h2></div>
+  <div class="cards">
+    <div class="card red">
+      <div class="etop"><span class="chip hot">1</span><h3>Ripping the rear defroster grid</h3></div>
+      <p class="small">Stripping old film pulls the printed defroster lines off with it. Repair is a new grid or a new window &mdash; hundreds of dollars &mdash; and the customer finds out in December.</p>
+      <div class="rulebox"><h4>Rule</h4><p class="small">No removal jobs until you have practised removal on junkyard rear glass. When you do take them, quote removal as a separate line with its own price, in writing, and state plainly that on old brittle film defroster damage is a known risk.</p></div>
+    </div>
+    <div class="card red">
+      <div class="etop"><span class="chip hot">2</span><h3>Broken glass, cut trim</h3></div>
+      <p class="small">Dropped glass, a blade through a door seal, a scratched pillar &mdash; all on you, in someone's driveway.</p>
+      <div class="rulebox"><h4>Rule</h4><p class="small"><strong>Garage keepers legal liability active before the first tint car.</strong> That is the cover for damage to a customer's vehicle in your care; general liability alone does not include it. It is already on your Step 2 list &mdash; do not let the tint start date get ahead of the policy date.</p></div>
+    </div>
+    <div class="card red">
+      <div class="etop"><span class="chip hot">3</span><h3>Installing illegal tint because somebody asked nicely</h3></div>
+      <p class="small">316.2956: selling or installing non-compliant film is a <strong>second-degree misdemeanor</strong> &mdash; on you. The driver's ticket is non-criminal. Yours is not.</p>
+      <div class="rulebox"><h4>Rule</h4><p class="small">28% on front sides, no exceptions, no cash deals, meter on every finished window. Section 05 has the words.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section>
+  <div class="shead"><span class="num">11</span><h2>What it pays</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Job</th><th>Film cost</th><th>Price</th><th>Hours</th><th>$/hour</th></tr></thead>
+    <tbody>
+      <tr><td>Carbon, 5 windows, sedan</td><td class="n">$25&ndash;$40</td><td class="n">$199&ndash;$249</td><td class="n">2&ndash;3</td><td class="n">~$70&ndash;$110</td></tr>
+      <tr><td>Ceramic, 5 windows, sedan</td><td class="n">$60&ndash;$90</td><td class="n">$349&ndash;$449</td><td class="n">2&ndash;3</td><td class="n">~$100&ndash;$190</td></tr>
+      <tr><td>Two front windows, ceramic</td><td class="n">$15&ndash;$30</td><td class="n">$129&ndash;$179</td><td class="n">0.75&ndash;1</td><td class="n">~$130&ndash;$200</td></tr>
+      <tr><td><em>Detail, for comparison</em></td><td class="n">$15&ndash;$30</td><td class="n">$250</td><td class="n">2.5&ndash;3.5</td><td class="n">~$70&ndash;$95</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="card win">
+    <h3>The real money is the combination</h3>
+    <p class="small">Not tint alone &mdash; <strong>tint sold onto a detail that is already booked.</strong> You are at the house, the car is clean, the garage is open, and ceramic adds $350 to a $250 ticket with no second drive and no second sales conversation. A $600 driveway visit that a detail-only competitor cannot touch.</p>
+    <p class="small">The best-selling package in Florida is the legal one: <strong>ceramic 35% front, 20% back, priced all-in with 7% Broward sales tax included.</strong> Film transfers to the customer, so the whole bill is taxable &mdash; same as detailing.</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section>
+  <div class="shead"><span class="num">12</span><h2>This week</h2></div>
+  <div class="card">
+    <ul class="plain small">
+      <li><strong>Buy a VLT meter.</strong> $30&ndash;$90. Without it you are guessing on every car, and guessing is the criminal-charge version of a mistake. Measure your own two cars tonight so you learn what factory glass reads.</li>
+      <li><strong>Call two auto glass shops</strong> and ask for scrap rear windows. Free classroom.</li>
+      <li><strong>Call one film distributor</strong> and ask what an installer account needs, and the price of 40&Prime;&times;100&prime; carbon and nano-ceramic in 35% and 20%.</li>
+      <li><strong>Order compliance labels</strong> once the business name is settled &mdash; they carry your business name, so the name decision blocks them.</li>
+      <li><strong>Block Tuesday and Thursday</strong> for practice, twelve weeks.</li>
+      <li><strong>Ask every detailing customer:</strong> <em>"Thinking about tint too?"</em> Write down every yes. That list is your day-60 revenue and it costs nothing.</li>
+      <li><strong>Do not let this delay Step 2.</strong> LLC, EIN, DR-1, licences, insurance first. Tint practice happens on days you would otherwise earn nothing.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p class="tiny"><strong>Statutes read directly, September 2026:</strong>
+    <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.2952.html">316.2952 windshield</a> &middot;
+    <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.2953.html">316.2953 side windows, 28% / 25% reflectance</a> &middot;
+    <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.2954.html">316.2954 behind the driver, 15% / 6%, 35% reflectance, mirrors</a> &middot;
+    <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.2955.html">316.2955 label and &plusmn;3% tolerance</a> &middot;
+    <a href="http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0300-0399/0316/Sections/0316.2956.html">316.2956 second-degree misdemeanor</a> &middot;
+    <a href="https://codes.findlaw.com/fl/title-xxiii-motor-vehicles/fl-st-sect-316-29545/">316.29545 medical exemption</a> &middot;
+    <a href="https://www.flhsmv.gov/pdf/proc/rs/rs-48.pdf">FLHSMV exemption procedure</a>
+  </p>
+  <p class="tiny"><strong>Film and price research:</strong>
+    <a href="https://www.tintlaws.com/guides/ceramic-vs-dyed-vs-carbon-tint/">film type comparison and TSER ranges</a> &middot;
+    <a href="https://www.tintlaws.com/guides/best-tint-for-heat-rejection/">heat rejection ranking</a> &middot;
+    <a href="https://tintgrade.com/blog/ceramic-window-tint">ceramic cost and performance</a> &middot;
+    <a href="https://www.tintlaws.com/guides/3m-vs-llumar-vs-suntek-vs-solar-gard/">brand comparison</a> &middot;
+    <a href="https://www.precutautotint.com/products/ceramic-film-window-tint-roll-60%E2%80%B3x100%E2%80%B2/">roll pricing</a> &middot;
+    <a href="https://tint.school/courses/">Florida tint school courses</a>
+  </p>
+  <p class="tiny">Percentages in the combined-reading table are estimates based on roughly 78% clear glass &mdash; a real meter on a real car is the only number that counts. Prices are public retail listings, not quotes. Not legal advice. Companion documents: <a href="playbook.html">playbook.html</a> (Step 2 &mdash; legal, tax, insurance, Google) and <a href="complaints.html">complaints.html</a> (what customers complain about and the rules that stop it).</p>
+</footer>
+
+</div>

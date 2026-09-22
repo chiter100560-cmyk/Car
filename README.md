@@ -3,12 +3,15 @@
 Working record for Ziyad and Rasul's mobile car-services business. Detailing now,
 window tint at day 60–90, both delivered at the customer's home.
 
-**Two working documents:**
+**Three working documents:**
 - [`playbook.html`](playbook.html) — Step 2: entity, tax, licences, insurance, Google.
   Checklist remembers what you've ticked off.
 - [`complaints.html`](complaints.html) — the eight things customers complain about in
   this trade, the rule that prevents each, a booking script, and website copy written
   to sell against them.
+- [`tint-learning.html`](tint-learning.html) — every film type and which to sell, the
+  legal VLT for every window read straight from the statutes, the illegal requests
+  customers make and the words to refuse them, and a 12-week practice plan.
 
 ---
 
@@ -67,8 +70,19 @@ Instagram/Meta before-and-afters → LSA once the badge returns → Yelp last.
 | Back side | 15% VLT min | 6% VLT min |
 | Rear window | 15% VLT min | 6% VLT min |
 | Windshield | Non-reflective only, above the AS-1 line | same |
-| Reflectivity | Max 25% front and back sides | same |
+| Reflectivity | Max 25% front sides · max 35% behind the driver | same |
 | Banned colors | Red, amber, blue — any window | same |
+
+**The meter reads glass + film together**, roughly `film VLT × glass VLT`. Clear car
+glass is ~75–80%, so 35% film lands around 27% on the car — a point under the front-side
+limit, saved only by the ±3% tolerance in 316.2955. Factory privacy glass on an SUV is
+already 15–26%, so adding film to the back of one usually goes illegal. Measure every
+car with a VLT meter before quoting and after installing. Full breakdown per window and
+per film shade in [`tint-learning.html`](tint-learning.html).
+
+**Installing non-compliant film is a second-degree misdemeanor on the installer**
+(316.2956); the driver's offense is a non-criminal infraction. The door-jamb label
+required by 316.2955 carries your business name.
 
 ## Base moved to Coral Springs — what it changed
 
@@ -133,7 +147,7 @@ each, a five-question booking script, and website copy that sells against them.
 8. Reviews
 9. Paid ads
 10. Ops — scheduling, quoting, deposits, no-shows
-11. Add tint
+11. Add tint — *practice starts now on dead Tuesdays/Thursdays; selling still day 60–90*
 12. Hire
 
 ---
