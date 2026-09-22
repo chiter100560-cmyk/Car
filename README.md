@@ -117,12 +117,14 @@ a $20-off code. Remaining edges: weekend availability, response speed, showing u
 The single closest competitor selling the same tint-plus-detail combination does
 not work the two days Ziyad and Rasul are both free. This is the wedge.
 
-**Review teardown could not be completed from the cloud session.** Chromium cannot
-connect through the session relay (fails on every host, including example.com);
-Google requires JavaScript for both Maps and Search so curl returns an empty shell;
-Yelp is blocked at the proxy; BBB returns Cloudflare 403; Birdeye exposes only the
-11 older Facebook reviews (all positive), with the 40 Google reviews behind a JS tab.
-Do this from a local session or manually — see HANDOFF.md. In the meantime
+**Review teardown still cannot be done from a cloud session — retested 22 Sep 2026.**
+The headless browser works now (it did not in August), but the sources refuse
+automated traffic from a datacenter IP: Google Maps loads its shell then returns 403
+on its own JS bundle; Google Search shows the "unusual traffic from your computer
+network" CAPTCHA; Yelp returns 403; DuckDuckGo shows a CAPTCHA; Bing returns an empty
+shell; Birdeye keeps the Google reviews behind a JS tab. A logged-in human browser on
+a home connection passes all of these. Procedure and paste-back format:
+[`review-collection.md`](review-collection.md). In the meantime
 `complaints.html` covers the industry-wide patterns, which is most of the value
 the teardown was for: eight ranked complaints, the operating rule that prevents
 each, a five-question booking script, and website copy that sells against them.
