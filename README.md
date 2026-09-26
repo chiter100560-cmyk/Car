@@ -2,7 +2,7 @@
 
 Working record for Ziyad's driveway car-services business. Ziyad owns it, Alex installs,
 Rasul is learning. Tint first at a $100 launch price while the reviews build, detailing
-alongside, both at the customer's home. Brand: **Car Mommy**, carmommy.us.
+alongside, both at the customer's home. Brand: **Car Mommy Tint & Detail**, thecarmommy.com.
 
 **Three working documents** (open on a phone; checklists remember what you've ticked):
 - [`tint-launch.html`](tint-launch.html) — **current.** Insurance (GL + garage keepers for a
@@ -21,12 +21,13 @@ alongside, both at the customer's home. Brand: **Car Mommy**, carmommy.us.
 | | |
 |---|---|
 | Owner / worker / learner | Ziyad / Alex / Rasul |
-| Entity | Sole proprietor. **No LLC until revenue is real.** Fictitious name "Car Mommy" on Sunbiz first |
+| Entity | Sole proprietor. **No LLC until revenue is real.** Fictitious name "Car Mommy Tint & Detail" on Sunbiz first |
 | Service now | Window tint at **$100 + tax**, detailing alongside |
 | Base | 6160 Wiles Rd, Coral Springs 33067 — Broward County |
 | Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
 | Tools | Arrived |
-| Domain | carmommy.us — **appears unregistered as of 26 Sept** (no registry record, no DNS). Check the order. carmommy.com is parked for sale on Afternic at $1,556 |
+| Domain | thecarmommy.com — free on 26 Sept, register it (plus carmommytint.com). carmommy.com is parked for sale on Afternic at $1,556 |
+| Name risk | **"THE CAR MOM" is a registered federal trademark** (Reg. 6,959,771, The Car Mom LLC, ~638k IG followers). Known and accepted; keep "Car Mommy". Rules in `tint-launch.html` §01: always "Car Mommy" two words, DBA and every listing as "Car Mommy Tint & Detail", never reference The Car Mom, no federal TM filing, keep the exit cheap |
 | Not doing | Oil change; Fort Lauderdale in year one |
 
 ## Corrections to the August playbook
@@ -93,7 +94,7 @@ Budget $1,600–4,300/yr all-in before workers' comp. Full script in `tint-launc
 
 ## Open items
 
-- [ ] Confirm carmommy.us is actually registered
+- [ ] Register thecarmommy.com and carmommytint.com
 - [ ] Newspaper notice → Sunbiz fictitious name → DR-1 → insurance quotes → bind
 - [ ] Storage unit address for the Coral Springs home-based receipt
 - [ ] Decide on voluntary workers' comp for Alex
@@ -102,7 +103,7 @@ Budget $1,600–4,300/yr all-in before workers' comp. Full script in `tint-launc
 
 ## Roadmap
 
-1. ~~Lock the concept~~ (done — Car Mommy, tint-first)
+1. ~~Lock the concept~~ (done — Car Mommy Tint & Detail, tint-first, name risk accepted)
 2. **Fictitious name, sales tax, receipts, insurance** ← current (`tint-launch.html` §01–02)
 3. ~~Equipment~~ (arrived) + film order + practice cars (§05)
 4. Google Business Profile (§03)

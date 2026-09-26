@@ -15,8 +15,14 @@ No cheerleading, no "great question". Tell me plainly when I'm wrong and why. Do
 insult me. Push me toward money-making actions.
 
 WHAT'S ALREADY DECIDED (don't reopen these):
-- Brand: Car Mommy, domain carmommy.us (check it's actually registered — it looked
-  unregistered on 26 Sept 2026)
+- Brand: Car Mommy, registered as "Car Mommy Tint & Detail", domain thecarmommy.com (free
+  on 26 Sept 2026 — register it). KNOWN RISK, ACCEPTED, DON'T REOPEN: "THE CAR MOM" is a
+  registered US trademark (Reg. 6,959,771, The Car Mom LLC, Kelly Stumpe, ~638k Instagram
+  followers, sells car wash products). I chose to keep the name. Rules: always "Car Mommy"
+  two words, never "Car Mom"; the full string "Car Mommy Tint & Detail" on the DBA, site,
+  magnets, invoices, Instagram and Google; never mention/tag/collab/bid on The Car Mom; no
+  federal trademark filing; keep printing cheap so a forced rename costs a weekend; if a
+  lawyer's letter comes, don't ignore it and get one hour of a trademark lawyer then.
 - Lean start, NO LLC until revenue is real. Sole proprietor under a Sunbiz fictitious name.
 - Tint first at $100 + tax while Alex builds skill and Google reviews; detailing alongside.
   Normal pricing + website + ads after that.
@@ -69,7 +75,7 @@ THINGS ALREADY RESEARCHED FROM PRIMARY SOURCES — carry these, don't contradict
    tint-launch.html §04) → Google Search ads → LSA → Yelp.
 
 OPEN ITEMS:
-- [ ] Confirm carmommy.us is registered (carmommy.com is parked for sale, $1,556)
+- [ ] Register thecarmommy.com + carmommytint.com (carmommy.com is parked for sale, $1,556)
 - [ ] Everything in tint-launch.html §08, in order
 - [ ] Competitor bad-review teardown (below) — needs a local session; the cloud session
       cannot render Google Maps, Yelp or BBB.
