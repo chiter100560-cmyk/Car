@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tint Launch Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEE; --surface:#FFFFFF; --surface-2:#F6F7F6;
+  --ink:#15201E; --ink-2:#55625F; --ink-3:#808C89;
+  --rule:#D6DBD8; --rule-2:#E6EAE8;
+  --accent:#0D5F53; --accent-soft:#E2EFEC;
+  --signal:#8F5400; --signal-soft:#FAEEDA;
+  --danger:#8F2D1D; --danger-soft:#F8E5E0;
+  --shadow:0 1px 2px rgba(21,32,30,.05), 0 8px 24px -16px rgba(21,32,30,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+    --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+    --rule:#2A3634; --rule-2:#212B29;
+    --accent:#4FC1AC; --accent-soft:#16302B;
+    --signal:#E0A952; --signal-soft:#33270F;
+    --danger:#E58873; --danger-soft:#351913;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+  --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+  --rule:#2A3634; --rule-2:#212B29;
+  --accent:#4FC1AC; --accent-soft:#16302B;
+  --signal:#E0A952; --signal-soft:#33270F;
+  --danger:#E58873; --danger-soft:#351913;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 96px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto}
+
+/* ---------- type ---------- */
+h1,h2,h3,h4,.mono,.eyebrow,.chip,th,.num{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
+.mono,.chip,.eyebrow,.money,td.n,th.n{font-family:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace}
+h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0; text-wrap:balance}
+h2{font-size:1.42rem; font-weight:700; letter-spacing:-.012em; line-height:1.2; margin:0; text-wrap:balance}
+h3{font-size:1.04rem; font-weight:700; letter-spacing:-.005em; margin:0; text-wrap:balance}
+h4{font-size:.82rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0}
+p{margin:0}
+a{color:var(--accent); text-underline-offset:2px}
+strong{font-weight:600}
+.eyebrow{font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.lede{font-size:1.12rem; color:var(--ink-2)}
+.small{font-size:.92rem; color:var(--ink-2)}
+.tiny{font-size:.78rem; color:var(--ink-3); line-height:1.5}
+
+/* ---------- layout primitives ---------- */
+.stack{display:flex; flex-direction:column}
+.g8{gap:8px} .g12{gap:12px} .g16{gap:16px} .g20{gap:20px} .g28{gap:28px} .g40{gap:40px}
+section{display:flex; flex-direction:column; gap:20px; scroll-margin-top:20px}
+.sections{display:flex; flex-direction:column; gap:56px; margin-top:56px}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px; box-shadow:var(--shadow)}
+.hr{height:1px; background:var(--rule); border:0}
+
+/* section head: number is meaningful — this is a real ordered roadmap */
+.shead{display:flex; align-items:baseline; gap:14px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.shead .num{font-family:"IBM Plex Mono",monospace; font-size:.78rem; font-weight:600; color:var(--accent); letter-spacing:.06em; flex:none; padding-top:2px}
+
+/* ---------- header ---------- */
+header{padding:44px 0 0}
+.titleblock{display:flex; flex-direction:column; gap:14px}
+.rule-heavy{height:5px; background:var(--ink); width:64px; border-radius:1px}
+.statstrip{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:4px; overflow:hidden; margin-top:8px;
+}
+.stat{background:var(--surface); padding:13px 15px; display:flex; flex-direction:column; gap:3px}
+.stat .k{font-family:"IBM Plex Mono",monospace; font-size:.63rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3)}
+.stat .v{font-family:Archivo,sans-serif; font-size:1.16rem; font-weight:700; letter-spacing:-.01em; font-variant-numeric:tabular-nums}
+.stat .v.pending{color:var(--signal)}
+
+/* ---------- chips ---------- */
+.chip{
+  display:inline-flex; align-items:center; gap:5px; font-size:.66rem; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; padding:3px 8px; border-radius:3px;
+  background:var(--surface-2); color:var(--ink-2); border:1px solid var(--rule); white-space:nowrap;
+}
+.chip.free{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+.chip.cost{background:var(--signal-soft); color:var(--signal); border-color:transparent}
+.chip.warn{background:var(--danger-soft); color:var(--danger); border-color:transparent}
+
+/* ---------- correction blocks ---------- */
+.fix{display:flex; flex-direction:column; gap:10px; padding:18px 20px; border-radius:4px; background:var(--surface); border:1px solid var(--rule); border-left:4px solid var(--danger)}
+.fix.amber{border-left-color:var(--signal)}
+.fix .hd{display:flex; flex-wrap:wrap; align-items:center; gap:10px}
+.was{font-family:"IBM Plex Mono",monospace; font-size:.8rem; color:var(--ink-3); text-decoration:line-through; text-decoration-thickness:1px}
+
+/* ---------- checklist ---------- */
+.group{display:flex; flex-direction:column; gap:12px}
+.grouphd{display:flex; align-items:baseline; gap:10px}
+.item{
+  display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start;
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:15px 17px;
+  transition:opacity .18s ease, border-color .18s ease;
+}
+.item:has(input:checked){opacity:.48; border-color:var(--rule-2)}
+.item:has(input:checked) .itop h3{text-decoration:line-through; text-decoration-thickness:1px}
+.item input[type=checkbox]{
+  appearance:none; -webkit-appearance:none; width:20px; height:20px; margin:3px 0 0;
+  border:1.5px solid var(--ink-3); border-radius:3px; background:var(--surface);
+  cursor:pointer; flex:none; display:grid; place-content:center; transition:.15s ease;
+}
+.item input[type=checkbox]:checked{background:var(--accent); border-color:var(--accent)}
+.item input[type=checkbox]:checked::after{
+  content:""; width:10px; height:6px; border:2px solid var(--surface);
+  border-top:0; border-right:0; transform:rotate(-45deg) translateY(-1px);
+}
+.item input[type=checkbox]:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.ibody{display:flex; flex-direction:column; gap:6px; min-width:0}
+.itop{display:flex; flex-wrap:wrap; align-items:center; gap:8px}
+.where{font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--accent); word-break:break-word}
+
+/* ---------- tables ---------- */
+.twrap{overflow-x:auto; border:1px solid var(--rule); border-radius:4px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.9rem; min-width:440px}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule-2); vertical-align:top}
+thead th{
+  font-size:.64rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+  font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule); white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+tr.total td{background:var(--surface-2); font-weight:600; border-top:1px solid var(--rule)}
+.dead{color:var(--ink-3)}
+.hot{color:var(--accent); font-weight:600}
+
+/* ---------- callout ---------- */
+.callout{background:var(--accent-soft); border-radius:4px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.callout h4{color:var(--accent)}
+.q{background:var(--surface); border:1px solid var(--rule); border-top:4px solid var(--signal); border-radius:4px; padding:22px; display:flex; flex-direction:column; gap:14px}
+
+ol.plain,ul.plain{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px}
+ol.plain li,ul.plain li{padding-left:2px}
+
+footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+footer a{color:var(--ink-2)}
+
+@media (max-width:560px){
+  body{font-size:16px; padding:0 15px 72px}
+  .card,.fix,.q{padding:16px}
+  .item{padding:13px 14px; gap:11px}
+  .sections{gap:44px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important; animation:none !important}}
+</style>
+<style>
+/* additions for the launch kit */
+blockquote.law{margin:0; padding:14px 18px; border-left:4px solid var(--accent); background:var(--surface-2); border-radius:0 4px 4px 0; font-size:.95rem}
+blockquote.law cite{display:block; margin-top:8px; font-style:normal; font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--ink-3)}
+.src{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-3); word-break:break-word}
+.src a{color:var(--ink-3)}
+.label-demo{border:1.5px dashed var(--ink-3); border-radius:3px; padding:12px 14px; background:var(--surface); font-family:Archivo,sans-serif; font-size:.82rem; line-height:1.45; max-width:360px}
+.label-demo b{display:block; font-size:.95rem; letter-spacing:.02em}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}
+.day{display:grid; grid-template-columns:64px 1fr; gap:10px; padding:10px 0; border-bottom:1px solid var(--rule-2)}
+.day:last-child{border-bottom:0}
+.day .d{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; padding-top:3px}
+.script{background:var(--surface-2); border:1px solid var(--rule); border-radius:4px; padding:14px 16px; font-size:.92rem; white-space:pre-wrap; font-family:"Source Serif 4",Georgia,serif}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="titleblock">
+    <div class="rule-heavy"></div>
+    <p class="eyebrow">Car Mommy &middot; Mobile window tint + detailing &middot; Coral Springs, Florida</p>
+    <h1>Tint Launch Kit</h1>
+    <p class="lede">Six answers for the $100 launch: insurance that covers the customer's car, Google verification from a home address, an Instagram plan that books driveways, where to buy film, the door-jamb label the law requires, and the Florida limits with two corrections. Checked against primary sources on 26 September 2026. Tap a box when it's done; this page remembers on your phone.</p>
+  </div>
+
+  <div class="statstrip">
+    <div class="stat"><span class="k">Launch price</span><span class="v">$100</span></div>
+    <div class="stat"><span class="k">Front glass, on the car</span><span class="v">&ge; 28% VLT</span></div>
+    <div class="stat"><span class="k">Label statute</span><span class="v">316.2955</span></div>
+    <div class="stat"><span class="k">Installer penalty</span><span class="v pending">2nd-deg. misd.</span></div>
+  </div>
+
+  <nav class="small" style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:18px">
+    <a href="#changed">01 What changed</a>
+    <a href="#insurance">02 Insurance</a>
+    <a href="#google">03 Google</a>
+    <a href="#instagram">04 Instagram</a>
+    <a href="#film">05 Film</a>
+    <a href="#label">06 Label</a>
+    <a href="#limits">07 Limits</a>
+    <a href="#week">08 This week</a>
+  </nav>
+</header>
+
+<div class="sections">
+<!-- ============ WHAT CHANGED ============ -->
+<section id="changed">
+  <div class="shead"><span class="num">01</span><h2>What changed, and the legal minimum for running lean</h2></div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Then (August playbook)</th><th>Now</th></tr></thead>
+      <tbody>
+        <tr><td>Detailing first, tint at day 60&ndash;90</td><td><strong>Tint first</strong>, at $100 while Alex builds skill and the reviews come in; detailing alongside</td></tr>
+        <tr><td>Ziyad and Rasul do the work</td><td><strong>Ziyad owns it, Alex installs, Rasul learns</strong></td></tr>
+        <tr><td>LLC in week 1</td><td><strong>No LLC until revenue is real.</strong> Sole proprietor under a registered fictitious name</td></tr>
+        <tr><td>Name open</td><td><strong>Car Mommy</strong>, carmommy.us</td></tr>
+        <tr><td>Tools to buy</td><td>Tools have arrived</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack g16">
+    <div class="fix">
+      <div class="hd"><h3>carmommy.us is not registered. Buy it before anything is printed.</h3><span class="chip warn">Checked 26 Sept</span></div>
+      <p class="small">The .us registry returns "not found" for carmommy.us (it returns records for real .us names) and the name has no DNS. If you paid for it, log in to the registrar and check the order went through. carmommy.com is owned by a domain flipper and parked for sale on Afternic at $1,556 or best offer &mdash; not a competitor. The .us is fine to launch on; a sole proprietor qualifies under the .us nexus rules as a US resident.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>"No LLC" does not mean "no paperwork". Five filings, about $390, before car #1.</h3><span class="chip cost">~$390 + insurance</span></div>
+      <p class="small">A sole proprietor can buy every policy in section 02, open a bank account and verify on Google &mdash; but only as "Ziyad &#91;surname&#93; DBA Car Mommy", and only after the name is filed with the state. Everything in section 03 hangs on that filing. Do these in this order:</p>
+      <ol class="plain small">
+        <li><strong>EIN from the IRS</strong>, free, online, instant. Not legally required until you have an employee, but you will (Alex), and the city form and the bank ask for it.</li>
+        <li><strong>Fictitious-name notice in a Broward newspaper</strong>, once. Broward Daily Business Review publishes it for $48 and sends proof. Fla. Stat. 865.09 makes you certify on the Sunbiz form that you advertised; a false certification is a third-degree felony, so run the ad.</li>
+        <li><strong>Register "Car Mommy" on Sunbiz</strong>, $50, online, confirmation letter within about a day. It is public notice only, gives no rights to the name, lasts five years, and moves to the LLC later with a $50 cancel-and-re-register.</li>
+        <li><strong>Florida sales tax, Form DR-1</strong>, free, online, with your SSN (no entity needed). Rule 12A-1.006: when parts are furnished, "the entire charge" is taxable &mdash; film is a part, so the whole $100 is taxed; a detail is taxed in full the moment wax, sealant or any coating goes on. Buy film and wax tax-free with the resale certificate you receive.</li>
+        <li><strong>Coral Springs home-based Business Tax Receipt</strong> (the city lists $160.80 for unlisted business types; confirm), then <strong>Broward County receipt</strong>: code 322 "Car detailing" $33 and code 277 "Window tinting" $45, issued in minutes online once the city receipt and the Sunbiz record exist. No other city's receipt is needed: Parkland, Coconut Creek, Margate, Tamarac, Deerfield and Boca can only tax a business that keeps a permanent location there (205.042), and a customer's driveway is not one.</li>
+      </ol>
+      <p class="tiny">Possible sixth: the Florida Motor Vehicle Repair Act registers "mobile motor vehicle repair shops" for "modifications" too, $50 for two years. Broward's fee schedule says tint needs no state registration; the statute's wording is wider. Spend the $50 or get FDACS's "not required" in writing (1-800-HELP-FLA).</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Coral Springs home-occupation rules were written for a home office. Read them before you sign the affidavit.</h3><span class="chip warn">Storage unit needed</span></div>
+      <p class="small">The home-based application goes to Zoning and the Police, and the notarised affidavit says: "No employees or independent contractors of any type shall be permitted at the dwelling unit at any time"; "I cannot store at my residence any materials, supplies or equipment, except telephones, computers, and other office materials &hellip; Any required inventory is located at the following address"; no work "visible or audible from any street"; commercial vehicles may not park at the home 9pm&ndash;6am Monday to Saturday or at all on Sunday. Violations revoke the receipt.</p>
+      <p class="small">So: Alex does not meet you at the unit; film, chemicals and tools live in a small storage unit (its address goes on the affidavit) or in the car; a lettered van, when it comes, sleeps somewhere else. This also changes the Google video: show tools in your vehicle and documents on your table, not a stockroom in the unit (section 03).</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>Correction: you may not advertise "$100, tax included". Advertise "$100 + tax".</h3><span class="chip warn">Second-degree misdemeanour</span></div>
+      <p class="small">The August playbook said to price all-in so the customer never sees a tax line. Fla. Stat. 212.07 says the opposite: tax "shall be separately stated" on the invoice, and a dealer "may not advertise or hold out to the public" that he will absorb the tax or that it will not be added. Advertise $100 plus tax, collect $107, show $7.00 on the invoice. The rate is 7% (6% state + Broward's 1%, which runs to 2048). New registrants usually file quarterly; the return is late after the 20th.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Alex is an employee. Rasul is either on payroll or only watching.</h3><span class="chip warn">$15/hour from 30 Sept 2026</span></div>
+      <p class="small">Under both the IRS test and Florida's workers' comp statute, someone who uses your film, your tools, your customers and your brand, at a price you set, is an employee. Misclassifying him as 1099 costs back employment taxes plus penalties, and it can void the liability coverage (section 02). The cheap, correct way: part-time W-2 through a payroll service &mdash; Patriot $17 a month plus $4 per worker, Square $35 plus $6. Florida has no state income tax, so payroll is federal plus Florida reemployment tax (2.7% of the first $7,000 per employee, only once you pay $1,500 in a quarter). Do the I-9 and the Florida new-hire report within 20 days. Florida minimum wage is $14 now and <strong>$15.00 from 30 September 2026</strong>.</p>
+      <p class="small">An unpaid brother doing real installs is not an intern under the federal test; he is an unpaid employee, which is wage exposure and, if he is hurt, a lawsuit against you personally. Pay him for the hours he works or keep him strictly observing.</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>What the no-LLC choice actually costs you, in one paragraph</h3><span class="chip cost">Insurance is the wall</span></div>
+      <p class="small">Every claim &mdash; a ruined interior, a scratched windshield, Alex rear-ending someone on the way to a job &mdash; is against you personally. Florida protects a primary residence (up to half an acre in a city) and $1,000 of personal property; savings, vehicles and tools are not protected. An LLC later moves Alex's mistakes and contract debts to the company; it never moves your own negligent install off you (Fla. Stat. 605.0304). So the LLC is a $125 filing plus $138.75 a year you can defer; the insurance in section 02 is the thing you cannot.</p>
+    </div>
+  </div>
+
+  <div class="card stack g8">
+    <h3>Two driveway rules from the city code</h3>
+    <ul class="plain small">
+      <li><strong>Noise:</strong> loud machinery is barred 6pm&ndash;7am on weekdays and 6pm&ndash;9am on weekends. Practical window for the extractor, blower or pressure washer: 9am&ndash;6pm.</li>
+      <li><strong>Water:</strong> storm drains go to canals, not treatment. The city tells residents to wash on the lawn, not the driveway. Rinseless products, and no soapy water to the curb &mdash; this is also why your no-water setup was the right call.</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <label class="item">
+      <input type="checkbox" data-k="c-domain">
+      <span class="ibody">
+        <span class="itop"><h3>Register carmommy.us (check the order actually completed)</h3><span class="chip cost">~$10&ndash;20</span></span>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-ein">
+      <span class="ibody">
+        <span class="itop"><h3>EIN</h3><span class="chip free">$0 &middot; 10 min</span></span>
+        <p class="where">irs.gov &rarr; Get an Employer Identification Number</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-ad">
+      <span class="ibody">
+        <span class="itop"><h3>Newspaper notice, then Sunbiz fictitious name "Car Mommy"</h3><span class="chip cost">$48 + $50</span></span>
+        <p class="where">Broward Daily Business Review fictitious-name notice &rarr; dos.fl.gov/sunbiz &rarr; Fictitious Name Registration</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-dr1">
+      <span class="ibody">
+        <span class="itop"><h3>DR-1 sales tax registration, then rebuild the menu as "+ tax"</h3><span class="chip free">$0</span></span>
+        <p class="where">floridarevenue.com &rarr; Register to Collect Tax</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-btr">
+      <span class="ibody">
+        <span class="itop"><h3>Coral Springs home-based receipt (with a storage address), then Broward codes 322 + 277</h3><span class="chip cost">~$160.80 + $78</span></span>
+        <p class="where">coralsprings.gov Business Tax Office, (954) 344-5964 &rarr; county-taxes.net/broward/btexpress</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-payroll">
+      <span class="ibody">
+        <span class="itop"><h3>Alex on part-time W-2 payroll; I-9; new-hire report</h3><span class="chip cost">~$21&ndash;41/mo</span></span>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="c-bank">
+      <span class="ibody">
+        <span class="itop"><h3>Business checking as "Ziyad &#91;surname&#93; DBA Car Mommy"</h3><span class="chip free">$0</span></span>
+        <p class="small">Bring the Sunbiz confirmation, the EIN letter and ID. Every dollar in and out goes through it from day one; it is also what makes the LLC conversion clean later.</p>
+      </span>
+    </label>
+  </div>
+  <p class="src">flsenate.gov 865.09, 212.07, 205.042, 440.02, 440.11, 559.904, 605.0304, Fla. Const. Art. X &sect;4 and &sect;24 &middot; dos.fl.gov/sunbiz fictitious name &middot; floridarevenue.com DR-1N, GT-800067, Rule 12A-1.006, DR-15DSS (2026) &middot; coralsprings.gov home-based business application and vehicle guidelines &middot; browardtax.org fee schedule (Aug 2025) &middot; irs.gov worker classification &middot; patriotsoftware.com, squareup.com payroll pricing &middot; Broward Daily Business Review notice form</p>
+</section>
+<!-- ============ INSURANCE ============ -->
+<section id="insurance">
+  <div class="shead"><span class="num">02</span><h2>Insurance &mdash; general liability plus garage keepers, written for a driveway</h2></div>
+
+  <p class="small">You have the core fact right: general liability excludes damage to "property in the insured's care, custody or control", and the customer's car is exactly that while Alex is inside it. Garage keepers buys that exclusion back. What you don't have yet is the mobile trap and the three questions that decide whether a policy will actually pay.</p>
+
+  <div class="stack g16">
+    <div class="fix">
+      <div class="hd"><h3>The mobile trap: standard garage keepers only works at a listed shop address</h3><span class="chip warn">Ask in writing</span></div>
+      <p class="small">The standard form covers a customer's car "left in the insured's care while the insured is attending, servicing, repairing, parking or storing it in your garage operations", and the standard endorsement "applies only at locations on the endorsement schedule". You have no location. The policy must be written or endorsed for off-premises work, or the driveway job is not covered. First question to every quoter: <strong>"Does garage keepers apply at customers' residences and other off-premises locations?"</strong> Get the answer by email, not by phone.</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>Three forms. Buy "direct primary" if anyone offers it at a sane price.</h3><span class="chip cost">Limit matters more than form</span></div>
+      <p class="small"><strong>Legal liability</strong> pays only if you are found at fault. <strong>Direct primary</strong> pays regardless of fault, like the customer's own collision policy, so a hail, theft or flood loss during hurricane season and a fault fight with a $100k-car owner are both covered. <strong>Direct excess</strong> pays above the customer's own policy. Direct primary costs 25&ndash;50% more than legal liability and is mostly an agent-market product. Whatever the form, the number that matters is the per-vehicle / per-occurrence limit: <strong>$100,000 minimum</strong>, $150&ndash;250k if you will really take $100k cars, deductible $500&ndash;1,000. A $50k line does not fix a burned $100k car. You work one car at a time, so per-occurrence and per-vehicle are the same number for you.</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>What no policy pays for: your own bad work</h3><span class="chip cost">Faulty work exclusion</span></div>
+      <p class="small">Every garage keepers form excludes "faulty work you performed" and "defective parts or materials". Film that bubbles, peels, was contaminated or mis-cut is yours to redo for free, always. What <em>is</em> covered is accidental damage while servicing: a dropped tool dents a hood, a blade slips and scratches glass, the car rolls in the driveway. The grey zone is damage caused by the technique itself &mdash; a rear-defroster grid torn off during old-film removal, chemical etching, buffer burn-through &mdash; and carriers apply the exclusion differently. Second question, in writing: <strong>"Does the policy respond to accidental damage to glass, rear-defroster grids, trim, paint and electronics caused during installation or removal?"</strong></p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Nobody drives a customer's car until this is bound</h3><span class="chip warn">Personal auto won't cover it</span></div>
+      <p class="small">Moving the customer's car and hitting the garage door is a garage keepers collision claim on their car. Hitting the neighbour's mailbox or the neighbour is third-party liability, and that needs garage liability or hired &amp; non-owned auto (HNOA, $300&ndash;700 a year). A personal auto policy excludes vehicles "used in the business of selling, repairing, servicing, storing, or parking vehicles", so Alex's own policy will not defend him or you in a customer's car. Your BMW stays covered on your own policy as your listed car, but tell the insurer it is used for business. Rule until HNOA is bound: reposition in the driveway only, engine on, nobody on the road.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Alex is an employee. Say so on the application.</h3><span class="chip warn">Do not write "1099 sub"</span></div>
+      <p class="small">Florida's workers' comp statute (440.02) calls a worker an independent contractor only if at least four of six tests hold: his own business with his own truck, tools and materials, his own FEIN, paid to a business not a person, his own business bank account, free to work for others, paid per bid or task. Alex works with your film, your tools, your customers and your brand and is paid personally. He is an employee under Florida law whatever the paperwork says. Small-business liability policies carry subcontractor exclusions; if you call him a sub, the carrier can treat his work as uncovered unless he carries his own liability policy. Put Alex as an employee and Rasul as a trainee employee.</p>
+      <p class="small"><strong>Workers' comp is not yet mandatory</strong> &mdash; Florida requires it at four or more employees for non-construction, and a sole proprietor does not count himself. But liability policies exclude injury to your own employees. If Alex gets a chemical burn or falls off a bumper, nothing pays. Voluntary workers' comp for detailing runs about $100&ndash;130 a month in Florida. Price it in the same round of quotes; gated communities' management companies ask for it too.</p>
+    </div>
+  </div>
+
+  <div class="card stack g12">
+    <h3>Who actually writes it for a mobile operation in Florida</h3>
+    <p class="small">Every carrier and specialist below was checked on its own site. Online carriers attach a garage keepers line to a liability package; true direct primary at $150k+ per vehicle comes from agents and Florida garage specialists. Thimble and Hiscox blocked automated reading, so they are unverified; Insurance Canopy, Foxquilt and Markel do not write this class; The Hartford refers detailers to a marketplace.</p>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Quote from</th><th>Garage keepers for mobile?</th><th>How</th><th>Price signal</th></tr></thead>
+        <tbody>
+          <tr><td><strong>NEXT Insurance</strong></td><td>Yes as a line in its Pro ($50k) and Pro Plus ($100k per occurrence) liability packages; rates "mobile unit or physical location". Florida availability for the auto-service class not confirmed &mdash; test a Coral Springs ZIP.</td><td>Online, about 10 minutes. Unlimited certificates of insurance instantly.</td><td class="n">FL median $54/mo liability</td></tr>
+          <tr><td><strong>biBERK</strong> (Berkshire Hathaway)</td><td>Yes, garage keepers add-on for auto service including car detailing and mobile mechanics; sells legal liability and direct primary.</td><td>Online or 1-844-472-0967</td><td class="n">not published</td></tr>
+          <tr><td><strong>Simply Business</strong> (broker)</td><td>Places with biBERK, Coterie, Hiscox, Markel, Travelers, CNA. Says burned paint or wrong chemical needs "garage keepers primary coverage or a care, custody, or control endorsement".</td><td>(855) 869-5183, Mon&ndash;Fri 8&ndash;6</td><td class="n">GL from $17.92/mo (10th percentile), tools from $20.83/mo</td></tr>
+          <tr><td><strong>Insureon</strong> (agency)</td><td>Multi-carrier; lists mobile mechanics as needing garage keepers; ask for direct primary.</td><td>(800) 688-1984, 8&ndash;8 CT</td><td class="n">detailers GL $54/mo, garage keepers avg $38/mo, BOP $89/mo</td></tr>
+          <tr><td><strong>Dopazo &amp; Associates</strong>, Miami</td><td>Florida garage specialist; the only one that explicitly writes "many mobile garage operations".</td><td>(844) 700-0148</td><td class="n">"from $500 and up"</td></tr>
+          <tr><td><strong>Bellken Insurance Group</strong>, Broward</td><td>Explains legal vs direct primary and recommends direct primary in coastal Florida.</td><td>954-233-0733</td><td class="n">small shops $800&ndash;2,000/yr standalone</td></tr>
+          <tr><td><strong>State Farm</strong>, local agent</td><td>Its auto-services page names "mobile auto service operations" and tools cover; one detailer reported $875/yr for $60k of garage keepers.</td><td>Agent by ZIP</td><td class="n">agent quote</td></tr>
+          <tr><td class="dead">Progressive Commercial</td><td class="dead">Garage keepers only as part of a commercial-auto / tow package. Later, when the van exists.</td><td class="dead">1-888-806-9598</td><td class="dead">&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="q">
+    <h3>Run all quotes with this one script, and keep the email answers</h3>
+    <ol class="plain small">
+      <li>Does garage keepers apply at customers' homes and other off-premises locations? (No = stop.)</li>
+      <li>Legal liability, direct primary or direct excess? Price for each if you offer more than one.</li>
+      <li>Per-vehicle and per-occurrence limit of $100k; price at $150k and $250k. Deductible?</li>
+      <li>Does it pay for accidental damage to glass, rear-defroster grids, trim, paint and electronics during installation or removal?</li>
+      <li>Coverage when an employee moves a customer's car: hired &amp; non-owned auto or garage liability, and the price.</li>
+      <li>Inland marine for tools, film inventory and the plotter, carried in a private car.</li>
+      <li>Unlimited certificates of insurance with an HOA or management company as additional insured, same day.</li>
+      <li>How are employees vs 1099 workers treated, and do subs need their own liability policy?</li>
+      <li>Voluntary workers' comp for two employees, rated as detailing / auto laundry (code 8380), not auto repair.</li>
+    </ol>
+    <p class="small"><strong>Named insured:</strong> "Ziyad &#91;surname&#93; dba Car Mommy". Carriers will not add a trade name that is not filed with the state, so the Sunbiz fictitious name (section 01) comes first. When the LLC exists the policy is re-issued to the LLC.</p>
+    <p class="small"><strong>Answer honestly on:</strong> pressure washer (some carriers rate it as its own class), paint correction and chemicals, whether you drive customer cars, number of employees, the most expensive car you will accept (sets the garage keepers limit). Be rated as detailing, not auto repair.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Budget, Florida, year one</th><th class="n">Low</th><th class="n">High</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>General liability $1M / $2M</td><td class="n">$500</td><td class="n">$1,000</td><td>Insureon $54/mo for detailers; Florida runs ~17% above national (no cap on non-economic damages, hurricanes, litigation)</td></tr>
+        <tr><td>Garage keepers, $100k+</td><td class="n">$500</td><td class="n">$2,000</td><td>Insureon avg $38/mo; Florida agencies $800&ndash;2,000; direct primary +25&ndash;50%</td></tr>
+        <tr><td>Tools &amp; equipment (inland marine)</td><td class="n">$250</td><td class="n">$600</td><td>Simply Business from $20.83/mo; Insureon avg $48/mo</td></tr>
+        <tr><td>Hired &amp; non-owned auto</td><td class="n">$300</td><td class="n">$700</td><td>Tint/wrap trade guide 2026</td></tr>
+        <tr class="total"><td>All-in before workers' comp</td><td class="n">$1,600</td><td class="n">$4,300</td><td>Matches the trade figure of $2,400&ndash;4,000 for a mobile-only operator</td></tr>
+        <tr><td>Voluntary workers' comp, 2 employees</td><td class="n">$1,200</td><td class="n">$1,600</td><td>Florida avg ~$103/mo; detailing ~$131/mo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card stack g8">
+    <h3>Before the first paid car: the intake routine that makes a claim provable, or a false claim collapse</h3>
+    <ul class="plain small">
+      <li>Timestamped walk-around video plus 20 photos: all four corners, wheels, glass, dash with the ignition on (warning lights), odometer, interior, trunk, every existing chip and scratch. <strong>For tint: the rear-defroster grid powered on, before you touch it.</strong></li>
+      <li>A one-page intake form with a "pre-existing damage" box the customer initials, and the legal-shade notice from section 07.</li>
+      <li>If something goes wrong: no admitting fault in writing, no promises to repair before you call the carrier; the policy conditions require prompt notice and forbid you from settling on your own. A $200 dent paid from your pocket is allowed and often cheaper than a claim on your record.</li>
+      <li>Keep the certificate of insurance as a PDF on both phones. Gate houses and management companies ask for $1M liability with the HOA as additional insured.</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <label class="item">
+      <input type="checkbox" data-k="i-quotes">
+      <span class="ibody">
+        <span class="itop"><h3>Five quotes in two days, same script, answers by email</h3><span class="chip free">$0</span></span>
+        <p class="small">NEXT online &middot; biBERK &middot; Simply Business &middot; Insureon &middot; Dopazo or Bellken, plus one State Farm agent for comparison. Sunbiz confirmation in hand first.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="i-bind">
+      <span class="ibody">
+        <span class="itop"><h3>Bind before car #1: GL + garage keepers $100k+ off-premises + tools + HNOA</h3><span class="chip cost">$135&ndash;360/mo</span></span>
+        <p class="small">Cheapest quote that answers "yes" to questions 1 and 4 wins. A cheaper one that answers "no" to question 1 is not insurance, it is a receipt.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="i-wc">
+      <span class="ibody">
+        <span class="itop"><h3>Decide on voluntary workers' comp for Alex</h3><span class="chip cost">~$100&ndash;130/mo</span></span>
+        <p class="small">Not required under four employees. But liability policies exclude his injuries, and he is the one under the car with a razor. Your call, made knowingly.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="i-intake">
+      <span class="ibody">
+        <span class="itop"><h3>Intake form and photo routine, tested on Rasul's car</h3><span class="chip free">$0</span></span>
+        <p class="small">Run it twice on a practice car so it takes four minutes, not fifteen, when a customer is watching.</p>
+      </span>
+    </label>
+  </div>
+  <p class="src">nextinsurance.com car-wash insurance &middot; biberk.com auto-service insurance &middot; simplybusiness.com auto-detailing &middot; insureon.com garage keepers &middot; dopazoinsurance.com &middot; bellkenins.com &middot; statefarm.com auto-services &middot; ISO garage form CA 00 05 &middot; flsenate.gov 440.02 &middot; myfloridacfo.com coverage requirements &middot; moneygeek.com Florida costs</p>
+</section>
+<!-- ============ GOOGLE ============ -->
+<section id="google">
+  <div class="shead"><span class="num">03</span><h2>Google Business Profile &mdash; home address, service-area, one-take video</h2></div>
+
+  <p class="small">Google's own help pages were readable, so the rules below are Google's words, not a blog's. Most of what you need to do happens <strong>before</strong> you open the profile. The profile itself takes 20 minutes; the paperwork and props behind it take two weeks.</p>
+
+  <div class="callout">
+    <h4>The rules, from Google</h4>
+    <ul class="plain small">
+      <li><strong>Enter your real address, then hide it.</strong> "If you're a service-area business, you should hide your business address from customers. For example, if you're a plumber and run your business from your residential address, clear the address from your Business Profile." You still type the real address with the unit number so Google can verify you.</li>
+      <li><strong>Video is what a new home-based service business gets.</strong> Google decides the method and you can't change it. Practitioners in 2026 report video as the predominant method for service-area businesses.</li>
+      <li><strong>The video must show three things:</strong> your location ("street signs, nearby landmarks, or other identifiers at your business address"), your business ("the professional tools, equipment, or products you use for work"), and proof you run it ("record yourself performing a service or accessing business-only assets", or "business documents like a business permit, invoice, or utility bill").</li>
+      <li><strong>Recording rules:</strong> "unedited, unique, and complete recording with no breaks", "at least 30 seconds", "recorded and uploaded from a mobile device through your Business Profile", live, not pre-recorded. Do not show "other people's faces", bank, tax or ID numbers.</li>
+      <li><strong>Review takes "up to 5 business days."</strong> Real-world reports: 3&ndash;5 days when it goes well, 7&ndash;14+ when a human looks twice. Don't edit anything on the profile while it's under review; edits during review are a known trigger for re-verification.</li>
+      <li><strong>If it fails</strong> you get "Try again". If you reach "No more ways to verify", use the Appeals tool once (business.google.com &rarr; Manage appeals) and attach evidence in the same submission: "Official business registration", "A business license", "Tax certificates", utility bills. Insurance certificates and supplier invoices are not on Google's list but are accepted as supporting evidence in practice. Never open a second profile.</li>
+    </ul>
+    <p class="src">support.google.com/business/answer/3038177 &middot; /answer/14271705 &middot; /answer/9157481 &middot; /answer/13597551 &middot; /answer/4569145</p>
+  </div>
+
+  <div class="stack g16">
+    <div class="fix amber">
+      <div class="hd"><h3>Name it "Car Mommy". Nothing after it.</h3><span class="chip cost">Decide once</span></div>
+      <p class="small">Google: the name "should reflect your business's real-world name, as used consistently on your storefront, website, stationery, and as known to customers", and may not contain service info or location. "Car Mommy Window Tint &amp; Detailing" is a descriptor violation unless that exact string is your registered fictitious name and is on the magnets, the website header, the invoices and every listing. Name violations are the single biggest suspension reason. Put "mobile window tint and detailing" in the description, the services and the website title, not the name. Pick before you verify; the name is a sensitive field and renaming later can trigger re-verification.</p>
+    </div>
+
+    <div class="fix amber">
+      <div class="hd"><h3>Categories: "Auto window tinting service" first, "Car detailing service" second</h3><span class="chip cost">Two, no more</span></div>
+      <p class="small">Both exist in Google's current category list. "Window tinting service" (without "Auto") was blocked for hidden-address listings in 2021 and Google pointed service-area businesses at "Auto window tinting service" instead; assume that still holds and don't fight it. "Auto detailing service" and "Mobile detailing" do not exist as categories. Skip "Car wash" &mdash; it implies a building. Google's rule is as few categories as possible, as specific as possible.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>The pool company at your address is not a policy problem. It is a scrutiny problem.</h3><span class="chip warn">Prepare for a human reviewer</span></div>
+      <p class="small">Google allows distinct businesses at one address "if they're distinct businesses with different names and clearly visible differences in signage". You pass that test: different name, category, phone. What it changes: second listings at a known address almost always get video verification and a closer look. So: your own unit number (the real one), your own phone number that appears nowhere else, your own sign on your own door or storage rack, and none of their vans or signage in the frame.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>You record it, not Alex</h3><span class="chip warn">Owner signed in</span></div>
+      <p class="small">The video is recorded inside the profile by the signed-in account holder &mdash; that's you. You don't have to tint a window on camera. "Proof of management" for you is keys, storage, documents and software: unlock the unit, unlock the vehicle, open the film storage, show the booking system or the carmommy.us admin on a laptop, show the paperwork. If Alex is mid-job, film his hands on the glass, never his face.</p>
+    </div>
+  </div>
+
+  <div class="card stack g12">
+    <h3>Paperwork that must exist in the Car Mommy name before you press record</h3>
+    <p class="small">Google checks that "the business name and address match the profile". A utility bill in your personal name proves the address, not the business. You need documents that say <strong>Car Mommy</strong> (or "Ziyad &#91;last name&#93; DBA Car Mommy") at <strong>6160 Wiles Rd, Unit __</strong>:</p>
+    <ul class="plain small">
+      <li>Sunbiz fictitious-name confirmation letter for "Car Mommy" &mdash; see section 01. This is your "official business registration" without an LLC.</li>
+      <li>City of Coral Springs home-based Business Tax Receipt. The city requires a copy of the Sunbiz registration for a fictitious name, processes in 7&ndash;10 business days, and says you cannot operate before it's approved.</li>
+      <li>Broward County Local Business Tax Receipt (separate from the city's).</li>
+      <li>Insurance certificate (section 02) with Car Mommy as the named insured at that address.</li>
+      <li>One supplier invoice (your film order) shipped to Car Mommy at that address. Order the film to the business name.</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <div class="grouphd"><h4>Do this in order</h4><span class="chip warn">One shot &mdash; set it all up, then film once</span></div>
+
+    <label class="item">
+      <input type="checkbox" data-k="g-props">
+      <span class="ibody">
+        <span class="itop"><h3>Build the real-world footprint with the identical name, phone and URL</h3><span class="chip cost">~$150&ndash;250</span></span>
+        <p class="small">Vehicle magnets or a rear-window decal: <strong>Car Mommy &middot; phone &middot; carmommy.us</strong>. A rigid printed sign (not a vinyl banner &mdash; reviewers read banners as temporary) for your desk or the storage-unit door. Two branded shirts. Business cards. A printed invoice template. Labeled bins for film and tools. carmommy.us live with the phone number in the header and footer and "Serving Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield" &mdash; no street address on the site.</p>
+        <p class="tiny">Failure list from reviewers: unmarked vehicle, temporary signage, video that never shows a house number, business info that doesn't match the website.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="g-preflight">
+      <span class="ibody">
+        <span class="itop"><h3>Pre-flight: search Maps for "Car Mommy" and for the address</h3><span class="chip free">$0</span></span>
+        <p class="small">Make sure no unclaimed or old profile exists for the name, and that the pool company's listing does not use your phone or website. Instagram, Facebook and the site must all say exactly "Car Mommy" with the same phone.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="g-create">
+      <span class="ibody">
+        <span class="itop"><h3>Create the profile from the Google account you will keep forever</h3><span class="chip free">$0</span></span>
+        <p class="small">A Google Workspace account on carmommy.us is ideal; a plain Gmail you control is fine. Name: Car Mommy. Business type: you serve customers at their location (never "online-only"). Address: the full address with unit number, then choose <strong>not</strong> to show it. Service areas: Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, Deerfield Beach, plus west Boca by ZIP (33428, 33498) &mdash; "West Boca" isn't a city Google knows. Primary category Auto window tinting service, secondary Car detailing service. Phone, website, hours including Saturday and Sunday, short description.</p>
+        <p class="tiny">You can list up to 20 areas within about two hours' drive. Listing an area does not make you rank there; ranking distance is measured from the hidden Wiles Rd address, so expect strength in Coral Springs, Parkland, Coconut Creek and Margate and less in Deerfield and west Boca.</p>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="g-record">
+      <span class="ibody">
+        <span class="itop"><h3>Film the verification in one take, 60&ndash;120 seconds, 720p</h3><span class="chip free">$0</span></span>
+        <p class="small">Bright dry day. Keys to the unit, the storage and the vehicle in your pocket. Documents on a table indoors. Laptop open on the booking system or the site admin, no passwords visible. Rehearse the walk twice. Shoot at 720p &mdash; 1080p uploads fail more often. Then touch nothing on the profile until Google answers.</p>
+        <div class="stack g8">
+          <p class="tiny"><strong>Shot list.</strong> (1) Curb: hold on the "Wiles Rd" street sign and the cross-street sign, pan to the building sign and the "6160". (2) Walk to your unit: unit number on the door or mailbox, unlock it with your key. (3) Your vehicle: magnets readable, license plate in frame, unlock it, open the hatch. (4) Inside: film rolls with brand labels, heat gun, squeegees, hard cards, spray bottles, steamer, polisher, extractor, chemicals, the branded tool bag. (5) Back inside: the rigid Car Mommy sign by your desk, laptop open on the booking system or carmommy.us admin. Do not film a stockroom of film and chemicals in the unit &mdash; your city affidavit says inventory is stored elsewhere (section 01); the tools in the vehicle are your business proof. (6) Documents close enough to read: Sunbiz confirmation, both tax receipts, insurance certificate, supplier invoice, a printed customer invoice, business cards, the shirt. Cover EIN and account numbers. (7) Optional, only if a job is on: Alex's hands applying film, no face. (8) Walk out, end on the unit number and the vehicle. Stop.</p>
+        </div>
+      </span>
+    </label>
+
+    <label class="item">
+      <input type="checkbox" data-k="g-after">
+      <span class="ibody">
+        <span class="itop"><h3>After "Verified": services, photos, review link</h3><span class="chip free">$0</span></span>
+        <p class="small">Add services with "From $" prices (front windows tint, full car tint, SUV tint, interior detail, exterior detail). Four to six photos: the vehicle, the equipment, a job in progress, the cards. Then Read reviews &rarr; <strong>Get more reviews</strong> to copy the review link and download the QR &mdash; Google says the QR can only be generated on a computer browser, not a phone. Reply to every review. Make sensitive edits (name, address, phone, category, URL) at most one per week.</p>
+      </span>
+    </label>
+  </div>
+
+  <div class="q">
+    <h3>The $100 price and the reviews: keep them in separate sentences, always</h3>
+    <p class="small">Google: "Offering incentives, like free or discounted goods or services, to customers in exchange for reviews is considered fake engagement and is strictly prohibited." Google also bans review quotas for staff, asking for specific wording or staff names, pressuring people to review "while on the premises", and only asking happy customers. The FTC rule in force since October 2024 bans compensation conditioned on a review's sentiment, with civil penalties.</p>
+    <p class="small">A public launch price that every customer pays, whether or not they ever review, is pricing, not an incentive. So: <strong>same $100 for everyone; never say "for a review"; ask after you leave the driveway, by text; ask everyone, not just the happy ones; never ask friends, family, Rasul or Alex; don't ask for "5 stars" or for Alex's name.</strong> Reviews from brand-new Google accounts get filtered, and a burst of ten reviews in a week from a profile that had zero looks fake and can trigger a 30-day review block. Spread the $100 cars over weeks and ask each customer once, plus one nudge at 48 hours.</p>
+    <p class="src">support.google.com/business/answer/16816815 &middot; support.google.com/contributionpolicy/answer/7400114 &middot; ftc.gov (fake reviews rule, Aug 14 2024) &middot; whitespark.ca (missing reviews checklist, May 2026)</p>
+  </div>
+</section>
+<!-- ============ INSTAGRAM ============ -->
+<section id="instagram">
+  <div class="shead"><span class="num">04</span><h2>Instagram &mdash; what actually books driveway jobs in NW Broward</h2></div>
+
+  <p class="small">No detailing or tint business publishes booking data, so most "what converts" advice is opinion. Below, the few things with numbers behind them are marked; the rest is the consensus of every industry source we could read, and it all points the same way.</p>
+
+  <div class="callout">
+    <h4>The four facts that matter</h4>
+    <ul class="plain small">
+      <li><strong>Reels find strangers, carousels get saved.</strong> Socialinsider's 2026 benchmark (35 million posts): Reels 0.48% engagement, carousels 0.50%, images 0.33%, and carousels get more saves. A zero-follower account needs Reels for reach; pricing and FAQ go in carousels so people save them.</li>
+      <li><strong>Bookings happen in the DMs, not at the link.</strong> One booking-software dataset of 373,000 Instagram conversations: 53% die before the third message; booking rate 0.07% at 1&ndash;4 messages, 2.1% at 5&ndash;10, 11% at 11&ndash;20. A driveway service needs address, car, gate code and photos anyway. Keep the thread on Instagram until the slot is agreed.</li>
+      <li><strong>The transition before/after is the one format every source agrees on.</strong> Same angle, same light, 5&ndash;8 seconds, on-screen text with the city and the price. Sound off by default, so text carries the hook.</li>
+      <li><strong>The messier the before, the more it spreads.</strong> "Parents and pet owners see themselves in it." For a brand called Car Mommy that is the whole game: kid-mess SUV interiors and back-seat UV are your content, not supercars.</li>
+    </ul>
+    <p class="src">socialinsider.io benchmarks 2026 &middot; setsmart.io Instagram lead data &middot; blog.hootsuite.com Reels guide (Mar 2026) &middot; socialmon.ai 60 detailing post ideas &middot; getundrdog.com social media for detailers</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card stack g8">
+      <h3>Local mechanics</h3>
+      <ul class="plain small">
+        <li><strong>Professional account</strong>, category set, Coral Springs as the service area, phone and email buttons on.</li>
+        <li><strong>Location-tag the city where the job happened</strong> on every Reel and Story: "Parkland, Florida", not "South Florida". Instagram Map (Aug 2025) surfaces businesses by the tags on recent Stories and Reels.</li>
+        <li><strong>Only two local hashtags are unambiguous:</strong> #coralspringsfl (~53k posts) and #parklandfl (~57k). #coralsprings, #coconutcreek and #deerfieldbeach work; #margate and #parkland are polluted by the UK town and other Parklands. #browardcounty, #soflo and #southflorida are volume, not locality.</li>
+        <li><strong>Collab posts</strong> (up to 5 accounts, shared reach) with a car wash that doesn't tint, a used-car lot on the Sample Rd auto row, a mom-run local business, a realtor. For this brand, mom and realtor accounts beat car accounts.</li>
+        <li><strong>DM keyword</strong> in every caption: "DM TINT with your city and car".</li>
+      </ul>
+    </div>
+    <div class="card stack g8">
+      <h3>Hashtag sets (8&ndash;10 per post)</h3>
+      <p class="small"><strong>Tint:</strong> #windowtint #ceramictint #tintlife #windowtinting #coralspringsfl #parklandfl #coconutcreek #browardcounty #soflo #carmommy</p>
+      <p class="small"><strong>Detail:</strong> #mobiledetailing #autodetailing #cardetailing #interiordetailing #coralsprings #parklandfl #browardcounty #southflorida #floridalife #carmommy</p>
+      <p class="small"><strong>Family / local:</strong> #coralspringsfl #parklandfl #coconutcreek #browardcounty #soflo #momlife #suvlife #floridalife #carmommy #carmommyus</p>
+      <p class="tiny">Counts are best-hashtags.com snapshots (late 2024 &ndash; 2025), useful for scale, not live numbers.</p>
+    </div>
+  </div>
+
+  <div class="card stack g12">
+    <h3>Where the "anyone know a good tint guy?" question gets asked</h3>
+    <p class="small">These Facebook groups exist under these exact names (member counts are behind the login wall). Most ban business self-promotion, so the move is not to post your ad; it is to ask every $100 customer to post <em>their</em> before/after in <em>their</em> group and tag you. One customer post in a moms group is worth a month of your own Reels.</p>
+    <ul class="plain small">
+      <li>Coral Springs-Parkland-Coconut Creek-Margate (facebook.com/groups/coralspringsparkland)</li>
+      <li>Parkland Residents Community Forum (facebook.com/groups/parklandfl)</li>
+      <li>Moms of Coral Springs/Coconut Creek/Parkland, FL (facebook.com/groups/momsofcoralsprings)</li>
+      <li>The Moms of Boca/Boynton/Coral Springs/Parkland (group 1594249124173099)</li>
+      <li>Coral Springs, FL Residents &amp; Friends &middot; Coral Springs Neighbors and Friends &middot; Buy Nothing Parkland</li>
+      <li>Parkland Coral Springs Business Group (facebook.com/pcsbg) &mdash; the one place your own post is welcome</li>
+      <li>Nextdoor: free business page, claim Coral Springs and Parkland neighbourhoods. Recommendation replies that include a phone number and a specific offer get about three times the clicks.</li>
+    </ul>
+    <p class="tiny">"Parkland Buzz" does not exist as a group (only an HOA page). Parkland Talk and Coral Springs Talk are the local news pages, not groups. Since July 1 2026, Fla. Stat. 501.062 makes door-to-door solicitation at homes with a "No Commercial Solicitation" sign a $500 offence: no flyers on doors, no walking gated communities. You enter a gate as the customer's registered guest.</p>
+  </div>
+
+  <div class="card stack g12">
+    <h3>The Car Mommy angle: what you can say with a source behind it</h3>
+    <ul class="plain small">
+      <li><strong>UV, the strongest claim you own.</strong> A 2025 peer-reviewed test of 34 vehicles (2015&ndash;2025 model years): windshields block 99.25% of UVA, driver's side windows 88.78%, rear side windows 93.18%. Skin Cancer Foundation: side and back glass "does not block UVA rays effectively" and US skin cancers are more common on the left side from driving. Hook: <em>"Your windshield blocks 99% of UVA. The window next to the car seat doesn't. Tint closes the gap."</em></li>
+      <li><strong>Heat: make your own number.</strong> No independent cabin-temperature study exists; the tint-shop tests online are unsourced. Film an infrared thermometer on two cars in the same lot at the same hour, tinted vs not. That 15-second clip is your ad creative for a year.</li>
+      <li><strong>The SUV rule is a hook.</strong> "SUV moms can legally go 6% in the back. Sedans can't." True (section 07), and nobody explains it.</li>
+      <li><strong>Seasonal:</strong> lovebugs peak April&ndash;May and August&ndash;September and their acidic residue etches paint (UF/IFAS); hurricane season June 1 &ndash; November 30 (pre-storm interior protection, post-storm mildew extraction).</li>
+      <li><strong>Price context:</strong> Kepler in Coral Springs advertises tint "from $139/$149" and ceramic "from $249"; Tint World Coconut Creek shows no prices. Your $100 is 30&ndash;60% under the local floor and comes to the driveway. Say both in the same sentence.</li>
+    </ul>
+    <p class="src">pmc.ncbi.nlm.nih.gov/articles/PMC11742901 &middot; skincancer.org UV window film &middot; blogs.ifas.ufl.edu lovebugs &middot; nhc.noaa.gov/climo &middot; coralspringstalk.com on Fla. Stat. 501.062</p>
+  </div>
+
+  <div class="card stack g12">
+    <h3>30-day launch plan</h3>
+    <p class="small">Rhythm: Reel Monday, carousel Wednesday, Reel Friday, Reel or collab on the weekend. One to three Stories every working day: today's car, a poll, a review screenshot. Every caption ends the same way: <em>Launch price $100, full car, we come to your driveway. DM TINT with your city and car.</em></p>
+    <div class="stack">
+      <div class="day"><span class="d">Week 1</span><p class="small"><strong>Proof and price.</strong> Mon: transition before/after of the first tint, text "$100 tint. Your driveway. Coral Springs." Wed: carousel "What $100 gets you" (film, legal shades 28/15/6, what's not included, how long, how to book, who you are). Fri: heat-shrink on the rear glass, no talking, "why this step is the difference". Weekend: arrival &rarr; setup &rarr; reveal in Parkland. Story: first review screenshot, and pin the offer as a highlight.</p></div>
+      <div class="day"><span class="d">Week 2</span><p class="small"><strong>Family and UV.</strong> Mon: the windshield-vs-car-seat UV line over B-roll, study on screen. Wed: carousel "SUV moms can legally go darker in back" with the statute and a 6%-vs-28% photo. Fri: kid-mess SUV interior extraction, foam &rarr; brush &rarr; extractor &rarr; reveal, Coconut Creek. Weekend: collab post with a mom-run business or a car wash that doesn't tint.</p></div>
+      <div class="day"><span class="d">Week 3</span><p class="small"><strong>Heat proof and reviews.</strong> Mon: your IR-thermometer test, numbers on screen (this becomes the ad). Wed: carousel of five review screenshots with their before/afters. Fri: customer reaction at handoff, with permission, voice is enough. Weekend: "3 driveways, 3 cities", each city a chapter, tag each in Stories.</p></div>
+      <div class="day"><span class="d">Week 4</span><p class="small"><strong>Objections and scarcity.</strong> Mon: "Will $100 tint bubble or turn purple?" (film type, warranty, what to look for). Wed: FAQ carousel (legal darkness, windows up for 3&ndash;5 days, ceramic vs carbon, rain policy). Fri: seasonal hook (lovebug etch or hurricane interior protection). Weekend: "X of 50 launch spots left" montage of every car so far with city captions. Days 29&ndash;30: boost the best Reel, goal "more messages", $5&ndash;10 a day, pins on Coral Springs and Parkland.</p></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card stack g8">
+      <h3>Ten Reels, ranked by expected local conversion</h3>
+      <ol class="plain small">
+        <li>Transition before/after in a recognisable local street, city and $100 on screen.</li>
+        <li>IR-thermometer heat test, two cars, same lot. Your only local proof; doubles as the ad.</li>
+        <li>"The window by the car seat blocks less UVA than the windshield" &mdash; the one claim with a study behind it.</li>
+        <li>Kid-mess SUV interior reveal. Mothers tag mothers.</li>
+        <li>"Why is it $100?" plain talking head: new installer, first 50 cars, building a portfolio. Kills the "what's the catch" objection that stops DMs.</li>
+        <li>Customer handoff reaction, with permission.</li>
+        <li>Florida legal darkness explainer, 28 / 15 / 6, statute on screen. High saves.</li>
+        <li>Heat-shrink or squeegee POV. Reach, not bookings; add the CTA.</li>
+        <li>"3 driveways, 3 cities" day in the life.</li>
+        <li>Lovebug or hurricane seasonal hook.</li>
+      </ol>
+    </div>
+    <div class="card stack g8">
+      <h3>Paid: only after a Reel has proven itself</h3>
+      <ul class="plain small">
+        <li>Boost the winning Reel with the "more messages" goal at $5&ndash;10 a day. Ads Manager later, with the messaging objective (Instagram + Messenger + WhatsApp), never a lead form: a form gives you a name and you still have to DM for the address.</li>
+        <li>Pins on Coral Springs, Parkland and Coconut Creek with 5&ndash;7 mile radii, or the ZIPs 33065 33067 33071 33073 33076 33063 33321 33442 33428 33498. Choose "people living in this location" if your account still shows it (sources disagree whether it survived 2026), and switch off audience expansion if the toggle exists.</li>
+        <li>No public cost-per-lead for tint or detailing exists. Nearest proxies: automotive $35&ndash;39, home services $43&ndash;46 per lead (LocaliQ, WordStream 2025&ndash;26). Expect $10&ndash;30 per DM conversation and $30&ndash;60 per booked $100 car. That is break-even; the job's value is the review and the return visit, not the $100.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="stack g8">
+      <h4>DM booking script</h4>
+      <div class="script">1. "Hey &#91;name&#93;, thanks for the DM! Which city are you in and what car (year and model)? Sedan or SUV changes the legal darkness in back."
+2. "Launch price is $100 for all side and rear windows, we come to your driveway. Fronts at 28% legal, back at 15% (sedan) or 6% (SUV). Want legal-max or lighter?"
+3. "I have &#91;Tue 9am&#93; or &#91;Thu 2pm&#93; open in &#91;city&#93;. Which works? About 2 hours; shade or a garage helps."
+4. "Locked in for &#91;day/time&#93;. Send the address and gate instructions and I'll text a confirmation. Pay after you see it: cash, Zelle or card."
+5. "Day-of: I'll text when I'm 20 min out. Keep windows up 3&ndash;5 days after. Any questions before then?"</div>
+    </div>
+    <div class="stack g8">
+      <h4>Review request text (1&ndash;2 hours after you leave, to every customer)</h4>
+      <div class="script">"Hi &#91;name&#93;, Ziyad from Car Mommy. Thanks for having us out today in &#91;city&#93;. If you have a minute, honest feedback on Google helps a new local business a lot: &#91;review link&#93;. Windows up until &#91;date&#93;. Thanks again!"
+
+48 hours later, once: "Just a nudge in case it got buried: &#91;link&#93;. Thank you!"</div>
+      <p class="tiny">No "5 stars", no mention of the price, no gating, no names. Rules in section 03.</p>
+    </div>
+  </div>
+
+  <div class="card stack g8">
+    <h3>Places to film and be seen (verified dates)</h3>
+    <ul class="plain small">
+      <li><strong>Cars &amp; Coffee Palm Beach</strong>, Boca Raton Innovation Campus, 4850 T-Rex Ave: Sun Oct 11, Nov 1, Dec 6 2026, 8am&ndash;noon, spectators free. carsandcoffeepb.com</li>
+      <li><strong>Exotics at The Colonnade</strong>, Sawgrass Mills, Sunrise: Sun Nov 15 2026 &mdash; the closest big meet to Coral Springs.</li>
+      <li><strong>Supercar Saturdays Florida</strong>, Seminole Hard Rock, Hollywood: 2nd Saturday, Oct 10, Nov 14, Dec 12 2026, free.</li>
+      <li><strong>Pompano Beach</strong>: Exotic Cars and Coffee, Charlotte Burrie Center, Fri Oct 16 8&ndash;10am; Pep Boys Cars and Coffee, 240 W Copans Rd, Sat Oct 17 9&ndash;noon.</li>
+      <li><strong>Parkland Farmers' Market</strong>, 8350 Ranch Rd: 1st and 3rd Sundays from Nov 1 2026. Vendor booths are food and plants only; your route is a sponsorship &mdash; farmersmarket@cityofparkland.org, 954-757-4107.</li>
+      <li><strong>Coral Springs Farmers' Market</strong>, 9551 W Sample Rd: listed as select Sundays Oct&ndash;Apr but Yelp shows it closed in July 2026 and the official page was down. Call 954-618-9977 before you plan on it.</li>
+      <li>No recurring meet exists inside Coral Springs or Parkland proper. Neither Cars &amp; Coffee Palm Beach nor Supercar Saturdays publish vendor rules; email the organisers about a small table.</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <label class="item">
+      <input type="checkbox" data-k="ig-account">
+      <span class="ibody">
+        <span class="itop"><h3>Professional account, same name and phone as Google</h3><span class="chip free">$0</span></span>
+        <p class="small">@carmommy or the closest free handle. Bio: "Mobile window tint + detailing &middot; Coral Springs, Parkland, Coconut Creek &amp; NW Broward &middot; Launch price $100 &middot; DM TINT". Link: carmommy.us. Highlights: Offer, Before/After, Reviews, FL tint law.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="ig-first">
+      <span class="ibody">
+        <span class="itop"><h3>Film every $100 car the same way: before, during, after, same angle</h3><span class="chip free">$0</span></span>
+        <p class="small">Phone on a tripod, same spot before and after, sun in frame. Ten seconds of the "before" is the asset; you can't go back for it. Get a one-line permission from the customer to post the car (no plate, no house number).</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="ig-groups">
+      <span class="ibody">
+        <span class="itop"><h3>Join the six groups above as yourself, claim Nextdoor</h3><span class="chip free">$0</span></span>
+        <p class="small">Answer "anyone know a tint guy" threads with a phone number and the offer. Ask each customer to post their own result in their group.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="ig-boost">
+      <span class="ibody">
+        <span class="itop"><h3>Boost the best Reel in week 4, $5&ndash;10 a day, goal "more messages"</h3><span class="chip cost">$50&ndash;100</span></span>
+        <p class="small">Not before you have a Reel that already gets DMs unpaid. Measure cost per conversation and per booked car; stop anything above $60 a booking.</p>
+      </span>
+    </label>
+  </div>
+</section>
+<!-- ============ FILM ============ -->
+<section id="film">
+  <div class="shead"><span class="num">05</span><h2>Film &mdash; where to buy without a dealer agreement, and what it really costs per car</h2></div>
+
+  <p class="small">Prices below were read off each store's product page on 26 September 2026. Cost per car uses Flexfilm's own yield guide: a 40"&times;100' roll does about 8 sedans (12.5 ft each); count 6&ndash;7 if you run SUV-heavy.</p>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>You believed</th><th>Verified</th></tr></thead>
+      <tbody>
+        <tr><td>3M, XPEL, LLumar are dealer-gated</td><td><strong>True</strong>, also SunTek, Solar Gard, H&uuml;per Optik, KAVACA. 3M wants 3 years' experience and proof of insurance; SunTek's application accepts a "service area business" (mobile) and buys through distributors from about $10k/yr. Two holes: <strong>Global</strong> is not gated (buyglobalfilm.com, Express Window Films in Orlando), and genuine <strong>Avery Dennison</strong> and Solar Gard "Smoke" rolls are sold to anyone by Metro Restyling.</td></tr>
+        <tr><td>Flexfilm, Tinters Supply, Tint Depot sell to anyone</td><td><strong>True.</strong> Flexfilm and Tint Depot have guest checkout; Tinters Supply (Miami Lakes, 25 minutes from you) wants an account but asks for nothing beyond billing details. Add Tint Club, Tint Wholesale, Scorpion and Metro Restyling to the open list.</td></tr>
+        <tr><td>Carbon $27&ndash;37 a car</td><td><strong>Holds</strong> for lifetime-warranty carbon ($205&ndash;279 a roll). 5-year-warranty carbon is $170&ndash;175 a roll ($21&ndash;22 a car) &mdash; don't warranty a car with it.</td></tr>
+        <tr><td>Ceramic $44&ndash;58 a car</td><td><strong>Holds only for entry ceramic</strong> ($310&ndash;439 a roll, $39&ndash;55). Anything sold as "IR ceramic" with 92&ndash;98% IR is $449&ndash;824 a roll, <strong>$56&ndash;103 a car</strong>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fix">
+    <div class="hd"><h3>The number on the box is not the number on the meter. Two "35%" films fail Florida fronts.</h3><span class="chip warn">Read the spec sheet</span></div>
+    <p class="small">The meter reads film &times; glass, and factory side glass passes 70&ndash;80% of light. To read 28% on 75% glass you need a film that actually measures 37%; with the &plusmn;3% tolerance (floor 25%) you need at least 33%. Nominal shades vary: Flexfilm Terraflex "35" measures 36% (reads 27&ndash;29%), Duraflex "35" measures 34.7% (26&ndash;28%, tolerance only), Terraflex "40" measures 42% (31&ndash;34%, safe), Tint Depot Ceramic IR "35" measures 36%. <strong>Flexfilm Panaflex "35" measures 31.9% and Tint Depot Carbon "35" measures 31%: both read 23&ndash;25% on the car and fail.</strong> A $100 customer who gets a ticket is a one-star review; put fronts on a film that measures 40&ndash;42% and stop worrying about the tolerance.</p>
+    <p class="small"><strong>Rears:</strong> sedans need 15% (12% with tolerance): 20% film reads 15&ndash;17.5%, fine; 15% film reads 11&ndash;12% and fails. <strong>Multipurpose vehicles</strong> need 6% (3% with tolerance): 5% film on clear glass reads 4&ndash;6%, legal only through the tolerance. On factory privacy glass (typically 15&ndash;25% already) any 5&ndash;20% film stacks to 1&ndash;5% and is illegal; meter the glass first and use a 35&ndash;50% film there, or leave it. Reflectance is a non-issue: these films reflect 5&ndash;10% against a 25% cap.</p>
+  </div>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Supplier</th><th>Film</th><th>Warranty</th><th class="n">40"&times;100'</th><th class="n">$ / car</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Tint Depot (TX)</td><td>Carbon, 2-ply</td><td>5 yr</td><td class="n">$169.99</td><td class="n">$21</td><td>Cheapest real carbon; 15% out of stock; IR 31%. Free ship &ge; $500.</td></tr>
+        <tr><td>Scorpion</td><td>Carbon Series</td><td>Lifetime</td><td class="n">$205</td><td class="n">$26</td><td>Ships in 1 day.</td></tr>
+        <tr><td>Flexfilm (AL)</td><td>Duraflex Carbon Core</td><td>Lifetime</td><td class="n">$199.99&ndash;229.99</td><td class="n">$25&ndash;29</td><td class="hot">Full spec sheets (VLT, reflectance, TSER). 35% measures 34.7%.</td></tr>
+        <tr><td>Tint Club</td><td>Carbon</td><td>Lifetime</td><td class="n">$209.99</td><td class="n">$26</td><td>Free ship &ge; $99; $20&ndash;40 sample rolls to test shrink and adhesive first.</td></tr>
+        <tr><td>Metro Restyling (MI)</td><td>Cheetah Carbon Pro</td><td>Ltd lifetime</td><td class="n">$213</td><td class="n">$27</td><td>Also sells Avery Encore $268 and Encore Supreme IR $414.</td></tr>
+        <tr><td>Tinters Supply (Miami Lakes)</td><td>Carbon HX</td><td>Lifetime</td><td class="n">$220</td><td class="n">$27.50</td><td class="hot">Local pickup, no freight, same-day. 786-581-3130.</td></tr>
+        <tr><td>Flexfilm</td><td>Terraflex Carbon</td><td>Lifetime</td><td class="n">$279</td><td class="n">$35</td><td class="hot">35 = 36% measured, 40 = 42%. The safe front-window film.</td></tr>
+        <tr><td>Tint Wholesale</td><td>IR Nano Ceramic</td><td>Lifetime</td><td class="n">$310</td><td class="n">$39</td><td>IR-only specs, no VLT or TSER published.</td></tr>
+        <tr><td>Tint Club</td><td>Ceramic</td><td>Lifetime</td><td class="n">$339.99</td><td class="n">$42.50</td><td>Entry ceramic, IR up to 88%.</td></tr>
+        <tr><td>Tinters Supply</td><td>Ceramic (IR 82%)</td><td>Lifetime</td><td class="n">$349</td><td class="n">$44</td><td>Local pickup. Ceramic Pro IR (92&ndash;98%) $449&ndash;499.</td></tr>
+        <tr><td>Tint Depot</td><td>Ceramic IR</td><td>Lifetime</td><td class="n">$421.99</td><td class="n">$53</td><td>35 = 36% measured, TSER 50%.</td></tr>
+        <tr><td>Flexfilm</td><td>Panaflex Ceramic</td><td>Lifetime</td><td class="n">$439</td><td class="n">$55</td><td class="dead">"35" measures 31.9%: fails fronts. Use its "40" (35.35%) for fronts, tolerance only.</td></tr>
+        <tr><td>Flexfilm</td><td>Nanoflex (98% IR)</td><td>Lifetime</td><td class="n">$824</td><td class="n">$103</td><td>The upsell roll for later, not for $100 cars.</td></tr>
+        <tr><td class="dead">Wholesale Window Tint</td><td class="dead">Carbon PRO $132 / Ceramic IR $212</td><td class="dead">none published</td><td class="dead">&mdash;</td><td class="dead">$17&ndash;26</td><td class="dead">No specs, no warranty terms. Not for cars you put your name on.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tiny">Compare films on <strong>TSER</strong> (total solar energy rejected), not "IR rejection": vendors quote the flattering 900&ndash;1000 nm band. Verified TSER at 35%: Duraflex 42%, Terraflex 50%, Avery Encore 40%, Tint Depot Ceramic IR 50%, Panaflex 61%, Nanoflex 60%. Dyed film fades purple in 3&ndash;5 years; don't buy it at any price. Amazon and eBay blocked our reads, so no Amazon roll price is verified here.</p>
+
+  <div class="grid2">
+    <div class="card stack g8">
+      <h3>First order: Flexfilm, one vendor, published specs, free shipping over $750</h3>
+      <ul class="plain small">
+        <li>2 &times; Terraflex 40"&times;100' 40% at $279 &mdash; fronts, and legal all-round on cars where the customer wants light. $558</li>
+        <li>1 &times; Duraflex 40"&times;100' 20% at $199.99 &mdash; sedan rears</li>
+        <li>1 &times; Duraflex 40"&times;100' 5% at $199.99 &mdash; truck and body-on-frame SUV rears on clear glass</li>
+        <li>1 &times; Duraflex 20"&times;100' 35% at $99.99 &mdash; fronts-only jobs</li>
+        <li><strong>$1,058, free shipping, 1&ndash;2 days from Alabama. About 36 cars of film, roughly $29 a car.</strong> Register every install for the lifetime warranty within 30 days; it goes through you as the installer.</li>
+      </ul>
+      <p class="tiny">Local alternative, no freight, same day: Tinters Supply, Carbon HX 40"&times;100' &times; 3 plus a 20"&times;100' 35% = $749, about $27.50 a car. Their "35" has no published measured VLT, so meter the first car before you commit the fronts to it.</p>
+    </div>
+    <div class="card stack g8">
+      <h3>Buy with the film</h3>
+      <ul class="plain small">
+        <li><strong>Tint meter on FHP's approved list:</strong> Laser Labs Tint Meter Model 2000 "Inspector II", $179 at laser-labs.com (Enforcer II $119). The Tint-Chek TC3800 ($229) is a good meter but is not on the state list; own the one the trooper owns.</li>
+        <li><strong>100 compliance labels</strong> (section 06), ~$105.</li>
+        <li><strong>Sample rolls first if you switch brands:</strong> Tint Club 40"&times;10' $20&ndash;40. Test heat-shrink and adhesive on Rasul's car before a customer's.</li>
+        <li><strong>Ceramic upsell roll, later:</strong> Tint Club Ceramic 35% $339.99 or Tinters Supply Ceramic 35% $349. Sell it as "$X more for 50% heat rejection instead of 42%", using the TSER numbers, not IR.</li>
+        <li><strong>Plotter later, not now.</strong> Flexfilm dealer pricing and plotter access start at $5,000 spend in 12 months; FlexCut software is $400 to start then $149 a month. Tint Club sells precut all-window kits with film for $174&ndash;199 a car if a job is beyond hand-cutting.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group">
+    <label class="item">
+      <input type="checkbox" data-k="f-order">
+      <span class="ibody">
+        <span class="itop"><h3>Order the five rolls, shipped to "Car Mommy, 6160 Wiles Rd"</h3><span class="chip cost">$1,058</span></span>
+        <p class="small">That invoice is also a Google verification document. If cash is tight this week: Tinters Supply pickup at $749 and add the Terraflex 40 roll when the first ten cars are paid.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="f-meter">
+      <span class="ibody">
+        <span class="itop"><h3>Meter and labels</h3><span class="chip cost">~$285</span></span>
+        <p class="small">Meter every window after install, write the reading on the invoice, label the jamb. Three minutes that make a ticket the customer's problem, not yours.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="f-test">
+      <span class="ibody">
+        <span class="itop"><h3>Alex does Rasul's car and yours before any customer's</h3><span class="chip free">$60 of film</span></span>
+        <p class="small">Full car, metered, labelled, timed, filmed for Instagram. Then the first $100 customer.</p>
+      </span>
+    </label>
+  </div>
+  <p class="src">flexfilmstore.com (Duraflex, Terraflex, Panaflex, Nanoflex, FAQ, warranty, plotters) &middot; tinterssupply.com &middot; tintdepot.com &middot; tintclub.com &middot; tintwholesale.com &middot; buyscorpion.com &middot; metrorestyling.com &middot; buyglobalfilm.com &middot; expresswindowfilms.com &middot; suntekfilms.com dealer application &middot; laser-labs.com &middot; flhsmv.gov approved window tint meters</p>
+</section>
+<!-- ============ LABEL ============ -->
+<section id="label">
+  <div class="shead"><span class="num">06</span><h2>The door-jamb label &mdash; Fla. Stat. 316.2955, verified against the 2026 statutes</h2></div>
+
+  <p class="small">Fetched from the Florida Legislature's own site (leg.state.fl.us, "The 2026 Florida Statutes") and cross-checked on flsenate.gov. Your summary was right on the big points and wrong on three details that change what you print.</p>
+
+  <blockquote class="law">
+    <strong>316.2955 Window sunscreening material; compliance labeling; tolerances.</strong><br>
+    (1) Each installer or seller of sunscreening material shall provide a pressure-sensitive, self-destructive, nonremovable, vinyl-type film label to the purchaser stating that the material complies with the provisions of ss. 316.2951-316.2954. Each such installer shall affix the required label to the inside left door jamb of the motor vehicle. In addition, the label shall state the trade name of the material and the installer's or seller's business name. Labeling is not required for factory glazing which complies with Federal Motor Vehicle Safety Standard No. 205.<br>
+    (2) Every percentage measurement required by ss. 316.2951-316.2954 is subject to a tolerance of plus or minus 3 percent.
+    <cite>leg.state.fl.us &rarr; Statutes &rarr; 316.2955 (2026)</cite>
+  </blockquote>
+
+  <blockquote class="law">
+    <strong>316.2956(3)</strong> Any person who sells or installs sunscreening material in violation of any provision of ss. 316.2951-316.2955 is guilty of a misdemeanor of the second degree, punishable as provided in s. 775.082 or s. 775.083.
+    <cite>316.2956 (2026) &middot; second degree = up to 60 days (775.082) and up to $500 (775.083)</cite>
+  </blockquote>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>You believed</th><th>The statute says</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Self-destructive vinyl label, inside left door jamb</td><td>"pressure-sensitive, self-destructive, nonremovable, vinyl-type film label" &hellip; "affix the required label to the inside left door jamb"</td><td class="hot">Correct, exact phrase</td></tr>
+        <tr><td>It carries the film trade name + business name</td><td>It must <em>also</em> state that the material "complies with the provisions of ss. 316.2951-316.2954". Three elements, not two.</td><td>Incomplete</td></tr>
+        <tr><td>Duty is on the installer</td><td>"Each installer or seller &hellip; shall provide" the label to the purchaser; only the installer affixes it</td><td>Sellers too</td></tr>
+        <tr><td>Second-degree misdemeanour on the installer</td><td>Yes &mdash; for "any provision of ss. 316.2951-316.2955", so a missing label is itself the misdemeanour. The driver only gets a nonmoving infraction under 316.2956(1), and never for a missing label.</td><td class="hot">Correct, and wider</td></tr>
+        <tr><td>(not in your notes)</td><td>Every measurement carries a &plusmn;3% tolerance (316.2955(2)). No size, colour, date or VLT figure is required on the label.</td><td>Add</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="fix amber">
+    <div class="hd"><h3>Enforcement reality: nobody has been prosecuted for it that we could find. Do it anyway.</h3><span class="chip cost">$1 a car</span></div>
+    <p class="small">No reported Florida case or news story of an installer charged under 316.2956(3) turned up. FHP's tint-meter policy (17.27) says nothing about checking door-jamb labels; troopers cite drivers from the meter reading. But FHP's own fleet policy (6.03) requires "a reputable and professional installer who shall affix the label required by Section 316.2955" on patrol cars, so the state treats the label as real. It costs about a dollar and it is the only thing that separates you from the "half the tint blogs say Florida has no sticker" crowd when a customer, a cop or a lawyer asks.</p>
+  </div>
+
+  <div class="card stack g12">
+    <h3>Where to buy: nobody sells a ready-made Florida label. Order custom destructible vinyl.</h3>
+    <p class="small">Tint supply houses (Tint Depot, Tinters Supply, GDI Tools, Amazon) only sell "DO NOT ROLL DOWN" cure stickers &mdash; low-tack, removable, and they don't say what the statute requires. The statute's "self-destructive, nonremovable vinyl-type film" is what the label industry sells as <strong>destructible / "eggshell" / tamper-evident vinyl with permanent adhesive</strong>. Any of these will print your text on it:</p>
+    <div class="twrap">
+      <table>
+        <thead><tr><th>Vendor</th><th>Material</th><th>Price seen (Sept 2026)</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>CarStickers.com &mdash; Custom Eggshell Stickers</td><td>2.0 mil destructible vinyl, permanent adhesive, unlaminated; "break into small pieces when someone tries to peel them"</td><td class="n">from ~$1.05 each, no minimum, free US shipping</td><td class="hot">Best first order. Rated 2 years outdoors; a door jamb is indoors.</td></tr>
+          <tr><td>Maverick Label &mdash; Destructible Security Labels</td><td>4 mil destructible vinyl, up to 7 years outdoors</td><td class="n">from $191.74 a run</td><td>Better material, bigger minimum. Second order.</td></tr>
+          <tr><td>MyAssetTag.com &mdash; Tamper-evident labels</td><td>Destructible vinyl</td><td class="n">from $0.49</td><td>Stock sizes are tiny (up to 1"&times;2"); ask for a custom size.</td></tr>
+          <tr><td>StickerShop.com &middot; Sticker.com &middot; Designery Signs &middot; TamperCo</td><td>Destructible vinyl, custom print</td><td class="n">quote / roll pricing</td><td>All valid; all quote-based.</td></tr>
+          <tr><td class="dead">Sticker Mule, Vistaprint, Avery WePrint, UPrinting, LabelValue</td><td class="dead">No destructible stock</td><td class="dead">&mdash;</td><td class="dead">Peels off in one piece. Does not satisfy the statute.</td></tr>
+          <tr><td class="dead">"DO NOT ROLL DOWN" stickers (GDI, Amazon, tint suppliers)</td><td class="dead">Low-tack cure warning</td><td class="dead">~$25 / 300</td><td class="dead">Keep using them for the cure warning. They are not the compliance label.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="stack g8">
+      <h4>Print this</h4>
+      <div class="label-demo">
+        <b>FLORIDA WINDOW SUNSCREENING COMPLIANCE LABEL</b>
+        This sunscreening material complies with Sections 316.2951&ndash;316.2954, Florida Statutes.<br>
+        Film trade name: ______________________<br>
+        Installer: <strong>CAR MOMMY</strong> (Ziyad &#91;last name&#93; DBA) &middot; Coral Springs, FL &middot; (954) ___-____<br>
+        Installed ____/____/______ &middot; VLT on glass: front ____% &nbsp;rear ____%<br>
+        Self-destructive label &mdash; do not remove.
+      </div>
+    </div>
+    <div class="stack g8">
+      <h4>Notes</h4>
+      <ul class="plain small">
+        <li>The statutory minimum is the first three lines: the compliance statement, the film's trade name, your business name. Everything else is your own protection.</li>
+        <li>Print the film name per line you stock (one label design per film) or leave the write-in line; the statute says the label must "state" the trade name, not that it must be printed.</li>
+        <li>White destructible vinyl, about 2"&times;3", permanent acrylic adhesive, no laminate. Clean the jamb with alcohol, apply dry, press hard; full bond takes 24&ndash;72 hours.</li>
+        <li>Write the same film name and per-window VLT on the invoice. That invoice plus the label is your whole defence if a customer or officer ever argues.</li>
+        <li>Update the business name on the label the day the LLC exists.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="group">
+    <label class="item">
+      <input type="checkbox" data-k="l-order">
+      <span class="ibody">
+        <span class="itop"><h3>Order 100 eggshell labels the same day you order film</h3><span class="chip cost">~$105</span></span>
+        <p class="small">CarStickers.com eggshell, 2"&times;3", white, the text above with the business name pre-printed and the film name written in or pre-printed per roll. Ship to Car Mommy at Wiles Rd &mdash; that invoice doubles as a Google verification document.</p>
+      </span>
+    </label>
+    <label class="item">
+      <input type="checkbox" data-k="l-invoice">
+      <span class="ibody">
+        <span class="itop"><h3>Invoice template with film name and per-window VLT</h3><span class="chip free">$0</span></span>
+        <p class="small">Vehicle, VIN, film trade name, shade installed per window, meter reading on glass after install, the customer's signature under "I was told the legal limits and chose these shades". Keep a photo of the label in place.</p>
+      </span>
+    </label>
+  </div>
+</section>
+<!-- ============ LIMITS ============ -->
+<section id="limits">
+  <div class="shead"><span class="num">07</span><h2>Florida tint limits &mdash; the corrected table</h2></div>
+
+  <p class="small">Your numbers were right. Two things around them were wrong: the rear reflectance limit is 35%, not 25%, and the statute names no colours at all. Both errors came from tint blogs and were repeated in the earlier playbook; this table replaces it.</p>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Window</th><th>Cars</th><th>Multipurpose passenger vehicle</th><th>Reflectance</th><th>Statute</th></tr></thead>
+      <tbody>
+        <tr><td>Windshield</td><td colspan="2">Film only as a transparent strip above the AS-1 line. Nothing below it.</td><td>&mdash;</td><td class="n">316.2952(2)(b)</td></tr>
+        <tr><td>Front side windows</td><td class="n">&ge; 28% VLT</td><td class="n">&ge; 28% VLT</td><td class="n">&le; 25%</td><td class="n">316.2953</td></tr>
+        <tr><td>Back side windows</td><td class="n">&ge; 15% VLT</td><td class="n">&ge; 6% VLT</td><td class="n">&le; 35%</td><td class="n">316.2954(1)(a)</td></tr>
+        <tr><td>Rear window</td><td class="n">&ge; 15% VLT</td><td class="n">&ge; 6% VLT</td><td class="n">&le; 35%</td><td class="n">316.2954(1)(a)</td></tr>
+        <tr><td>Tolerance</td><td colspan="3">&plusmn; 3% on every measurement</td><td class="n">316.2955(2)</td></tr>
+        <tr><td>Colours</td><td colspan="3">None named. Any film that meets the numbers is permitted; any that doesn't is banned regardless of colour. Forget "no red, amber, blue" &mdash; it isn't in the law.</td><td class="n">316.2953, .2954</td></tr>
+        <tr><td>Rear window made non-transparent</td><td colspan="3">Allowed only if the car has side mirrors on both sides</td><td class="n">316.2954(2)</td></tr>
+        <tr><td>Driver's penalty</td><td colspan="3">Nonmoving infraction, $30 base plus court add-ons, only for film outside 316.2951&ndash;.2954. The installer carries the criminal exposure (section 06).</td><td class="n">316.2956(1), 318.18</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="stack g16">
+    <div class="fix amber">
+      <div class="hd"><h3>"SUV / truck" is not the legal test. "Multipurpose passenger vehicle" is.</h3><span class="chip cost">Check the door jamb</span></div>
+      <p class="small">316.2951(2): "a motor vehicle with motive power designed to carry 10 persons or fewer which is constructed either on a truck chassis or with special features for occasional off-road operation." That is word-for-word the federal definition, and every vehicle already carries the answer: the manufacturer's certification label in the driver's door jamb states the vehicle type &mdash; <strong>PASS CAR</strong> gets 15% behind the driver, <strong>MPV</strong> or <strong>TRUCK</strong> gets 6%. Photograph that label on every job. A crossover built on a car platform can be certified either way; the label decides, not the shape.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>The limits are measured on the glass, with the film on, on that car</h3><span class="chip warn">Buy the meter</span></div>
+      <p class="small">316.2953 and .2954 say "when applied to and tested on the glass of such windows on the specific motor vehicle". Factory side glass is not 100% clear, so a "28% film" reads well under 28% once it's on. Which film shade gives a legal reading, and what to stock, is worked out in section 05. Troopers use FLHSMV-approved meters only: Laser Labs 100 / 200 / 400, Monroe PMP Pocket Detective, New World Instruments Pocket Detective 2.1, Tint Meter Model 1000 (Enforcer II) and 2000 (Inspector II). Own one of those, check every job, write the reading on the invoice.</p>
+    </div>
+
+    <div class="fix">
+      <div class="hd"><h3>Medical exemption: it belongs to the car, not the person</h3><span class="chip cost">See the certificate first</span></div>
+      <p class="small">Lupus, autoimmune disease or "other medical conditions which require a limited exposure to light" qualify (316.29545). The owner applies on form HSMV 83390 with a physician's statement, $6.50 per vehicle, and gets certificate HSMV 83391 for that VIN, kept in the glove box, void on sale. A customer saying "I have a note from my doctor" is not an exemption. Ask to see the 83391 before you go darker than the table; the installer misdemeanour has no medical carve-out of its own.</p>
+    </div>
+  </div>
+
+  <p class="src">leg.state.fl.us 316.2951 &ndash; 316.2957 (2026) &middot; flhsmv.gov approved window tint meters &middot; FHP Policy 17.27 &middot; HSMV 83390 (rev. 07/25) &middot; procedure RS-48 (05/2025)</p>
+</section>
+<!-- ============ THIS WEEK ============ -->
+<section id="week">
+  <div class="shead"><span class="num">08</span><h2>The order of operations, and where the money goes</h2></div>
+  <p class="small">Each line waits on the one above it. The fictitious name is the bottleneck: insurance, the bank, the city receipt and Google all need it, and the newspaper notice comes before it.</p>
+
+  <div class="twrap">
+    <table>
+      <thead><tr><th>#</th><th>Do</th><th class="n">Cost</th><th>Waits on</th></tr></thead>
+      <tbody>
+        <tr><td class="n">1</td><td>Register carmommy.us; confirm the order went through</td><td class="n">~$15</td><td>&mdash;</td></tr>
+        <tr><td class="n">2</td><td>EIN online; newspaper notice in Broward Daily Business Review</td><td class="n">$48</td><td>&mdash;</td></tr>
+        <tr><td class="n">3</td><td>Sunbiz fictitious name "Car Mommy"</td><td class="n">$50</td><td>the notice</td></tr>
+        <tr><td class="n">4</td><td>DR-1 sales tax; price menu becomes "$100 + tax"</td><td class="n">$0</td><td>&mdash;</td></tr>
+        <tr><td class="n">5</td><td>Five insurance quotes with the section 02 script; bind GL + garage keepers (off-premises, $100k+) + tools + HNOA</td><td class="n">$135&ndash;360/mo</td><td>Sunbiz confirmation</td></tr>
+        <tr><td class="n">6</td><td>Film order, meter, labels, all to the business name and address</td><td class="n">~$1,340</td><td>&mdash;</td></tr>
+        <tr><td class="n">7</td><td>Storage unit for film and chemicals; Coral Springs home-based receipt; Broward codes 322 + 277</td><td class="n">~$240 + $60&ndash;120/mo</td><td>Sunbiz confirmation</td></tr>
+        <tr><td class="n">8</td><td>Magnets, rigid sign, shirts, cards, invoice template; carmommy.us live with phone and cities</td><td class="n">~$200</td><td>the name, the phone number</td></tr>
+        <tr><td class="n">9</td><td>Alex on part-time payroll; I-9; new-hire report</td><td class="n">~$21&ndash;41/mo</td><td>EIN</td></tr>
+        <tr><td class="n">10</td><td>Practice cars: Rasul's and yours, metered, labelled, filmed</td><td class="n">~$60 film</td><td>film, meter, labels</td></tr>
+        <tr><td class="n">11</td><td>Google profile: create, stage, film once, then touch nothing</td><td class="n">$0</td><td>7, 8, insurance certificate, film invoice</td></tr>
+        <tr><td class="n">12</td><td>Instagram account, first $100 customer with the intake routine and the before/after video, review text two hours later</td><td class="n">$0</td><td>insurance bound</td></tr>
+        <tr class="total"><td></td><td>Cash to first customer, excluding the storage unit and payroll</td><td class="n">~$2,300&ndash;2,900</td><td>of the $3,500</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q">
+    <h3>Three things that are not optional, whatever else slips</h3>
+    <ol class="plain small">
+      <li><strong>Garage keepers that applies off-premises, bound before the first customer car.</strong> Without it, one torn defroster grid on a Range Rover is a personal debt.</li>
+      <li><strong>Fronts on a film that measures 40&ndash;42%, metered on the car, label in the jamb, reading on the invoice.</strong> The misdemeanour is yours, not the customer's.</li>
+      <li><strong>"$100 + tax", the same for everyone, and never in the same sentence as the word "review".</strong></li>
+    </ol>
+  </div>
+</section>
+</div><!-- /sections -->
+
+<footer>
+  <p class="tiny">Sources: Florida Statutes 316.2951&ndash;316.2957, 316.29545, 318.18, 440.02, 865.09 (2026, leg.state.fl.us and flsenate.gov) &middot; FLHSMV approved tint meters, FHP policies 17.27 / 17.06 / 6.03, forms HSMV 83390 and procedure RS-48 &middot; Google Business Profile Help (answers 3038177, 14271705, 9157481, 13597551, 4569145, 16816815) and the Maps user-contributed content policy &middot; Sunbiz fictitious name registration &middot; City of Coral Springs Business Tax Office &middot; carrier and agency pages named in each section &middot; supplier product pages as dated in the film table &middot; Socialinsider 2026 benchmarks, Skin Cancer Foundation, Archives of Dermatological Research 2025, UF/IFAS, NOAA NHC.</p>
+  <p class="tiny">Prices and availability checked 26 September 2026 and will move. Insurance quotes, county and city fees are the numbers the company or office gives you, not the ones here. Not legal, tax or insurance advice.</p>
+  <p class="tiny">Companion pages: <a href="playbook.html">playbook.html</a> (entity, tax, licences) &middot; <a href="complaints.html">complaints.html</a> (what customers complain about, and the rules that prevent it).</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+(function(){
+  var KEY = "carmommy-tint-launch-v1";
+  var boxes = document.querySelectorAll(".item input[type=checkbox]");
+  var state = {};
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) state = JSON.parse(raw) || {};
+  } catch (e) { state = {}; }
+
+  boxes.forEach(function(b){
+    var k = b.getAttribute("data-k");
+    if (state[k]) b.checked = true;
+    b.addEventListener("change", function(){
+      state[k] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    });
+  });
+})();
+</script>

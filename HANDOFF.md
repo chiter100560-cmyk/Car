@@ -4,78 +4,92 @@ Copy everything in the block below into a fresh Claude session (local or web).
 
 ---
 
-I'm Ziyad. I'm starting a mobile car-services business in South Florida with my
-brother Rasul — we go to the customer's home. You're picking up an in-progress
-project, so read `README.md` and `playbook.html` in this repo first
-(chiter100560-cmyk/Car, branch `claude/car-services-business-guide-bqg0ui`) and
-don't re-derive decisions that are already made.
+I'm Ziyad. I'm starting Car Mommy, a mobile window-tint + detailing business in Coral
+Springs, FL (Broward). I own it, Alex does the installs, my brother Rasul is learning.
+You're picking up an in-progress project: read `README.md` and `tint-launch.html` in this
+repo first (chiter100560-cmyk/Car, branch `claude/gallant-edison-8g66eb`), then
+`playbook.html` and `complaints.html`. Don't re-derive decisions that are already made.
 
-HOW TO TALK TO ME: blunt and direct, simple words — English isn't my first
-language. No cheerleading, no "great question". Tell me plainly when I'm wrong
-and why. Don't insult me. Push me toward money-making actions.
+HOW TO TALK TO ME: blunt and direct, simple words — English isn't my first language.
+No cheerleading, no "great question". Tell me plainly when I'm wrong and why. Don't
+insult me. Push me toward money-making actions.
 
 WHAT'S ALREADY DECIDED (don't reopen these):
-- Mobile detailing now; window tint added at day 60–90, funded by detailing cash
-- NOT doing oil change — regulated used-oil waste, thin margin, certified competition
-- Rinseless/waterless first — no water tank, no generator (I drive a BMW 430i,
-  nothing bigger fits until I can buy a van out of profit)
-- Base: 6160 Wiles Rd, Coral Springs FL 33067 — Broward County, NOT Palm Beach
-- Service radius: 20 minutes. Coral Springs, Parkland, Coconut Creek, Margate,
-  Tamarac, west Boca, Deerfield
-- NOT fighting Fort Lauderdale in year one (One Call Detailing has ~571 reviews there)
-- Budget: $3,500 total. Target ticket $250. Capacity 8–12 cars/week
-- My hours: Mon both of us all day · Tue dead · Wed both from 2pm · Thu dead ·
-  Fri both from 2pm · Sat me solo (Rasul unavailable) · Sun both all day
+- Brand: Car Mommy, domain carmommy.us (check it's actually registered — it looked
+  unregistered on 26 Sept 2026)
+- Lean start, NO LLC until revenue is real. Sole proprietor under a Sunbiz fictitious name.
+- Tint first at $100 + tax while Alex builds skill and Google reviews; detailing alongside.
+  Normal pricing + website + ads after that.
+- Rinseless/waterless detailing — no water tank, no generator (BMW 430i carries everything)
+- Base: 6160 Wiles Rd, Coral Springs FL 33067 — Broward County. Service radius 20 min:
+  Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield
+- NOT doing oil change. NOT fighting Fort Lauderdale in year one.
+- Budget $3,500 total. Tools have arrived.
 
-WHERE I AM: Step 2 of 12 (get legal). Nothing filed yet. Roadmap: 1 concept ✅ →
-2 LLC/EIN/sales tax/licenses/insurance ← here → 3 equipment → 4 Google profile →
-5 competitor teardown → 6 pricing → 7 website → 8 reviews → 9 ads → 10 ops →
-11 add tint → 12 hire.
+WHERE I AM: tint-launch.html §08 is the order of operations. Nothing filed yet as of
+26 Sept 2026. Order: domain → EIN → newspaper notice → Sunbiz fictitious name → DR-1 →
+insurance quotes (GL + garage keepers endorsed for off-premises, $100k+) → bind → film
+order + meter + labels → storage unit + Coral Springs home-based receipt + Broward codes
+322/277 → magnets/sign/site → Alex on payroll → practice cars → Google video → first
+$100 customer + Instagram.
 
-THREE THINGS ALREADY RESEARCHED — carry these, don't contradict them:
-1. Florida tint labeling is Fla. Stat. 316.2955 (penalties 316.2956). Tint blogs
-   claiming Florida needs no compliance sticker are WRONG — the installer must
-   affix a self-destructive vinyl label to the inside left door jamb with the
-   film's trade name and the installer's business name. Violating is a
-   second-degree misdemeanor, on the installer.
-2. Florida sales tax applies to the ENTIRE bill once materials transfer (chemicals,
-   wax, coating, film) — not just the product. Broward is 7%. I must register on
-   Form DR-1 before the first paid car and price all-in.
-3. Google Local Services Ads now covers car wash/detailing, BUT the Google Verified
-   badge is unavailable for auto verticals, so LSA ranks below Search ads. Priority:
-   Google Business Profile + reviews → Google Search ads → Instagram → LSA → Yelp.
+THINGS ALREADY RESEARCHED FROM PRIMARY SOURCES — carry these, don't contradict them:
+1. Fla. Stat. 316.2955 (2026): installer or seller provides a pressure-sensitive,
+   self-destructive, nonremovable vinyl-type film label stating compliance with
+   ss. 316.2951–316.2954, the film's trade name and the business name; installer affixes
+   it to the inside left door jamb. 316.2956(3): violating any of 316.2951–.2955 is a
+   second-degree misdemeanour for the seller or installer. ±3% tolerance. No ready-made
+   Florida label exists; order custom destructible ("eggshell") vinyl (CarStickers.com,
+   Maverick Label). Limits: fronts ≥28% VLT / ≤25% reflectance; behind driver ≥15%
+   (≥6% multipurpose passenger vehicle) / ≤35% reflectance. No colours are named.
+2. Sales tax: the whole tint bill is taxable (Rule 12A-1.006), a detail is fully taxable
+   once wax/sealant/coating goes on. Broward 7%. Fla. Stat. 212.07: tax separately stated,
+   never advertise "tax included" — advertise "$100 + tax".
+3. Insurance: GL excludes the customer's car; garage keepers covers it but the standard
+   form only applies at scheduled locations — it must be endorsed for off-premises work.
+   Direct primary if offered; $100k+ per vehicle. Carriers that write it for a mobile op
+   in FL: NEXT, biBERK, Simply Business, Insureon, Dopazo (Miami), Bellken (Broward),
+   State Farm agents. Alex is an employee under Fla. Stat. 440.02 and the IRS test.
+4. Google: enter the real address with unit number, hide it, service areas by city (west
+   Boca by ZIP). Primary category "Auto window tinting service", secondary "Car detailing
+   service". Name "Car Mommy" only, no descriptors. One-take video, Ziyad recording,
+   tools in the vehicle and documents on the table, no stockroom in the unit (city
+   home-occupation rules forbid storing inventory there). $100 price is fine; never tie
+   it to reviews; ask by text after leaving; pace review requests.
+5. Film: open suppliers are Flexfilm, Tinters Supply (Miami Lakes pickup), Tint Depot,
+   Tint Club, Tint Wholesale, Scorpion, Metro Restyling, Global. Lifetime carbon $26–35
+   a car; entry ceramic $39–55; IR ceramic $56–103. Fronts must go on a film that
+   MEASURES 40–42% (Terraflex 40); Panaflex 35 and Tint Depot Carbon 35 fail fronts.
+   Meter: Laser Labs Inspector II ($179), on FHP's approved list.
+6. Coral Springs home-based receipt: no employees/contractors at the residence, no
+   inventory or equipment stored there, no commercial vehicle overnight. Needs a storage
+   address on the affidavit.
+7. Google Local Services Ads: the Verified badge is unavailable for auto verticals.
+   Priority: Google Business Profile + reviews → Instagram (30-day plan in
+   tint-launch.html §04) → Google Search ads → LSA → Yelp.
 
 OPEN ITEMS:
-- [ ] Business name not picked. Rules: no city in the legal name (I'll expand),
-      no "Detailing" in it (tint is coming), spellable on the phone, .com free,
-      free on sunbiz.org. "[Word] Auto Care LLC" style.
-- [ ] Confirm 6160 Wiles Rd is a residence I occupy, not an office suite —
-      it has unit numbers and a pool-cleaning business is already listed there.
-      Both make Google verification harder.
-- [ ] THE TASK I WANT NEXT: competitor bad-review teardown.
+- [ ] Confirm carmommy.us is registered (carmommy.com is parked for sale, $1,556)
+- [ ] Everything in tint-launch.html §08, in order
+- [ ] Competitor bad-review teardown (below) — needs a local session; the cloud session
+      cannot render Google Maps, Yelp or BBB.
 
-NEXT TASK IN DETAIL:
-Collect the 1-, 2- and 3-star reviews for these five competitors:
-  1. One Call Detailing — Pompano Beach FL (~571 reviews, the benchmark)
-  2. Mobile Detailers Inc — Coral Springs FL (already does detail + tint + ceramic,
-     my exact concept, on my street)
-  3. Platinum Auto Detailing — Coral Springs/Parkland FL (70+ five-star)
-  4. GoFilms Window Tinting — Plantation FL (~351 reviews)
-  5. Family Mobile Window Tint — Margate FL (closest tint competitor)
+NEXT RESEARCH TASK (local session): collect the 1-, 2- and 3-star reviews for
+  1. One Call Detailing — Pompano Beach (~571 reviews, the benchmark)
+  2. Mobile Detailers Inc — Coral Springs (detail + tint + ceramic, my exact concept;
+     Mon–Fri only, closed Sat–Sun — that's my wedge)
+  3. Platinum Auto Detailing — Coral Springs/Parkland (70+ five-star)
+  4. GoFilms Window Tinting — Plantation (~351 reviews)
+  5. Family Mobile Window Tint — Margate (closest tint competitor)
+Quote real review text with source URLs. If a site blocks you, say so — do not invent
+review text. Rank every complaint theme that repeats, turn the top themes into website
+copy and operating rules, commit to the same branch.
+Fast manual method: Google Maps → business → review count → sort "Lowest rating" →
+search: late, didn't show, cancel, reschedul, refund, scratch, damage, swirl, missed,
+spots, streak, overcharge, quote, rude, waiting, bubble, purple, peel.
 
-Quote real review text with source URLs. If a site blocks you or serves a CAPTCHA,
-SAY SO — do not substitute a summary or invent review text. Then rank every
-complaint theme that repeats across all five, and turn the top themes into website
-copy and operating rules. Commit results to the same branch.
-
-Fast manual method if scraping fails: Google Maps → open the business → tap the
-review count → Sort by "Lowest rating" → use the "Search reviews" box for:
-late, didn't show, cancel, reschedul, refund, scratch, damage, swirl, missed,
-spots, streak, overcharge, quote, rude, waiting.
-
-WHY MY EDGE MATTERS: every mobile tint competitor in this corridor is closed
-Saturday and Sunday, which is exactly when a homeowner is at home with the car in
-the driveway. But "we do both tint and detail" is weaker here than it was in
-Delray — Mobile Detailers Inc already does both. My real edges are weekend
-availability, response speed, and showing up on time. That's why the bad-review
-teardown matters.
+WHY MY EDGE MATTERS: every mobile tint competitor in this corridor is closed Saturday and
+Sunday, when homeowners are home with the car in the driveway. "We do both tint and
+detail" is not unique here (Mobile Detailers Inc already does it). My real edges: weekend
+availability, response speed, showing up on time, and the $100 launch price while the
+reviews build.

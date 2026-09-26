@@ -1,142 +1,122 @@
-# Mobile Auto Services — Boca Raton, FL
+# Car Mommy — mobile window tint + detailing, Coral Springs FL
 
-Working record for Ziyad and Rasul's mobile car-services business. Detailing now,
-window tint at day 60–90, both delivered at the customer's home.
+Working record for Ziyad's driveway car-services business. Ziyad owns it, Alex installs,
+Rasul is learning. Tint first at a $100 launch price while the reviews build, detailing
+alongside, both at the customer's home. Brand: **Car Mommy**, carmommy.us.
 
-**Two working documents:**
-- [`playbook.html`](playbook.html) — Step 2: entity, tax, licences, insurance, Google.
-  Checklist remembers what you've ticked off.
-- [`complaints.html`](complaints.html) — the eight things customers complain about in
-  this trade, the rule that prevents each, a booking script, and website copy written
-  to sell against them.
+**Three working documents** (open on a phone; checklists remember what you've ticked):
+- [`tint-launch.html`](tint-launch.html) — **current.** Insurance (GL + garage keepers for a
+  mobile operation), Google Business Profile video verification at a home address, the
+  Instagram plan, film suppliers and cost per car, the Fla. Stat. 316.2955 door-jamb label,
+  the corrected Florida limits, and the no-LLC legal minimum. Verified 26 Sept 2026.
+- [`playbook.html`](playbook.html) — the August Step-2 checklist (entity, tax, licences,
+  insurance, Google). Still right on most things; see the corrections below.
+- [`complaints.html`](complaints.html) — the eight things customers complain about in this
+  trade, the operating rule that prevents each, a booking script, and website copy.
 
 ---
 
-## Locked decisions (Step 1 — done)
+## Where things stand (26 Sept 2026)
 
 | | |
 |---|---|
-| Service now | Mobile detailing, rinseless-first (no water tank, no generator — fits a 4-series) |
-| Service at day 60–90 | Window tint, funded out of detailing revenue |
-| Differentiator | Tint **and** detail in one driveway visit — nobody in the corridor does both |
-| Market wedge | Saturdays — every mobile tint competitor in the corridor is closed Sat–Sun |
-| Base | Wiles Rd, Coral Springs 33067 — **Broward County** (not Palm Beach) |
-| Radius | 20 minutes from base |
+| Owner / worker / learner | Ziyad / Alex / Rasul |
+| Entity | Sole proprietor. **No LLC until revenue is real.** Fictitious name "Car Mommy" on Sunbiz first |
+| Service now | Window tint at **$100 + tax**, detailing alongside |
+| Base | 6160 Wiles Rd, Coral Springs 33067 — Broward County |
 | Territory (20 min) | Coral Springs, Parkland, Coconut Creek, Margate, Tamarac, west Boca, Deerfield |
-| Not doing | Oil change — regulated used-oil waste, thin margin, ASE-certified competition |
-| Not doing | Fort Lauderdale in year one — One Call Detailing sits at ~571 reviews |
-| Capital | $3,500 |
-| Capacity | 8–12 cars/week at full tilt, ~26 working hours |
-| Target ticket | $250 |
+| Tools | Arrived |
+| Domain | carmommy.us — **appears unregistered as of 26 Sept** (no registry record, no DNS). Check the order. carmommy.com is parked for sale on Afternic at $1,556 |
+| Not doing | Oil change; Fort Lauderdale in year one |
 
-## Step 2 — get legal, get verified, get paid
+## Corrections to the August playbook
 
-Full checklist with costs and links: [`playbook.html`](playbook.html)
+- **Rear reflectance limit is 35%, not 25%.** 316.2954(1)(a). Front side windows stay at 25%.
+- **Florida names no banned colours.** "No red, amber, blue" came from tint blogs; the
+  statute bans any film that fails the numbers, whatever the colour.
+- **The label needs three things, not two:** a statement that the film complies with
+  ss. 316.2951–316.2954, the film's trade name, and the installer's or seller's business
+  name. Sellers must provide it; the installer affixes it "to the inside left door jamb".
+  Missing label = the installer's second-degree misdemeanour (316.2956(3)); the driver is
+  never cited for it. Every measurement carries a ±3% tolerance (316.2955(2)).
+- **Do not advertise "$100, tax included".** Fla. Stat. 212.07: tax must be separately
+  stated on the invoice and a dealer may not advertise absorbing it. Advertise "$100 + tax",
+  collect $107. (The playbook said to price all-in; that was wrong.)
+- **Coral Springs home-occupation rules:** no employees or contractors at the residence, no
+  materials or equipment stored there (the affidavit asks for the storage address), no
+  commercial vehicle parked overnight. Alex meets you at the job; film lives in a storage
+  unit or the car.
+- **Alex is an employee**, not a 1099 contractor, under both the IRS test and Fla. Stat.
+  440.02. Part-time W-2 through a payroll service (~$21–41/month). Florida minimum wage is
+  $15.00 from 30 Sept 2026. Workers' comp is not mandatory under four employees, but
+  liability policies exclude employee injury.
+- **Google category:** "Auto window tinting service" (the plain "Window tinting service"
+  category was blocked for hidden-address listings). "Auto detailing service" does not
+  exist; use "Car detailing service".
 
-1. **Name and entity** — name rules, LLC ($125 Sunbiz), EIN (free, IRS), business bank account
-2. **Tax** — Florida sales tax registration (Form DR-1, free), rebuild the menu tax-inclusive
-3. **Local licenses** — Broward County *and* City of Coral Springs business tax receipts
-4. **Insurance** — general liability ($30–55/mo) **plus garage keepers legal liability**
-5. **Google** — service-area profile, staged props, one-take video verification
+## Florida tint reference (2026 statutes, verified)
 
-## Corrections to earlier guidance
+| Window | Cars | Multipurpose passenger vehicle* | Reflectance | Statute |
+|---|---|---|---|---|
+| Windshield | transparent strip above AS-1 only | same | — | 316.2952(2)(b) |
+| Front side | ≥ 28% VLT | ≥ 28% VLT | ≤ 25% | 316.2953 |
+| Back side | ≥ 15% VLT | ≥ 6% VLT | ≤ 35% | 316.2954(1)(a) |
+| Rear window | ≥ 15% VLT | ≥ 6% VLT | ≤ 35% | 316.2954(1)(a) |
+| Tolerance | ± 3% on every measurement | | | 316.2955(2) |
+| Colours | none named in the statute | | | |
 
-**Tint statute number was wrong.** Labeling is **Fla. Stat. 316.2955**, penalties
-are **316.2956** — not 316.2953. Many tint blogs claim Florida requires no compliance
-sticker; the statute says otherwise. The installer must affix a pressure-sensitive,
-self-destructive, non-removable vinyl label to the **inside left door jamb** carrying
-the film's trade name and the installer's business name. Installing in violation is a
-**second-degree misdemeanor** — that falls on the installer, not the customer.
+\* "Multipurpose passenger vehicle" = ≤10 persons, built on a truck chassis or with features
+for occasional off-road use (316.2951(2)) — the federal definition. The certification label
+in the driver's door jamb says PASS CAR, MPV or TRUCK; that decides, not the body shape.
 
-**Sales tax was never raised, and it matters most.** Florida doesn't tax labor alone,
-but detailing transfers chemicals/wax/coating and tint transfers film, which makes the
-**entire bill** taxable. Palm Beach and Broward are both 7% — $16.35 on a $250 job,
-roughly $8,500/year at ten cars a week. Register on DR-1 before the first paid car.
+Measured on the glass with film on. Factory side glass passes 70–80%, so fronts go on a
+film that **measures** 40–42% (Flexfilm Terraflex 40 = 42%). Two "35%" films measure 31–32%
+and fail: Flexfilm Panaflex 35 and Tint Depot Carbon 35.
 
-**Local Services Ads should be deprioritized.** Google expanded its auto categories so
-car wash and detailing are now eligible, but the **Google Verified badge is unavailable
-for the auto, beauty and dining verticals** — and the badge is why LSA converts.
-Revised order: Google Business Profile + reviews → Google Search ads →
-Instagram/Meta before-and-afters → LSA once the badge returns → Yelp last.
+## Film: verified 26 Sept 2026
 
-## Florida tint reference
+Open to anyone: Flexfilm, Tinters Supply (Miami Lakes, local pickup), Tint Depot, Tint Club,
+Tint Wholesale, Scorpion, Metro Restyling (genuine Avery Dennison), Global via
+buyglobalfilm.com / Express Window Films. Dealer-gated: 3M, XPEL, LLumar, SunTek, Solar Gard,
+Hüper Optik, KAVACA. Lifetime carbon $205–279 a roll = **$26–35 a car**; entry ceramic
+$310–439 = $39–55; IR ceramic $449–824 = $56–103. Recommended first order (Flexfilm):
+2× Terraflex 40% + 1× Duraflex 20% + 1× Duraflex 5% + 1× Duraflex 20"×100' 35% = $1,058,
+free shipping, ~36 cars. Meter: Laser Labs Inspector II ($179), on FHP's approved list.
 
-| Window | Cars | SUV / van / truck |
-|---|---|---|
-| Front side | 28% VLT min | 28% VLT min |
-| Back side | 15% VLT min | 6% VLT min |
-| Rear window | 15% VLT min | 6% VLT min |
-| Windshield | Non-reflective only, above the AS-1 line | same |
-| Reflectivity | Max 25% front and back sides | same |
-| Banned colors | Red, amber, blue — any window | same |
+## Insurance: who writes garage keepers for a mobile operation in Florida
 
-## Base moved to Coral Springs — what it changed
-
-Answered: no Fort Lauderdale address; base is **6160 Wiles Rd, Coral Springs 33067**.
-
-**Better territory.** Parkland, Coconut Creek and Margate are 5–10 min out; Tamarac,
-west Boca and Deerfield inside 20. All single-family driveway homes — a stronger
-20-minute radius than Boca would have given.
-
-**Different county.** Palm Beach County and City of Boca Raton are off the list.
-It is now **Broward County** (browardtax.org — required under County Ordinances
-72-13 and 88-35 and Fla. Stat. Ch. 205) **plus City of Coral Springs**, whose
-home-based application additionally requires a utility bill/lease, a notarized
-affidavit, and review by Coral Springs Police. Sales tax unchanged at 7%
-(6% state + 1% Broward surtax).
-
-**Two risks at that address.** It carries unit numbers, so it is a multi-unit
-building — verification works only if he genuinely occupies it and can film there.
-A pool-cleaning business is already listed at the same address, which draws extra
-Google scrutiny for a second service-area business. No garage/driveway also means
-no van parking and no film-safe workspace.
-
-**The differentiator is weaker on this turf.** Mobile Detailers Inc (N University Dr,
-Coral Springs) already sells detailing + ceramic + paint correction + window tint —
-the exact concept. Platinum Auto Detailing sits between Coral Springs and Parkland
-with 70+ five-star reviews. One Call Detailing runs a Coral Springs landing page with
-a $20-off code. Remaining edges: weekend availability, response speed, showing up on time.
-
-**Verified competitor intel (Birdeye listing, Aug 2026):** Mobile Detailers Inc —
-4.9 stars, 51 reviews, 4613 N University Dr #327, Coral Springs 33067,
-(954) 997-0301. Hours **Mon–Fri 8:00am–6:00pm, Saturday CLOSED, Sunday CLOSED.**
-The single closest competitor selling the same tint-plus-detail combination does
-not work the two days Ziyad and Rasul are both free. This is the wedge.
-
-**Review teardown could not be completed from the cloud session.** Chromium cannot
-connect through the session relay (fails on every host, including example.com);
-Google requires JavaScript for both Maps and Search so curl returns an empty shell;
-Yelp is blocked at the proxy; BBB returns Cloudflare 403; Birdeye exposes only the
-11 older Facebook reviews (all positive), with the 40 Google reviews behind a JS tab.
-Do this from a local session or manually — see HANDOFF.md. In the meantime
-`complaints.html` covers the industry-wide patterns, which is most of the value
-the teardown was for: eight ranked complaints, the operating rule that prevents
-each, a five-question booking script, and website copy that sells against them.
+NEXT (Pro/Pro Plus packages, $50k/$100k), biBERK (1-844-472-0967), Simply Business
+((855) 869-5183), Insureon ((800) 688-1984), Dopazo & Associates in Miami ((844) 700-0148,
+explicitly mobile), Bellken in Broward (954-233-0733), a State Farm agent. Must be endorsed
+for off-premises work; ask in writing. Target $100k+ per vehicle, direct primary if offered.
+Budget $1,600–4,300/yr all-in before workers' comp. Full script in `tint-launch.html` §02.
 
 ## Open items
 
-- [ ] **Blocking:** confirm 6160 Wiles Rd is a residence he occupies (not an office
-      suite or mailbox), and that equipment can be stored and filmed there.
-- [ ] Three business-name candidates that pass all four naming rules
-- [ ] Teardown of 30 one- and three-star reviews on One Call Detailing (~571) and
-      GoFilms (~351) — every complaint that repeats becomes website copy and ops rules
+- [ ] Confirm carmommy.us is actually registered
+- [ ] Newspaper notice → Sunbiz fictitious name → DR-1 → insurance quotes → bind
+- [ ] Storage unit address for the Coral Springs home-based receipt
+- [ ] Decide on voluntary workers' comp for Alex
+- [ ] Order labels (CarStickers.com eggshell) with the film
+- [ ] Competitor bad-review teardown (still owed from August; needs a local session — see HANDOFF.md)
 
 ## Roadmap
 
-1. ~~Lock the concept~~ (done, name still open)
-2. **LLC + EIN + sales tax + local receipts + insurance** ← current
-3. Equipment and practice cars
-4. Google Business Profile
-5. Competitor teardown
-6. Pricing menu
-7. Website that converts
-8. Reviews
+1. ~~Lock the concept~~ (done — Car Mommy, tint-first)
+2. **Fictitious name, sales tax, receipts, insurance** ← current (`tint-launch.html` §01–02)
+3. ~~Equipment~~ (arrived) + film order + practice cars (§05)
+4. Google Business Profile (§03)
+5. First $100 cars + Instagram (§04)
+6. Competitor teardown
+7. Pricing menu at normal prices
+8. Website that converts
 9. Paid ads
 10. Ops — scheduling, quoting, deposits, no-shows
-11. Add tint
+11. LLC once revenue is real
 12. Hire
 
 ---
 
-Figures verified August 2026. County and city business tax receipt amounts vary by
-classification — confirm by phone. Not legal or tax advice.
+Figures verified 26 September 2026. County and city fees, insurance premiums and film prices
+move — the number the office, carrier or store gives you wins. Not legal, tax or insurance
+advice.
