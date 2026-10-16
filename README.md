@@ -12,6 +12,8 @@ window tint at day 60–90, both delivered at the customer's home.
 - [`tint-learning.html`](tint-learning.html) — every film type and which to sell, the
   legal VLT for every window read straight from the statutes, the illegal requests
   customers make and the words to refuse them, and a 12-week practice plan.
+- [`film-suppliers.html`](film-suppliers.html) — verified roll prices, cost per car,
+  carbon and ceramic ranked, pre-cut compared, and the order to place this week.
 
 ---
 
@@ -154,6 +156,19 @@ a competitor. In the meantime
 `complaints.html` covers the industry-wide patterns, which is most of the value
 the teardown was for: eight ranked complaints, the operating rule that prevents
 each, a five-question booking script, and website copy that sells against them.
+
+## Film supply — verified 16 Oct 2026
+
+Cheapest verified carbon is **Uviron MAX CARBON, $139.95** for 40″×100′ = **$19.59 a
+car**; cheapest verified ceramic is **Uviron MAX CERAMIC, $219.95** = **$30.79 a car**.
+A sedan is 14 linear feet of 40″ film (46.7 sq ft), so a 100′ roll is 7.1 cars clean-cut.
+**Hand-cutting beats pre-cut by $55–85 a car** — Rvinyl pre-cut is $24.99 a section,
+$74.97 for a car. Film is 5–15% of the ticket; it is not the cost problem.
+
+**Do not stock 5%.** Measured on the glass it reads about 4%, under every Florida floor
+including the 6% SUV rear. 15% reads about 12% — legal on an SUV back half and looks
+nearly as dark. Full tables, reliability flags and the week's order:
+[`film-suppliers.html`](film-suppliers.html).
 
 ## Open items
 

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Tint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEE; --surface:#FFFFFF; --surface-2:#F6F7F6;
+  --ink:#15201E; --ink-2:#55625F; --ink-3:#808C89;
+  --rule:#D6DBD8; --rule-2:#E6EAE8;
+  --accent:#0D5F53; --accent-soft:#E2EFEC;
+  --signal:#8F5400; --signal-soft:#FAEEDA;
+  --danger:#8F2D1D; --danger-soft:#F8E5E0;
+  --shadow:0 1px 2px rgba(21,32,30,.05), 0 8px 24px -16px rgba(21,32,30,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+    --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+    --rule:#2A3634; --rule-2:#212B29;
+    --accent:#4FC1AC; --accent-soft:#16302B;
+    --signal:#E0A952; --signal-soft:#33270F;
+    --danger:#E58873; --danger-soft:#351913;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#17201E; --surface-2:#1D2725;
+  --ink:#E6EBE9; --ink-2:#A0AEAA; --ink-3:#74827E;
+  --rule:#2A3634; --rule-2:#212B29;
+  --accent:#4FC1AC; --accent-soft:#16302B;
+  --signal:#E0A952; --signal-soft:#33270F;
+  --danger:#E58873; --danger-soft:#351913;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4", Georgia, serif; font-size:17px; line-height:1.62;
+  margin:0; padding:0 20px 96px; -webkit-font-smoothing:antialiased}
+.wrap{max-width:760px; margin:0 auto}
+h1,h2,h3,h4{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
+.mono,.chip,.eyebrow,.num{font-family:"IBM Plex Mono", ui-monospace, Menlo, monospace}
+h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02; font-weight:800; letter-spacing:-.025em; margin:0; text-wrap:balance}
+h2{font-size:1.42rem; font-weight:700; letter-spacing:-.012em; line-height:1.2; margin:0; text-wrap:balance}
+h3{font-size:1.04rem; font-weight:700; margin:0; text-wrap:balance}
+h4{font-size:.82rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3); margin:0}
+p{margin:0}
+a{color:var(--accent); text-underline-offset:2px}
+strong{font-weight:600}
+.eyebrow{font-size:.7rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3)}
+.lede{font-size:1.12rem; color:var(--ink-2)}
+.small{font-size:.92rem; color:var(--ink-2)}
+.tiny{font-size:.78rem; color:var(--ink-3); line-height:1.5}
+section{display:flex; flex-direction:column; gap:20px}
+.sections{display:flex; flex-direction:column; gap:56px; margin-top:56px}
+.shead{display:flex; align-items:baseline; gap:14px; padding-bottom:12px; border-bottom:2px solid var(--ink)}
+.shead .num{font-size:.78rem; font-weight:600; color:var(--accent); letter-spacing:.06em; flex:none}
+header{padding:44px 0 0; display:flex; flex-direction:column; gap:14px}
+.rule-heavy{height:5px; background:var(--ink); width:64px; border-radius:1px}
+.chip{display:inline-flex; align-items:center; font-size:.66rem; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2);
+  color:var(--ink-2); border:1px solid var(--rule); white-space:nowrap}
+.chip.hot{background:var(--danger-soft); color:var(--danger); border-color:transparent}
+.chip.fl{background:var(--signal-soft); color:var(--signal); border-color:transparent}
+.chip.win{background:var(--accent-soft); color:var(--accent); border-color:transparent}
+.card{background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px;
+  box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px}
+.card.amber{border-left:4px solid var(--signal)}
+.card.win{border-left:4px solid var(--accent)}
+.card.red{border-left:4px solid var(--danger)}
+.cards{display:flex; flex-direction:column; gap:14px}
+.rulebox{background:var(--accent-soft); border-radius:3px; padding:12px 14px; display:flex; flex-direction:column; gap:5px}
+.rulebox h4{color:var(--accent)}
+.note{background:var(--signal-soft); border-radius:4px; padding:16px 18px; display:flex; flex-direction:column; gap:7px}
+.note h4{color:var(--signal)}
+.stop{background:var(--danger-soft); border-radius:4px; padding:16px 18px; display:flex; flex-direction:column; gap:7px}
+.stop h4{color:var(--danger)}
+.etop{display:flex; flex-wrap:wrap; align-items:center; gap:9px}
+ul.plain,ol.plain{margin:0; padding-left:1.15em; display:flex; flex-direction:column; gap:7px}
+.tablewrap{overflow-x:auto; border:1px solid var(--rule); border-radius:4px; background:var(--surface); box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; font-size:.92rem}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule-2); vertical-align:top}
+th{font-family:Archivo,sans-serif; font-size:.72rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:700; background:var(--surface-2); white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; white-space:nowrap}
+.step{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;
+  background:var(--surface); border:1px solid var(--rule); border-radius:4px; padding:20px; box-shadow:var(--shadow)}
+.wk{font-family:"IBM Plex Mono",monospace; font-size:.8rem; font-weight:600; color:var(--accent);
+  line-height:1.2; padding-top:3px; white-space:nowrap}
+.sbody{display:flex; flex-direction:column; gap:11px; min-width:0}
+.gate{border-left:3px solid var(--accent); padding:2px 0 2px 14px; font-size:.92rem; color:var(--ink-2)}
+footer{margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px}
+@media (max-width:560px){
+  body{font-size:16px; padding:0 15px 72px}
+  .card,.note,.stop,.step{padding:15px} .step{gap:12px} .sections{gap:44px}
+  th,td{padding:9px 11px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="rule-heavy"></div>
+  <p class="eyebrow">Mobile auto services &middot; Coral Springs, Florida 33067</p>
+  <h1>Film Suppliers</h1>
+  <p class="lede">Verified roll prices, cost per car, and the three places to order from this week. Every price below was read off the seller's own page or price feed on 16 October 2026 &mdash; nothing is recalled or estimated.</p>
+</header>
+
+<div class="sections">
+
+<section>
+  <div class="note">
+    <h4>What is verified and what is not &mdash; read first</h4>
+    <p class="small"><strong>Verified:</strong> Uviron, Flexfilm, Scorpion, MotoShield Pro, Tinters Supply, Rvinyl pre-cut. Prices came from each store's own product feed, so they are the exact per-option prices, not a range.</p>
+    <p class="small"><strong>Blocked or not confirmed &mdash; no price reported:</strong> Amazon (HTTP 503), eBay (HTTP 403), AliExpress, Made-in-China, Global Window Films, 1800Tint, Carbon Tint Solutions, Window Film Depot, Nexfil and Rayno direct. Alibaba loaded but its results are rendered by script and no price was read. <strong>Tint Depot</strong> blocks automated reads (HTTP 403); its pages show only ranges &mdash; carbon <span class="mono">$99.99&ndash;$199.99</span>, Carbon Stealth <span class="mono">$75.90&ndash;$273.90</span> &mdash; with no price shown per size, so its 40&Prime;&times;100&prime; price is unknown until you select the options yourself.</p>
+    <p class="small"><strong>3M, XPEL, LLumar, SunTek, H&uuml;per Optik are excluded</strong> as instructed. No confirmation was found that any of them sells to a new shop without a dealer agreement.</p>
+    <p class="small"><strong>Maths:</strong> a sedan is taken as 14 linear feet of 40&Prime; film = <strong>46.7 sq ft</strong>. A 40&Prime;&times;100&prime; roll is 333 sq ft = <strong>7.1 sedans</strong>. Those are clean-cut numbers with no waste allowance; hand-cutting while you are learning, assume 5&ndash;6 cars for the first rolls.</p>
+  </div>
+</section>
+
+<!-- 00 -->
+<section>
+  <div class="shead"><span class="num">00</span><h2>Stop &mdash; do not stock 5%</h2></div>
+  <div class="stop">
+    <h4>It is not legally installable in Florida</h4>
+    <p class="small">The meter reads <strong>glass and film together</strong>. 5% film on clear glass lands around <strong>4%</strong>. The floors are 28% front sides, 15% behind the driver on a car, 6% behind the driver on an SUV or truck. 4% is under every one of them.</p>
+    <p class="small">On a sedan it is plainly illegal. On an SUV rear it misses the 6% floor by about two points, and whether the &plusmn;3% tolerance in 316.2955 rescues it is a question you would be arguing with an officer, with your business name on the door-jamb label. <strong>Installing it is a second-degree misdemeanor on you</strong>, not a ticket on the driver.</p>
+    <p class="small"><strong>Stock 15% instead.</strong> On clear glass it reads about 12% &mdash; legal on an SUV back half with room to spare, and to the customer's eye it is nearly as dark. When somebody asks for limo black on their Tahoe, 15% is the answer that does not end in court.</p>
+  </div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="shead"><span class="num">01</span><h2>Carbon &mdash; ranked by cost per car</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Supplier / product</th><th>40&Prime;&times;100&prime;</th><th>$/sq ft</th><th>$/car</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Uviron MAX CARBON</strong><br><span class="tiny">uviron.com/products/max-carbon-premium-window-film</span></td>
+        <td class="n">$139.95</td><td class="n">$0.42</td><td class="n"><strong>$19.59</strong></td>
+        <td class="small">1,646 reviews on the page. States non-dyed PET + carbon particles, <strong>no radio signal interference</strong>, lifetime warranty. Free shipping contiguous US, same-day dispatch if ordered by 5pm ET, 1&ndash;3 business days. <strong>35% and 20% in stock; 5%, 25% and 50% showed out of stock.</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Uviron PUREMAX Carbon</strong></td>
+        <td class="n">$179.95<br><span class="tiny">5% at $152.96</span></td><td class="n">$0.54</td><td class="n">$25.19</td>
+        <td class="small">Same house, one tier up. Useful if MAX CARBON disappoints on shrink.</td>
+      </tr>
+      <tr>
+        <td><strong>Scorpion Carbon Series</strong><br><span class="tiny">buyscorpion.com/products/carbon-series-automotive-film</span></td>
+        <td class="n">$205.00</td><td class="n">$0.62</td><td class="n">$28.70</td>
+        <td class="small">Every shade 5&ndash;70% at one price per width. 20&Prime; $75 &middot; 24&Prime; $115 &middot; 36&Prime; $195 &middot; 60&Prime; $275. Warranty and metal content not confirmed on the page read.</td>
+      </tr>
+      <tr>
+        <td><strong>Flexfilm Terraflex</strong><br><span class="tiny">flexfilmstore.com/products/terraflex</span></td>
+        <td class="n">$279.00</td><td class="n">$0.84</td><td class="n">$39.06</td>
+        <td class="small">2-ply 1.5 mil, 67% IR rejection, lifetime warranty to the original owner. States plainly that <strong>none of their films contain metal</strong> &mdash; no radio, GPS or mobile interference &mdash; and that all cut cleanly on plotters. Free shipping over $750. Widths: 20&Prime; $134 &middot; 24&Prime; $172 &middot; 36&Prime; $249 &middot; 60&Prime; $354.</td>
+      </tr>
+      <tr>
+        <td>Tint Depot Carbon</td>
+        <td class="n">unknown</td><td class="n">&mdash;</td><td class="n">&mdash;</td>
+        <td class="small">Page shows only $99.99&ndash;$199.99 across all sizes and shades, with no per-option price and automated reads blocked. Could be the cheapest on this list or mid-pack. <strong>Open it and select 40&Prime; / 100ft yourself.</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="shead"><span class="num">02</span><h2>Ceramic &mdash; ranked by cost per car</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Supplier / product</th><th>40&Prime;&times;100&prime;</th><th>$/sq ft</th><th>$/car</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Uviron MAX CERAMIC</strong></td>
+        <td class="n">$219.95</td><td class="n">$0.66</td><td class="n"><strong>$30.79</strong></td>
+        <td class="small">370 reviews. Non-dyed PET + ceramic particles, no signal interference, lifetime warranty, free shipping. <strong>15% and 20% in stock; 5%, 35% and 50% showed out of stock</strong> &mdash; check before counting on 35%.</td>
+      </tr>
+      <tr>
+        <td><strong>Uviron KOOLMAX Ceramic</strong></td>
+        <td class="n">$269.96</td><td class="n">$0.81</td><td class="n">$37.79</td>
+        <td class="small">Every shade 5&ndash;70% showed in stock, including 35%. The practical Uviron ceramic pick while MAX CERAMIC 35% is out.</td>
+      </tr>
+      <tr>
+        <td><strong>Tinters Supply 35% Ceramic</strong><br><span class="tiny">tinterssupply.com &middot; Miami Lakes FL 33014</span></td>
+        <td class="n">$349.00</td><td class="n">$1.05</td><td class="n">$48.86</td>
+        <td class="small"><strong>The only supplier inside driving distance</strong> &mdash; about 40 minutes from 33067. States a non-metal nano-ceramic colour system that will not interfere with vehicle electronics. <strong>An account must be set up before purchase</strong>; the page does not say whether it must be a business account, and does not state shipping cost or pickup. 16 lb per roll.</td>
+      </tr>
+      <tr>
+        <td>Flexfilm Panaflex</td>
+        <td class="n">$439.00</td><td class="n">$1.32</td><td class="n">$61.46</td>
+        <td class="small">Entry ceramic from the no-metal line. 40&Prime;&times;50&prime; half-roll $239 &mdash; the cheapest way to try the brand.</td>
+      </tr>
+      <tr>
+        <td>Uviron MEGAMAX</td>
+        <td class="n">$199.95<br><span class="tiny">40&Prime;&times;<strong>50&prime;</strong></span></td><td class="n">$1.20</td><td class="n">$55.99</td>
+        <td class="small">Half-length roll, so the per-car cost is high. Top of Uviron's range.</td>
+      </tr>
+      <tr>
+        <td>MotoShield Pro Nano Ceramic</td>
+        <td class="n">$518.99</td><td class="n">$1.56</td><td class="n">$72.66</td>
+        <td class="small">One price for every shade 5&ndash;75%.</td>
+      </tr>
+      <tr>
+        <td>Flexfilm Nanoflex</td>
+        <td class="n">$824.00</td><td class="n">$2.47</td><td class="n">$115.36</td>
+        <td class="small">Top of the list, 98% IR claimed. Not a film to learn on &mdash; every ruined rear window costs you $20 of film here instead of $3.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="shead"><span class="num">03</span><h2>Pre-cut kits &mdash; the comparison you asked for</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Option</th><th>Price</th><th>Per car</th></tr></thead>
+    <tbody>
+      <tr><td>Rvinyl pre-cut, per section (front / back / rear windshield)</td><td class="n">$24.99 each</td><td class="n">$74.97</td></tr>
+      <tr><td>Rvinyl pre-cut carbon-ceramic, per section</td><td class="n">$34.99 each</td><td class="n">$104.97</td></tr>
+      <tr><td><strong>Hand-cut from Uviron MAX CARBON roll</strong></td><td class="n">$139.95/roll</td><td class="n"><strong>$19.59</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="card win">
+    <h3>Rolls win by roughly $55&ndash;85 a car</h3>
+    <p class="small">You hand-cut, so this is settled: <strong>buy rolls</strong>. Pre-cut costs three to five times as much per car and has to be ordered days ahead for each specific vehicle, which kills same-day work. Its one advantage &mdash; no cutting skill needed &mdash; is the exact skill you are deliberately building. Revisit pre-cut only for an odd vehicle you cannot pattern by hand.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="shead"><span class="num">04</span><h2>Reliability &mdash; what to be suspicious of</h2></div>
+  <div class="cards">
+    <div class="card amber">
+      <h3>Uviron: cheapest, with two flags</h3>
+      <p class="small">The price is genuinely the lowest verified anywhere on this list and the review counts are large (1,646 on carbon). But: the customer testimonials on the page talk about a film called <strong>"TintX"</strong> while the product is sold as <strong>MAX CARBON</strong> &mdash; a sign of relabelled stock or a rebrand, not proof of either. And at least one review on the page itself calls the film "Walmart grade at best" and says not to buy.</p>
+      <p class="small"><strong>So do not place a four-roll order with them sight unseen.</strong> Buy one roll, cut four windows on junkyard glass, and judge the shrink and the adhesive yourself. $140 is a cheap test; $720 of film you cannot work with is not.</p>
+    </div>
+    <div class="card win">
+      <h3>Flexfilm: most transparent on the things that matter</h3>
+      <p class="small">The only supplier here that states, in writing, that <strong>no film in the line contains metal</strong>, gives a layer breakdown (2-ply, 1.5 mil), an IR figure (67% on carbon), a lifetime warranty bound to the original owner, and plotter compatibility. It costs about $19 more per car than Uviron carbon. For the ceramic jobs you charge $350&ndash;450 for, that difference is nothing and the warranty paper is worth having.</p>
+    </div>
+    <div class="card">
+      <h3>Tinters Supply: the local one</h3>
+      <p class="small">Miami Lakes, about 40 minutes away. Highest ceramic price of the three, but no shipping wait and a phone number to call &mdash; which is what matters when you have a car booked Saturday and you are out of 35%. Build the account before you need it, and ask on the phone: do they allow pickup, is there a trade price, and what is the minimum order.</p>
+    </div>
+    <div class="card red">
+      <h3>What would make a film counterfeit or junk</h3>
+      <ul class="plain small">
+        <li>"Ceramic" at a dyed-film price &mdash; under about $0.40/sq ft, be suspicious of the word.</li>
+        <li>No stated construction (ply count, mil thickness) and no IR or TSER figure.</li>
+        <li>Overseas direct shipping with a brand name you cannot find on that brand's own site.</li>
+        <li>No warranty, or a warranty with no registration process.</li>
+        <li>The complaints to search for before buying any roll: <strong>bubbling after a few months, purple fading, adhesive that will not release, film that creases rather than shrinks.</strong></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="shead"><span class="num">05</span><h2>The order to place this week</h2></div>
+  <p class="small">Today is Friday 16 October 2026. Two versions &mdash; take the first.</p>
+
+  <div class="card win">
+    <div class="etop"><span class="chip win">Recommended</span><h3>Test order &mdash; $359.90</h3></div>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Item</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Uviron MAX CARBON 40&Prime;&times;100&prime; &mdash; <strong>35%</strong> (in stock)</td><td class="n">$139.95</td></tr>
+        <tr><td>Uviron MAX CARBON 40&Prime;&times;100&prime; &mdash; <strong>20%</strong> (in stock)</td><td class="n">$139.95</td></tr>
+        <tr><td>Flexfilm Panaflex 40&Prime;&times;<strong>50&prime;</strong> ceramic &mdash; 35%</td><td class="n">$239.00</td></tr>
+        <tr><td><em>Shipping: free at Uviron. Flexfilm free only over $750, so expect a charge &mdash; not stated until checkout.</em></td><td class="n">&mdash;</td></tr>
+        <tr><td><strong>Uviron subtotal, free shipping</strong></td><td class="n"><strong>$279.90</strong></td></tr>
+        <tr><td><strong>Total with the Flexfilm half-roll</strong></td><td class="n"><strong>$518.90 + shipping</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small"><strong>Arrival:</strong> Uviron states same-day dispatch if ordered by 5pm ET and 1&ndash;3 business day delivery &mdash; order today and expect <strong>Monday 19 to Wednesday 21 October</strong>. Flexfilm's transit time is not stated on the page, so do not promise a customer a date against it.</p>
+    <p class="small">That is roughly <strong>14 carbon cars and 3&ndash;4 ceramic cars</strong> of stock, two brands to compare on the same junkyard glass, and no shade you cannot legally install.</p>
+  </div>
+
+  <div class="card amber">
+    <div class="etop"><span class="chip fl">If you insist on full stock now</span><h3>Four rolls &mdash; $769.81</h3></div>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Item</th><th>Price</th></tr></thead>
+      <tbody>
+        <tr><td>Uviron MAX CARBON 40&Prime;&times;100&prime; 35%</td><td class="n">$139.95</td></tr>
+        <tr><td>Uviron MAX CARBON 40&Prime;&times;100&prime; 20%</td><td class="n">$139.95</td></tr>
+        <tr><td>Uviron KOOLMAX Ceramic 40&Prime;&times;100&prime; 35% <span class="tiny">(MAX CERAMIC 35% is out of stock)</span></td><td class="n">$269.96</td></tr>
+        <tr><td>Uviron MAX CERAMIC 40&Prime;&times;100&prime; <strong>15%</strong> <span class="tiny">(instead of the 5% you asked for &mdash; see section 00)</span></td><td class="n">$219.95</td></tr>
+        <tr><td><strong>Total, one supplier, free shipping</strong></td><td class="n"><strong>$769.81</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="small">Arrives Monday 19 to Wednesday 21 October. The risk is the one in section 04: $770 committed to a film you have never cut.</p>
+  </div>
+
+  <div class="card">
+    <h3>The three suppliers, and what each is for</h3>
+    <ul class="plain small">
+      <li><strong>Uviron &mdash; volume and learning stock.</strong> Cheapest verified, free shipping, fastest stated delivery. Prove it on one roll first.</li>
+      <li><strong>Flexfilm &mdash; the film you sell at premium.</strong> Documented construction, no metal across the line, lifetime warranty, plotter-ready for when you buy a plotter.</li>
+      <li><strong>Tinters Supply (Miami Lakes) &mdash; the emergency.</strong> 40 minutes away. Set the account up now, before the Saturday you run out mid-job.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 06 -->
+<section>
+  <div class="shead"><span class="num">06</span><h2>Profit per car, with these numbers</h2></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Job</th><th>Film</th><th>Price</th><th>7% tax</th><th>Gross</th></tr></thead>
+    <tbody>
+      <tr><td>Carbon sedan, Uviron MAX CARBON</td><td class="n">$19.59</td><td class="n">$229</td><td class="n">$14.99</td><td class="n"><strong>$194.42</strong></td></tr>
+      <tr><td>Carbon sedan, Flexfilm Terraflex</td><td class="n">$39.06</td><td class="n">$249</td><td class="n">$16.29</td><td class="n">$193.65</td></tr>
+      <tr><td>Ceramic sedan, Uviron MAX CERAMIC</td><td class="n">$30.79</td><td class="n">$399</td><td class="n">$26.10</td><td class="n"><strong>$342.11</strong></td></tr>
+      <tr><td>Ceramic sedan, Flexfilm Panaflex</td><td class="n">$61.46</td><td class="n">$399</td><td class="n">$26.10</td><td class="n">$311.44</td></tr>
+      <tr><td>Ceramic sedan, Tinters Supply</td><td class="n">$48.86</td><td class="n">$399</td><td class="n">$26.10</td><td class="n">$324.04</td></tr>
+      <tr><td>Pre-cut carbon-ceramic sedan</td><td class="n">$104.97</td><td class="n">$399</td><td class="n">$26.10</td><td class="n">$267.93</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">Prices shown are tax-inclusive, as your menu must be &mdash; film transfers to the customer, so the whole bill is taxable at 7% in Broward. Gross is before your time, fuel, labels and insurance. <strong>Film is not your cost problem.</strong> At $20&ndash;60 a car it is 5&ndash;15% of the ticket; the thing that actually costs you money is a ruined rear window, which is why the cheap roll is for practice and the documented roll is for customers.</p>
+</section>
+
+<!-- 07 -->
+<section>
+  <div class="shead"><span class="num">07</span><h2>Still to check &mdash; needs a logged-in browser</h2></div>
+  <div class="card">
+    <ul class="plain small">
+      <li><strong>Tint Depot's real 40&Prime;&times;100&prime; prices.</strong> Ranges start at $99.99, below Uviron. Select the options on the page &mdash; it may beat everything here.</li>
+      <li><strong>Tinters Supply:</strong> call +1 786-581-3130. Pickup? Trade pricing? Minimum order? Carbon roll price, which was never shown.</li>
+      <li><strong>Amazon and eBay</strong> blocked automated reads entirely. Worth ten minutes in your own browser &mdash; sellers there often dump 40&Prime; rolls below distributor pricing, and that is also where relabelled film lives.</li>
+      <li><strong>Alibaba / Made-in-China:</strong> prices unread. Realistically not a first-year route &mdash; minimum orders, 3&ndash;6 week sea freight, and no warranty you can hand a customer.</li>
+      <li><strong>Compliance labels and a VLT meter</strong> are not on this page and are not optional. Neither is garage keepers cover.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p class="tiny"><strong>Prices read 16 October 2026 from:</strong>
+    <a href="https://uviron.com/products/max-carbon-premium-window-film">Uviron MAX CARBON</a> &middot;
+    <a href="https://uviron.com/products/max-ceramic-premium-window-film">Uviron MAX CERAMIC</a> &middot;
+    <a href="https://uviron.com/collections/window-film">Uviron window film</a> &middot;
+    <a href="https://flexfilmstore.com/products/terraflex">Flexfilm Terraflex</a> &middot;
+    <a href="https://flexfilmstore.com/products/panaflex">Flexfilm Panaflex</a> &middot;
+    <a href="https://flexfilmstore.com/products/nanoflex">Flexfilm Nanoflex</a> &middot;
+    <a href="https://buyscorpion.com/products/carbon-series-automotive-film">Scorpion Carbon Series</a> &middot;
+    <a href="https://www.motoshieldpro.com/products/40-x-100-nano-ceramic-tint-roll/">MotoShield Pro Nano Ceramic</a> &middot;
+    <a href="https://tinterssupply.com/shop/autofilm/ceramic/film-35-ceramic-40x100-roll/">Tinters Supply 35% Ceramic</a> &middot;
+    <a href="https://www.rvinyl.com/collections/precut-window-tint">Rvinyl pre-cut</a> &middot;
+    <a href="https://tintdepot.com/product/carbon/">Tint Depot Carbon (range only)</a>
+  </p>
+  <p class="tiny">Stock status was as shown on 16 October 2026 and moves daily. Shipping costs other than Uviron's stated free shipping were not confirmed. Companion documents: <a href="tint-learning.html">tint-learning.html</a> (film types, legal limits, practice plan) &middot; <a href="playbook.html">playbook.html</a> &middot; <a href="complaints.html">complaints.html</a>. Not legal or tax advice.</p>
+</footer>
+
+</div>
